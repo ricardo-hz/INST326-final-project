@@ -1,6 +1,5 @@
 print("Hello, Git!")
-# Practice adding edits to staging area, committing to local repository
-# and pushing to remote repository
+# Practicing git add, git commit, and git push
 print("This is a change I made!: Nathan C")
 
 # Checks if a number is even
