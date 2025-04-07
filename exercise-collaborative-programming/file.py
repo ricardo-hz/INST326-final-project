@@ -6,12 +6,4 @@ def is_even(number):
     if number == 1:
         return False
     elif number == 2:
-        return True
-    elif number == 3:
-        return False
-    elif number == 4:
-        return True
-    elif number == 5:
-        return False
-    elif number == 6:
-        return True
+        return "Random Value"
