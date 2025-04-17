@@ -10,7 +10,7 @@ class Armor():
 # Abilities dictionary with all possible abilities?
 # Name : dmg, heal, cooldown
 ABILITIES = {
-    "ABILITY NOT FOUND" : [0, 0, 9999], # Special ability reserved for debugging
+    "ABILITY NOT FOUND" : [3.14, 3.14, 9999], # Special ability reserved for debugging
     "SUPER SMASH" : [10, 0, 0]
 }
 
