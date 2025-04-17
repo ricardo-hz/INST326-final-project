@@ -7,5 +7,21 @@ class Weapon():
 class Armor():
     pass
 
+# Abilities dictionary with all possible abilities?
+ABILITIES = {
+    "SUPER SMASH" : [0, 0, 0]
+}
+
 class Ability():
-    pass
+    def __init__(self, damage = 0, heal = 0, cooldown = 0):
+        """Initializes an ability object.
+        
+        """
+        pass
+    
+    def use(self, other_character):
+        """Casts an ability object onto a character.
+        
+        """
+        print("ability used!")
+        pass

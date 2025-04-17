@@ -13,7 +13,7 @@ class Character():
         something (self, arg, arg) : 
     """
     
-    def __init__(self, hp, weapon = None, armor = None, abilities = None):
+    def __init__(self, hp, weapon = None, armor = None, abilities = []):
         """Initializes a new character object.
         
         Args:
@@ -43,9 +43,13 @@ class Character():
     
     def add_ability(self, ability):
         if ability not in self.abilities:
-            self.abilities += ability 
+            self.abilities.append(ability) 
     
     # Methods needed for group members:
         # Some sort of method needed for abilities for Ricardo
         # Attack method for Nathan
         # Aviva is doing something with equipment (weapon and armor)
+        
+c = Character(250)
+c.add_ability("Super Smash")
+print(c.abilities)
