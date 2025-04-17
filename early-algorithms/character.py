@@ -17,7 +17,7 @@ class Character():
             abilities list.
     """
     
-    def __init__(self, hp, weapon = None, armor = None, abilities = []):
+    def __init__(self, name, hp, weapon = None, armor = None, abilities = []):
         """Initializes a new character object.
         
         Args:
@@ -31,6 +31,7 @@ class Character():
             - Should weapon be a list of weapon objects? or will characters 
             have one weapon only?
         """
+        self.name = name
         self.hp = hp
         self.weapon = weapon
         self.armor = armor
@@ -61,32 +62,32 @@ class Character():
         # Attack method for Nathan
         # Aviva is doing something with equipment (weapon and armor)
         
-    def character_equipment(self, weapons, armour, battle):
-        for an_ability in self.abilities:
-            if isinstance(an_ability, Weapon):
-                self.weapons.append(an_ability)
-            else:
-                self.armour.append(an_ability)
-        print(f"It is now {self.name}'s turn. The weapons that {self.name} " 
-              f"currrently has are {self.weapons} and their current armour "
-              f"is {self.armour}.")
-        input(f"The battle you are fighting is: {self.battle}. Please choose "
-              f"one weapon from the lists given ")
-        if self.battle == "Won":
-            weapon_addition = input("Congrats on winning the battle! Please "
-                  "choose one weapon to add to your character's abilities ")
-            armour_addition = input("Now please choose one weapon to add to "
-                                    "your character's abilities ")
-            self.weapons.append(weapon_addition)
-            self.armour.append(armour_addition)
-        elif self.battle == "Lost":
-            print(f"Unfortunately, you lost your battle and are not able to "
-                  f"upgrade your weapons and armour. Your weapons are: "
-                  f"{self.weapons} and your armour is: {self.armour}. Better "
-                  f"luck next time!")
+def character_equipment(name, weapons, armour, battle_outcome):
+    for an_ability in Character.add_ability:
+        if isinstance(an_ability, equipment.Weapon()):
+            weapons.append(an_ability)
         else:
-            print(f"A battle was not played. Your weapons are: {self.weapons} "
-                  f"and your armour is: {self.armour}.")
+            armour.append(an_ability)
+    print(f"It is now {name}'s turn. The weapons that {name} " 
+            f"currrently has are: {weapons} and their current armour "
+            f"is: {armour}.")
+    input(f"Please choose one weapon from the list given. ")
+    input(f"Please choose one piece of armour from the list given. ")
+    if battle_outcome == "Won":
+        weapon_addition = input("Congrats on winning the battle! Please "
+                "choose one weapon to add to your character's abilities ")
+        armour_addition = input("Now please choose one weapon to add to "
+                                "your character's abilities ")
+        weapons.append(weapon_addition)
+        armour.append(armour_addition)
+    elif battle_outcome == "Lost":
+        print(f"Unfortunately, you lost your battle and are not able to "
+                f"upgrade your weapons and armour. Your weapons are: "
+                f"{weapons} and your armour is: {armour}. Better "
+                f"luck next time!")
+    else:
+        print(f"A battle was not played. Your weapons are: {weapons} "
+                f"and your armour is: {armour}.")
 
 #################################
 # The below code is for testing #
