@@ -60,6 +60,33 @@ class Character():
         # Some sort of method needed for abilities for Ricardo
         # Attack method for Nathan
         # Aviva is doing something with equipment (weapon and armor)
+        
+    def character_equipment(self, weapons, armour, battle):
+        for an_ability in self.abilities:
+            if isinstance(an_ability, Weapon):
+                self.weapons.append(an_ability)
+            else:
+                self.armour.append(an_ability)
+        print(f"It is now {self.name}'s turn. The weapons that {self.name} " 
+              f"currrently has are {self.weapons} and their current armour "
+              f"is {self.armour}.")
+        input(f"The battle you are fighting is: {self.battle}. Please choose "
+              f"one weapon from the lists given ")
+        if self.battle == "Won":
+            weapon_addition = input("Congrats on winning the battle! Please "
+                  "choose one weapon to add to your character's abilities ")
+            armour_addition = input("Now please choose one weapon to add to "
+                                    "your character's abilities ")
+            self.weapons.append(weapon_addition)
+            self.armour.append(armour_addition)
+        elif self.battle == "Lost":
+            print(f"Unfortunately, you lost your battle and are not able to "
+                  f"upgrade your weapons and armour. Your weapons are: "
+                  f"{self.weapons} and your armour is: {self.armour}. Better "
+                  f"luck next time!")
+        else:
+            print(f"A battle was not played. Your weapons are: {self.weapons} "
+                  f"and your armour is: {self.armour}.")
 
 #################################
 # The below code is for testing #
