@@ -8,20 +8,34 @@ class Armor():
     pass
 
 # Abilities dictionary with all possible abilities?
+# Name : dmg, heal, cooldown
 ABILITIES = {
-    "SUPER SMASH" : [0, 0, 0]
+    "ABILITY NOT FOUND" : [0, 0, 9999], # Special ability reserved for debugging
+    "SUPER SMASH" : [10, 0, 0]
 }
 
 class Ability():
-    def __init__(self, ability_name, damage = 0, heal = 0, cooldown = 0):
+    def __init__(self, name, damage = 0, heal = 0, cooldown = 0):
         """Initializes an ability object.
         
         """
-        self.ability_name = ability_name
+        # Ensure ability is in ability dictionary
+        if name.upper() in ABILITIES:
+            self.name = name.upper()
+        else:
+            raise NameError(f"{name} is not a valid ability.")
+        
+        # Set the other ability elements
+        self.damage = ABILITIES[self.name][0]
+        self.heal = ABILITIES[self.name][1]
+        self.cooldown = ABILITIES[self.name][2]
     
     def use(self, other_character):
         """Casts an ability object onto a character.
         
         """
+        other_character.hp += self.heal
+        other_character.hp -= self.damage
+        # Reset cooldown to maximum according to dictionary
+        self.cooldown = ABILITIES[self.name][2]
         print("ability used!")
-        pass

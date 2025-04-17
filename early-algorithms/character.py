@@ -53,8 +53,8 @@ class Character():
                 pertaining to it's use should be present in the ABILITIES
                 dictionary of equipment.py.
         """
-        if ability not in self.abilities:
-            self.abilities.append(ability) 
+        if ability.name.upper() not in self.abilities:
+            self.abilities.append(equipment.Ability(ability.name.upper())) 
     
     # Methods needed for group members:
         # Some sort of method needed for abilities for Ricardo
@@ -72,4 +72,6 @@ c.add_ability(equipment.Ability("Super Smash"))
 
 # I think there might not be because of the menu based nature of the game when 
 # it's complete
-print(c.abilities[0].use(p))
+print(f"health: {p.hp}")
+c.abilities[0].use(p)
+print(f"health: {p.hp}")
