@@ -13,11 +13,11 @@ ABILITIES = {
 }
 
 class Ability():
-    def __init__(self, damage = 0, heal = 0, cooldown = 0):
+    def __init__(self, ability_name, damage = 0, heal = 0, cooldown = 0):
         """Initializes an ability object.
         
         """
-        pass
+        self.ability_name = ability_name
     
     def use(self, other_character):
         """Casts an ability object onto a character.
