@@ -18,8 +18,7 @@ class Character():
             abilities list.
     """
     
-    def __init__(self, name, hp, weapon = None, armor = None, abilities 
-                 = []):
+    def __init__(self, name, hp, weapon = None, armor = None, abilities = []):
         """Initializes a new character object.
         
         Args:
@@ -45,10 +44,10 @@ class Character():
         other_character.hp -= 20
     
     def add_weapon(self, weapon):
-        pass
+        raise NotImplementedError;  
     
     def remove_weapon(self, weapon):
-        pass
+        raise NotImplementedError;  
     
     def add_ability(self, ability):
         """Adds an ability object to a character's abilities list.
@@ -170,7 +169,12 @@ def ComputerTurn(human_party, monster_party):
             print(f"{selected_target.name} has died!")
             human_party.remove(selected_target)
     print(f"Party HP: {human_party}")
-        
+
+def assemble_team():
+    pass
+
+def start():
+    raise NotImplementedError;  
 
 #################################
 # The below code is for testing #
