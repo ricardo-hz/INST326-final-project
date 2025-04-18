@@ -61,6 +61,8 @@ class Character():
         if ability.name.upper() not in self.abilities:
             self.abilities.append(equipment.Ability(ability.name.upper())) 
     
+    def __repr__(self):
+        return f"{self.name}: {self.hp}"
     # Methods needed for group members:
         # Some sort of method needed for abilities for Ricardo
         # Attack method for Nathan
@@ -104,7 +106,8 @@ def ComputerTurn(human_party, monster_party):
     Side effects:
         Reduces the HP of a targeted character
         Prints out the result of an attack
-        Prints out if a player's character has died
+        Prints out if a player's character has died if their HP is reduced
+        to 0 or less
     """
     human_party_max_hp = [character.max_hp for character in human_party]
     human_party_max_hp.sort(reverse = True)
