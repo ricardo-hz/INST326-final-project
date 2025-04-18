@@ -2,10 +2,14 @@
 # here as a foundation of sorts
 
 class Weapon():
-    pass
+    def __init__(self, name, damage):
+        self.name = name
+        self.damage = damage
 
 class Armor():
-    pass
+    def __init__(self, name, armor_value):
+        self.name = name
+        self.armor_value = armor_value
 
 # Abilities dictionary with all possible abilities?
 # Name : dmg, heal, cooldown
