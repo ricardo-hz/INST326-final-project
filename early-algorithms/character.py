@@ -42,7 +42,7 @@ class Character():
         self.abilities = abilities
         
     def attack(self, other_character):
-        other_character.hp - 20
+        other_character.hp -= 20
     
     def add_weapon(self, weapon):
         pass
@@ -94,9 +94,21 @@ def character_equipment(name, weapons, armour, battle_outcome):
                 f"and your armour is: {armour}.")
 
 def ComputerTurn(human_party, monster_party):
+    """Decides how the monsters in the enemy party will attack our player's
+        party own characters
+        
+    Args:
+        human_party (list of Characters): The characters in the Player's party
+        monster_party (list of Characters): The characters in the enemy party
+        
+    Side effects:
+        Reduces the HP of a targeted character
+        Prints out the result of an attack
+        Prints out if a player's character has died
+    """
     human_party_max_hp = [character.max_hp for character in human_party]
     human_party_max_hp.sort(reverse = True)
-    selected_target = Character()
+    selected_target = None
     for monster in monster_party:
         for character in human_party:
             # A character will always be targeted if they are below an HP
@@ -112,9 +124,7 @@ def ComputerTurn(human_party, monster_party):
                 if probability <= 25:
                     selected_target = character
             else:
-                probability = random.randint(1,100)
-                if probability <= 50:
-                    selected_target = character
+                selected_target = character
         monster.attack(selected_target)
         print(f"{monster.name} has attacked {selected_target.name}! "
               f"{selected_target.name} now has "
@@ -130,6 +140,12 @@ def ComputerTurn(human_party, monster_party):
 #################################
 c = Character("Kal",250)
 p = Character("Elvi",200)
+e = Character("Natt", 300)
+s = Character("Squishy", 150)
+
+mon1 = Character("Yllive", 200)
+mon2 = Character("Villye", 200)
+mon3 = Character("Evilly", 200)
 c.add_ability(equipment.Ability("Super Smash"))
 # Is there a better way to make it apparent that we're calling a specific 
 # ability than abilities[index]?
@@ -141,6 +157,10 @@ print(f"health: {p.hp}")
 c.abilities[0].use(p)
 print(f"health: {p.hp}")
 
+human_party = [c, e, s]
+monster_party = [mon1, mon2, mon3]
+
+ComputerTurn(human_party, monster_party)
 
 
 
