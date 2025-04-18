@@ -17,10 +17,12 @@ class Character():
             abilities list.
     """
     
-    def __init__(self, name, hp, weapon = None, armor = None, abilities = []):
+    def __init__(self, name, hp, weapon = None, armor = None, abilities 
+                 = []):
         """Initializes a new character object.
         
         Args:
+            name (str) : The character's name
             hp (float) : The character's starting health points.
             weapon (Weapon) : The character's starting weapon. None if omitted.
             armor (Armor) : The character's starting armor. None if omited.
@@ -33,6 +35,7 @@ class Character():
         """
         self.name = name
         self.hp = hp
+        self.max_hp = hp
         self.weapon = weapon
         self.armor = armor
         self.abilities = abilities
@@ -52,7 +55,7 @@ class Character():
         """
         damage = self.weapon.damage
         if self.armor != None:
-            damage - self.armor.armor_value
+            damage -= self.armor.armor_value
         other_character.hp - damage
     
     def add_weapon(self, weapon):
@@ -105,15 +108,30 @@ def character_equipment(name, weapons, armour, battle_outcome):
                 f"and your armour is: {armour}.")
 
 def ComputerTurn(human_party, monster_party):
+    human_party_max_hp = [character.max_hp for character in human_party]
+    human_party_max_hp.sort(reverse = True)
+    selected_target = Character()
     for monster in monster_party:
-        
+        for character in human_party:
+            # A character will always be targeted if they are below an HP
+            # threshhold which is less than or equal to 10% of their HP
+            if character.hp <= character.hp * 0.10:
+                selected_target = character
+        monster.attack(selected_target)
+        print(f"{monster.name} has attacked {selected_target.name}! "
+              f"{selected_target.name} now has "
+              f"{selected_target.hp} remaining HP!")
+        if selected_target.hp <= 0:
+            print(f"{selected_target.name} has died!")
+            human_party.remove(selected_target)
+    print(human_party)
         
 
 #################################
 # The below code is for testing #
 #################################
-c = Character(250)
-p = Character(200)
+c = Character("Knight", 250)
+p = Character("Mage", 200)
 c.add_ability(equipment.Ability("Super Smash"))
 # Is there a better way to make it apparent that we're calling a specific 
 # ability than abilities[index]?
