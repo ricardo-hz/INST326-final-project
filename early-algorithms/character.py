@@ -98,6 +98,8 @@ def character_equipment(name, weapons, armour, battle_outcome):
         for rand_weapon in weapons:
             rand_weapon = weapons[random.randint(len(weapons))]
             return rand_weapon
+    else:
+        return weapon_input
     armour_input = input(f"Please choose one piece of armour from the list "
                          f"given or let the game pick at random. If random, "
                          f"input 'random'. ")
@@ -105,6 +107,8 @@ def character_equipment(name, weapons, armour, battle_outcome):
         for rand_armour in armour:
             rand_armour = weapons[random.randint(len(weapons))]
             return rand_armour
+    else:
+        return armour_input
     if battle_outcome == "Won":
         weapon_addition = input(f"Congrats on winning the battle! Please "
                 f"choose one weapon to add to your character's weapons from "
