@@ -1,4 +1,5 @@
 import equipment
+import random
 
 class Character():
     """Represents a character.
@@ -117,6 +118,7 @@ def ComputerTurn(human_party, monster_party):
             # threshhold which is less than or equal to 10% of their HP
             if character.hp <= character.hp * 0.10:
                 selected_target = character
+            if 
         monster.attack(selected_target)
         print(f"{monster.name} has attacked {selected_target.name}! "
               f"{selected_target.name} now has "
