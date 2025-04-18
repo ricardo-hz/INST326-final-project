@@ -68,22 +68,50 @@ class Character():
         # Attack method for Nathan
         # Aviva is doing something with equipment (weapon and armor)
         
+#Aviva's function
 def character_equipment(name, weapons, armour, battle_outcome):
-    for an_ability in Character.add_ability:
-        if isinstance(an_ability, equipment.Weapon()):
-            weapons.append(an_ability)
-        else:
-            armour.append(an_ability)
+    """Updates the weapons and armour of players.
+    
+    Args:
+        name (str): the player's name
+        weapons (list): a list of weapons that a player has at a given time
+        armour (list): a list of armour that a player has at a given time
+        battle_outcome (str): the outcome of the battle just played, either
+            'Won' or 'Lost'
+            
+    Returns:
+        rand_weapon (str): a randomly chosen weapon for the battle
+        rand_armour (str): a randomly chosen armour for the battle
+            
+    Side effects:
+        Prints messages and input statements to the console/user.
+        Modifies the weapons and armour lists.
+    """
+    
     print(f"It is now {name}'s turn. The weapons that {name} " 
             f"currrently has are: {weapons} and their current armour "
             f"is: {armour}.")
-    input(f"Please choose one weapon from the list given. ")
-    input(f"Please choose one piece of armour from the list given. ")
+    weapon_input = input(f"Please choose one weapon from the list given or let " 
+                         f"the game pick at random. If random, input "
+                         f"'random'. ")
+    if weapon_input == "random":
+        for rand_weapon in weapons:
+            rand_weapon = weapons[random.randint(len(weapons))]
+            return rand_weapon
+    armour_input = input(f"Please choose one piece of armour from the list "
+                         f"given or let the game pick at random. If random, "
+                         f"input 'random'. ")
+    if armour_input == "random":
+        for rand_armour in armour:
+            rand_armour = weapons[random.randint(len(weapons))]
+            return rand_armour
     if battle_outcome == "Won":
-        weapon_addition = input("Congrats on winning the battle! Please "
-                "choose one weapon to add to your character's abilities ")
-        armour_addition = input("Now please choose one weapon to add to "
-                                "your character's abilities ")
+        weapon_addition = input(f"Congrats on winning the battle! Please "
+                f"choose one weapon to add to your character's weapons from "
+                f"this list: {Character.add_ability} ")
+        armour_addition = input(f"Now please choose one armour to add to "
+                                f"your character's armour from this list:"
+                                f"{Character.add_ability} ")
         weapons.append(weapon_addition)
         armour.append(armour_addition)
     elif battle_outcome == "Lost":
@@ -94,6 +122,7 @@ def character_equipment(name, weapons, armour, battle_outcome):
     else:
         print(f"A battle was not played. Your weapons are: {weapons} "
                 f"and your armour is: {armour}.")
+        
 
 def ComputerTurn(human_party, monster_party):
     """Decides how the monsters in the enemy party will attack our player's
@@ -164,6 +193,3 @@ human_party = [c, e, s]
 monster_party = [mon1, mon2, mon3]
 
 ComputerTurn(human_party, monster_party)
-
-
-
