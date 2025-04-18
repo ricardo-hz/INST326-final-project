@@ -97,11 +97,12 @@ def character_equipment(name, weapons, armour, battle_outcome):
 
 def ComputerTurn(human_party, monster_party):
     """Decides how the monsters in the enemy party will attack our player's
-        party own characters
+        party own characters: Written by Nathan Castelo.
         
     Args:
         human_party (list of Characters): The characters in the Player's party
-        monster_party (list of Characters): The characters in the enemy party
+        monster_party (list of Characters): The characters in the Computer's 
+            party
         
     Side effects:
         Reduces the HP of a targeted character
@@ -110,7 +111,6 @@ def ComputerTurn(human_party, monster_party):
         to 0 or less
     """
     human_party_max_hp = [character.max_hp for character in human_party]
-    human_party_max_hp.sort(reverse = True)
     selected_target = None
     for monster in monster_party:
         for character in human_party:
@@ -128,6 +128,7 @@ def ComputerTurn(human_party, monster_party):
                     selected_target = character
             else:
                 selected_target = character
+                
         monster.attack(selected_target)
         print(f"{monster.name} has attacked {selected_target.name}! "
               f"{selected_target.name} now has "
@@ -135,7 +136,7 @@ def ComputerTurn(human_party, monster_party):
         if selected_target.hp <= 0:
             print(f"{selected_target.name} has died!")
             human_party.remove(selected_target)
-    print(human_party)
+    print(f"Party HP: {human_party}")
         
 
 #################################
@@ -163,7 +164,8 @@ print(f"health: {p.hp}")
 human_party = [c, e, s]
 monster_party = [mon1, mon2, mon3]
 
-ComputerTurn(human_party, monster_party)
+for i in range(10):
+    ComputerTurn(human_party, monster_party)
 
 
 
