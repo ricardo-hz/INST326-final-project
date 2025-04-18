@@ -42,22 +42,7 @@ class Character():
         self.abilities = abilities
         
     def attack(self, other_character):
-        """Most basic attack method that takes weapon damage and armor
-            value into consideration before reducing a target's HP
-            
-        Args:
-            other_character (Character): the character to be attacked
-            
-        Side effects:
-            Reduces the HP of the other_character based on the damage
-            
-        TODO:
-            - Have better damage calculation that isn't this simple
-        """
-        damage = self.weapon.damage
-        if self.armor != None:
-            damage -= self.armor.armor_value
-        other_character.hp - damage
+        other_character.hp - 20
     
     def add_weapon(self, weapon):
         pass
@@ -118,7 +103,18 @@ def ComputerTurn(human_party, monster_party):
             # threshhold which is less than or equal to 10% of their HP
             if character.hp <= character.hp * 0.10:
                 selected_target = character
-            if 
+            if character.max_hp == max(human_party_max_hp):
+                probability = random.randint(1, 100)
+                if probability <= 65:
+                    selected_target = character
+            elif character.max_hp == min(human_party_max_hp):
+                probability = random.randint(1,100)
+                if probability <= 25:
+                    selected_target = character
+            else:
+                probability = random.randint(1,100)
+                if probability <= 50:
+                    selected_target = character
         monster.attack(selected_target)
         print(f"{monster.name} has attacked {selected_target.name}! "
               f"{selected_target.name} now has "
@@ -132,14 +128,19 @@ def ComputerTurn(human_party, monster_party):
 #################################
 # The below code is for testing #
 #################################
-c = Character("Knight", 250)
-p = Character("Mage", 200)
+c = Character("Kal",250)
+p = Character("Elvi",200)
 c.add_ability(equipment.Ability("Super Smash"))
 # Is there a better way to make it apparent that we're calling a specific 
 # ability than abilities[index]?
+
 
 # I think there might not be because of the menu based nature of the game when 
 # it's complete
 print(f"health: {p.hp}")
 c.abilities[0].use(p)
 print(f"health: {p.hp}")
+
+
+
+
