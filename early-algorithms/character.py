@@ -38,7 +38,22 @@ class Character():
         self.abilities = abilities
         
     def attack(self, other_character):
-        pass
+        """Most basic attack method that takes weapon damage and armor
+            value into consideration before reducing a target's HP
+            
+        Args:
+            other_character (Character): the character to be attacked
+            
+        Side effects:
+            Reduces the HP of the other_character based on the damage
+            
+        TODO:
+            - Have better damage calculation that isn't this simple
+        """
+        damage = self.weapon.damage
+        if self.armor != None:
+            damage - self.armor.armor_value
+        other_character.hp - damage
     
     def add_weapon(self, weapon):
         pass
@@ -88,6 +103,11 @@ def character_equipment(name, weapons, armour, battle_outcome):
     else:
         print(f"A battle was not played. Your weapons are: {weapons} "
                 f"and your armour is: {armour}.")
+
+def ComputerTurn(human_party, monster_party):
+    for monster in monster_party:
+        
+        
 
 #################################
 # The below code is for testing #
