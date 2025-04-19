@@ -65,9 +65,9 @@ class Character():
     def __repr__(self):
         return f"{self.name}: {self.hp}"
 
-# Ideally these classes will eventually be shrank down to just Tank() and 
-# predefined characters will inherit from the Tank class which inherits from
-# the Character class
+# Ideally these classes will eventually be shrank down to just Tank(), Damage(), Support()
+# and predefined characters will inherit from the respective class which 
+# inherits from the Character class
 class Tank_1(Character):
     # TODO: Verify that the empty abilities list is inherited without me 
     # explicitly saying so
