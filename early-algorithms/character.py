@@ -66,7 +66,25 @@ class Character():
         # Some sort of method needed for abilities for Ricardo
         # Attack method for Nathan
         # Aviva is doing something with equipment (weapon and armor)
-        
+
+class Tank_1(Character):
+    pass
+
+class Tank_2(Character):
+    pass
+
+class Dmg_1(Character):
+    pass
+
+class Dmg_2(Character):
+    pass
+
+class Supp_1(Character):
+    pass
+
+class Supp_2(Character):
+    pass
+
 #Aviva's function
 def character_equipment(name, weapons, armour, battle_outcome):
     """Updates the weapons and armour of players.
@@ -170,6 +188,8 @@ def ComputerTurn(human_party, monster_party):
             human_party.remove(selected_target)
     print(f"Party HP: {human_party}")
 
+def print_characters():
+    characters = [Tank_1(), Tank_2(), Dmg_1(), Dmg_2(), Supp_1(), Supp_2()]
 def assemble_team():
     pass
 
