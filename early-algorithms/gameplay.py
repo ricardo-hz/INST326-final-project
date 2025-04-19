@@ -1,5 +1,8 @@
 import random
-from character import Character
+from character import *
+
+MAX_TEAM_SIZE = 4
+
 
 #Aviva's function
 def character_equipment(name, weapons, armour, battle_outcome):
@@ -113,12 +116,24 @@ def print_characters(characters):
     for character in characters:
         print(f"{character.name} | {character.hp}HP | {character.role}")
 
-MAX_TEAM_SIZE = 4 # Global constant should be moved to top of program
+
+# Ricardo's function
 def assemble_team(characters):
     """Assembles a team using user prompts at a menu.
     
+    Args:
+        characters (list of Characters) : The characters which a player can
+            choose from.
+    
+    Side effects:
+        Prints to the screen.
+    
+    Returns:
+        The player's team as a list of Character objects.
     """
     print("Assemble your team!")
+    # The below line should probably be moved out of this function and into 
+    # start() when it is implemented.
     print_character_options(characters)
     team = []
     chosen_numbers = []
@@ -140,8 +155,7 @@ def assemble_team(characters):
             
     return team
         
-        
-    
-
 def start():
+    """Starts the gameplay loop.
+    """
     raise NotImplementedError;  
