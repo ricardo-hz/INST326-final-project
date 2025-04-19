@@ -35,6 +35,7 @@ class Character():
             have one weapon only?
         """
         self.name = name
+        self.char_id = char_id
         self.hp = hp
         self.max_hp = hp
         self.weapon = weapon
@@ -63,28 +64,46 @@ class Character():
     
     def __repr__(self):
         return f"{self.name}: {self.hp}"
-    # Methods needed for group members:
-        # Some sort of method needed for abilities for Ricardo
-        # Attack method for Nathan
-        # Aviva is doing something with equipment (weapon and armor)
 
+# Ideally these classes will eventually be shrank down to just Tank() and 
+# predefined characters will inherit from the Tank class which inherits from
+# the Character class
 class Tank_1(Character):
-    pass
+    # TODO: Verify that the empty abilities list is inherited without me 
+    # explicitly saying so
+    def __init__(self, name, hp):
+        super().__init__(name, 1, hp) # char id of 1
+    role = "Tank"
 
 class Tank_2(Character):
-    pass
+    def __init__(self, name, hp):
+        super().__init__(name, 2, hp)
+    
+    role = "Tank"
 
 class Dmg_1(Character):
-    pass
+    def __init__(self, name, hp):
+        super().__init__(name, 3, hp)
+        
+    role = "Damage"
 
 class Dmg_2(Character):
-    pass
+    def __init__(self, name, hp):
+        super().__init__(name, 4, hp)
+        
+    role = "Damage"
 
 class Supp_1(Character):
-    pass
+    def __init__(self, name, hp):
+        super().__init__(name, 5, hp)
+        
+    role = "Support"
 
 class Supp_2(Character):
-    pass
+    def __init__(self, name, hp):
+        super().__init__(name, 6, hp)
+        
+    role = "Support"
 
 #Aviva's function
 def character_equipment(name, weapons, armour, battle_outcome):
@@ -189,10 +208,44 @@ def ComputerTurn(human_party, monster_party):
             human_party.remove(selected_target)
     print(f"Party HP: {human_party}")
 
-def print_characters():
-    characters = [Tank_1(), Tank_2(), Dmg_1(), Dmg_2(), Supp_1(), Supp_2()]
-def assemble_team():
-    pass
+def print_character_options(characters):
+    for character in characters:
+        print(f"{character.char_id}. {character.name} | {character.hp}HP | "
+              f"{character.role}")
+        
+def print_characters(characters):
+    for character in characters:
+        print(f"{character.name} | {character.hp}HP | {character.role}")
+
+MAX_TEAM_SIZE = 4 # Global constant should be moved to top of program
+def assemble_team(characters):
+    """Assembles a team using user prompts at a menu.
+    
+    """
+    print("Assemble your team!")
+    print_character_options(characters)
+    team = []
+    chosen_numbers = []
+    while len(team) != MAX_TEAM_SIZE:
+        choice = int(input("Enter the number of the character you would like on"
+                       f" your team. You may only have "
+                       f"one of each character. "))
+        # There's probably a more legible way to document the fact that the 
+        # choice needs to be within the valid 1 - 6 range
+        if (choice in range(1,7) and choice not in chosen_numbers):
+                chosen_numbers.append(choice)
+                team.append(characters[choice - 1])
+                print(f"Your team: ")
+                print_characters(team)
+        else:
+            print(f"Invalid Entry. Please Enter the number of the character "
+                  f"you would like on your team. You may only have one of "
+                  f"each character. ")
+            
+    return team
+        
+        
+    
 
 def start():
     raise NotImplementedError;  
@@ -200,14 +253,29 @@ def start():
 #################################
 # The below code is for testing #
 #################################
-c = Character("Kal",250)
-p = Character("Elvi",200)
-e = Character("Natt", 300)
-s = Character("Squishy", 150)
 
-mon1 = Character("Yllive", 200)
-mon2 = Character("Villye", 200)
-mon3 = Character("Evilly", 200)
+t1 = Tank_1("Tank1", 500)
+t2 = Tank_2("Tank2", 550)
+d1 = Dmg_1("Damage1", 225)
+d2 = Dmg_2("Damage2", 275)
+s1 = Supp_1("Support1", 150)
+s2 = Supp_2("Support2", 200)
+
+# This code shows how attacking works
+characters = [t1, t2, d1, d2, s1, s2]
+team = assemble_team(characters)
+print(team[1].hp)
+team[0].attack(team[1])
+print(team[1].hp)
+
+c = Tank_1("Kal",250)
+p = Dmg_2("Elvi",200)
+e = Supp_1("Natt", 300)
+s = Supp_2("Squishy", 150)
+
+mon1 = Tank_1("Yllive", 200)
+mon2 = Tank_2("Villye", 200)
+mon3 = Supp_1("Evilly", 200)
 c.add_ability(equipment.Ability("Super Smash"))
 # Is there a better way to make it apparent that we're calling a specific 
 # ability than abilities[index]?
