@@ -18,7 +18,8 @@ class Character():
             abilities list.
     """
     
-    def __init__(self, name, hp, weapon = None, armor = None, abilities = []):
+    def __init__(self, name, char_id, hp, weapon = None, 
+                 armor = None, abilities = []):
         """Initializes a new character object.
         
         Args:
