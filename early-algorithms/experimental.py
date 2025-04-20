@@ -1,6 +1,6 @@
 import equipment
 from character import *
-from gameplay import *
+from gameplay_functions import *
 
 #################################
 # The below code is for testing #
