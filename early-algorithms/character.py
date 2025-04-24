@@ -1,5 +1,6 @@
 import equipment
 import random
+import weapon_and_armor_test as et
 
 class Character():
     """Represents a character.
@@ -18,8 +19,8 @@ class Character():
             abilities list.
     """
     
-    def __init__(self, name, char_id, hp, weapon = None, 
-                 armor = None, abilities = []):
+    def __init__(self, name: str, char_id: int, hp: int, weapon: et.Weapon = None, 
+                 armor: et.Armor = None, abilities: dict = dict()):
         """Initializes a new character object.
         
         Args:
@@ -34,13 +35,39 @@ class Character():
             - Should weapon be a list of weapon objects? or will characters 
             have one weapon only?
         """
-        self.name = name
-        self.char_id = char_id
-        self.hp = hp
-        self.max_hp = hp
-        self.weapon = weapon
-        self.armor = armor
-        self.abilities = abilities
+        if isinstance(name, str):
+            self.name = name
+        else:
+            raise TypeError(f"Not valid type for name: {type(name)}")
+        
+        if isinstance(char_id, int):
+            self.char_id = char_id
+        else: 
+            raise TypeError(f"Not valid type for char id: {type(char_id)}")
+        
+        if isinstance(hp, int):
+            self.hp = hp
+            self.max_hp = hp
+        else:
+            raise TypeError(f"Not valid type for hp: {type(hp)}")
+        
+        if isinstance(weapon, et.Weapon) or weapon is None:
+            self.weapon = weapon
+        else:
+            raise TypeError(f"Not valid type for weapon: {type(weapon)}")
+        
+        if isinstance(armor, et.Armor) or armor is None:
+            self.armor = armor
+        else:
+            raise TypeError(f"Not valid type for armor: {type(armor)}")
+        
+        if isinstance(abilities, dict):
+            self.abilities = abilities
+        else:
+            raise TypeError(f"Not valid type for abilities: {type(abilities)}")
+        
+        self.attack = self.weapon.damage
+        self.defense = self.armor.defense
         
     def attack(self, other_character):
         other_character.hp -= 20
@@ -50,6 +77,10 @@ class Character():
     
     def remove_weapon(self, weapon):
         raise NotImplementedError;  
+    
+    def damageSelf(self, damage: int) -> None:
+        self.hp -= damage
+        
     
     def add_ability(self, ability):
         """Adds an ability object to a character's abilities list.
