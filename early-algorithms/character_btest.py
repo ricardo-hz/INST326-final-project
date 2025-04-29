@@ -1,34 +1,40 @@
 import equipment
 import random
 import weaponarmor_btest as et
+import ability_test as at
 
 class Character():
-    """Represents a character.
-    
-    This class is only being used for demonstration purposes and early algorithm
-    testing.
+    """Representation of a character.
     
     Attributes:
-        something (type) : 
-        
-    Methods:
-        attack (self, other_character) : 
-        add_weapon (self, weapon) : 
-        remove_weapon (self, weapon) : 
-        add_ability (self, ability) : Adds an ability object to a character's 
-            abilities list.
+        name (str): The character's name
+        character_id (int): The numeric, unique id of the character
+        hp (int): current health of character
+        max_hp (int): maximum health of character
+        weapon (Weapon): weapon character wields
+        armor (Armor): armor character wields
+        abilities (dict): abilities character has access to
+        attack_base (int): base attack stat character has. based off of weapon
+        attack_stat (int): attack stat used in calculations, incl. modifications
+        defense_base (int): base defense stat character has, based off of armor
+        defense_stat (int): defense stat used in calculations, incl. modifications
+        agility_base (int): base agility stat character has
+        agility_stat (int): agility stat used in party order
+    
     """
     
-    def __init__(self, name: str, char_id: int, hp: int, weapon: et.Weapon = None, 
-                 armor: et.Armor = None, abilities: dict = dict()):
+    def __init__(self, name: str, character_id: int, hp: int, agility: int, weapon: et.Weapon, 
+                 armor: et.Armor, characterAbilities: at.AbilityList):
         """Initializes a new character object.
         
         Args:
             name (str) : The character's name
-            hp (float) : The character's starting health points.
-            weapon (Weapon) : The character's starting weapon. None if omitted.
-            armor (Armor) : The character's starting armor. None if omited.
-            abilities (list of Ability) : The character's starting abilities.
+            character_id (int): The numeric, unique id of the character
+            hp (int): The character's starting health points.
+            agility (int): The character's agility
+            weapon (Weapon) : The character's starting weapon.
+            armor (Armor) : The character's starting armor.
+            abilities (AbilityList) : The character's starting abilities.
                 Empty list if ommitted. 
         
         TODO:
@@ -40,10 +46,10 @@ class Character():
         else:
             raise TypeError(f"Not valid type for name: {type(name)}")
         
-        if isinstance(char_id, int):
-            self.char_id = char_id
+        if isinstance(character_id, int):
+            self.character_id = character_id
         else: 
-            raise TypeError(f"Not valid type for char id: {type(char_id)}")
+            raise TypeError(f"Not valid type for char id: {type(character_id)}")
         
         if isinstance(hp, int):
             self.hp = hp
@@ -61,13 +67,19 @@ class Character():
         else:
             raise TypeError(f"Not valid type for armor: {type(armor)}")
         
-        if isinstance(abilities, dict):
-            self.abilities = abilities
+        if isinstance(characterAbilities, dict):
+            self.abilities = characterAbilities
         else:
-            raise TypeError(f"Not valid type for abilities: {type(abilities)}")
+            raise TypeError(f"Not valid type for abilities: {type(characterAbilities)}")
         
-        self.attack = self.weapon.damage
-        self.defense = self.armor.defense
+        self.attack_base = self.weapon.damage
+        self.attack_stat = self.attack_base
+        self.defense_base = self.armor.defense
+        self.defense_stat = self.defense_base
+        self.agility_base = agility
+        self.agility_stat = self.agility_base
+        
+        self.characterAbilities = characterAbilities
         
     def attack(self, other_character):
         other_character.hp -= 20
@@ -93,49 +105,13 @@ class Character():
         if ability.name.upper() not in self.abilities:
             self.abilities.append(equipment.Ability(ability.name.upper())) 
     
-    def __repr__(self):
+    def __str__(self) -> str:
         return f"{self.name}: {self.hp}"
-
-# Ideally these classes will eventually be shrank down to just Tank(), Damage(), Support()
-# and predefined characters will inherit from the respective class which 
-# inherits from the Character class
-class Tank_1(Character):
-    # TODO: Verify that the empty abilities list is inherited without me 
-    # explicitly saying so
-    def __init__(self, name, hp):
-        super().__init__(name, 1, hp) # char id of 1
-    role = "Tank"
-
-class Tank_2(Character):
-    def __init__(self, name, hp):
-        super().__init__(name, 2, hp)
     
-    role = "Tank"
+    def __lt__(self, other) -> bool:
+        return self.agility < other.agility
 
-class Dmg_1(Character):
-    def __init__(self, name, hp):
-        super().__init__(name, 3, hp)
+class Party():
+    def __init__(self, partyList: list):
+        self.partyList = sorted(partyList)
         
-    role = "Damage"
-
-class Dmg_2(Character):
-    def __init__(self, name, hp):
-        super().__init__(name, 4, hp)
-        
-    role = "Damage"
-
-class Supp_1(Character):
-    def __init__(self, name, hp):
-        super().__init__(name, 5, hp)
-        
-    role = "Support"
-
-class Supp_2(Character):
-    def __init__(self, name, hp):
-        super().__init__(name, 6, hp)
-        
-    role = "Support"
-
-
-
-
