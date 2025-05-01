@@ -12,6 +12,8 @@ class Ability:
         potency (potency): potency of ability. multiplicative values 
         replacement (bool): whether or not ability replaces another. by default,
         is False
+        cooldown (int): how many rounds an ability waits before used. by default,
+        is 1 (so can be used every turn)
         replaceAbilityName (str): name of ability that this ability is replacing.
         by default, is None
         replacedByAnother (bool): if ability is replaced by another. if True,
@@ -24,7 +26,7 @@ class Ability:
         rounds. by default, 0 (meaning an instantaneous hit)
         
     """
-    def __init__(self, name: str, category: str, potency: float, replacement: bool = False, \
+    def __init__(self, name: str, category: str, potency: float, cooldown: int = 1, replacement: bool = False, \
         replaceAbilityName: str = None, abilitySource: et.Weapon | et.Armor = None, \
             hits: int = 1, roundLength: int = 0):
         # name of ability
@@ -56,6 +58,15 @@ class Ability:
             raise TypeError(f"Invalid type of object for potency: \
                 {type(potency)}")
 
+        if isinstance(cooldown, int):
+            if cooldown >= 1:
+                self.cooldown = cooldown
+            else:
+                raise ValueError(f"Cooldown not greater than or equal to\
+                    1: {cooldown}")
+        else:
+            raise TypeError(f"Invalid type of object for cooldown:\
+                {type(cooldown)}")
         
         #some abilities replace others
         if isinstance(replacement, bool) and isinstance(replaceAbilityName, str):
