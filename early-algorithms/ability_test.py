@@ -14,11 +14,6 @@ class Ability:
         is False
         cooldown (int): how many rounds an ability waits before used. by default,
         is 1 (so can be used every turn)
-        replace_ability_name (str): name of ability that this ability is replacing.
-        by default, is None
-        replaced_by_another (bool): if ability is replaced by another. if True,
-        should not show up in action menu and should not be able to be chosen
-        but should be seen when viewing character info. by default, is False
         ability_source (None/Weapon/Armor): source ability comes from. by default,
         is None (meaning it comes from Shop or is default)
         hits (int): amount of times ability will hit (or go off). by default, 1
@@ -68,22 +63,6 @@ class Ability:
             raise TypeError(f"Invalid type of object for cooldown:\
                 {type(cooldown)}")
         
-        #some abilities replace others
-        if isinstance(replacement, bool) and (isinstance(replace_ability_name, str) or (replace_ability_name is None)) :
-            if (replacement == True) and (isinstance(replace_ability_name, str))\
-                or ((replacement == False) and (replace_ability_name is None)):
-                self.replacement = replacement
-                self.replaceAbilityName = replace_ability_name
-            else:
-                raise ValueError(f"Replacement false yet include replaceAbil\
-                ityName: {replace_ability_name}")
-        else:
-            raise TypeError(f"replacement or replaceAbility name may be invalid:\
-                {type(replacement)}, {type(replaceAbilityName)}")
-        
-        #abilities that are replacedByAnother (by upgrades) should show up
-        #when viewing player actions, but not when choosing abilities in-combat
-        self.replaced_by_another = False
         
         #want to know where an ability comes from incase the source goes away
         #TODO need find a way to check this lmfao
@@ -124,10 +103,6 @@ class AbilityList():
             self.abilityList[new_ability.name] = new_ability
             self.amountOfAbilities += 1
             self.abilityOrder[self.amountOfAbilities] = new_ability.name
-            if new_ability.replacement == True:
-                for a in self.abilityList:
-                    if self.abilityList[a].name == new_ability.replaceAbilityName:
-                        self.abilityList[a].replacedByAnother = True
         else:
             raise TypeError(f"Invalid type of object for AbilityList.addTo()\
             : {type(newAbility)}")

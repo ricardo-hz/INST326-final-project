@@ -1,16 +1,16 @@
+import ability_test as at
+
 class Weapon:
     """Representation of a Weapon.
     
     Attributes:
         name (str): name of weapon
         damage (int): damage of weapon
-        abilMod (None/list): ability upgrades granted by weapon, a list with
-        two ability names: original abilities, and new ability name
-        by default None THIS SHOULD  BE CHANGED OR REMOVED PROLLY REMOVED 
+        ability_included (None/list): ability given by weapon
         hitMod (int): amount of additional hits this weapon adds to abilities.
         by default, 0
     """
-    def __init__(self, name: str, damage: int, abilMod: list | None = None, \
+    def __init__(self, name: str, damage: int, ability_included: at.Ability = None, \
         hitMod: int = 0):
         # name of weapon, str
         if isinstance(name, str):
@@ -26,7 +26,7 @@ class Weapon:
         
         
         # ability that is modified by weapon, has orig abil and new abil
-        self.abilMod: list | None = abilMod
+        self.ability_included: at.Ability = ability_included
         # abilMod is list of two strings containing name of orig ability, name
         # of enhanced ability with weapon
         
@@ -37,11 +37,10 @@ class Armor:
     Attributes:
         name (str): name of weapon
         damage (int): damage of weapon
-        abilMod (None/list): ability upgrades granted by weapon, a list with
-        two ability names: original abilities, and new ability name
-        by default None THIS SHOULD  BE CHANGED OR REMOVED PROLLY REMOVED 
+        ability_included (None/list): ability given by armor
     """
-    def __init__(self, name: str, defense:int, abilMod: list | None = None):
+    def __init__(self, name: str, defense:int, \
+        ability_included: at.Ability = None):
         # weapon damage. an integer value
         if isinstance(defense, int):
             self.defense: int = defense
@@ -55,4 +54,4 @@ class Armor:
             raise TypeError(f"Not valid type for name: {type(name)}")
         
         # ability that is modified by weapon, has orig abil and new abil
-        self.abilMod: list | None = abilMod
+        self.ability_included: at.Ability = ability_included
