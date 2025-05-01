@@ -1,5 +1,5 @@
-def combat(PlayerTeam, EnemyTeam) -> bool:
-    combatIsLive = True
+def combat(Player_Team, Enemy_Team) -> bool:
+    combat_is_live = True
     
     # ultimately, we're going to return a boolean with like, did the player
     # make it out alive or not
@@ -15,4 +15,4 @@ def combat(PlayerTeam, EnemyTeam) -> bool:
     
     # i cba to write this it's 2:30am 
     
-    return combatIsLive
+    return combat_is_live

@@ -20,11 +20,13 @@ class Character():
         defense_stat (int): defense stat used in calculations, incl. modifications
         agility_base (int): base agility stat character has
         agility_stat (int): agility stat used in party order
+        player_character (bool): whether or not character is controlled by player.
+        false unless chosen in character select
     
     """
     
     def __init__(self, name: str, character_id: int, hp: int, agility: int, weapon: et.Weapon, 
-                 armor: et.Armor, characterAbilities: at.AbilityList):
+                 armor: et.Armor, character_abilities: at.AbilityList):
         """Initializes a new character object.
         
         Args:
@@ -37,9 +39,8 @@ class Character():
             abilities (AbilityList) : The character's starting abilities.
                 Empty list if ommitted. 
         
-        TODO:
-            - Should weapon be a list of weapon objects? or will characters 
-            have one weapon only?
+        Side effects:
+            Initalizes character object
         """
         if isinstance(name, str):
             self.name = name
@@ -67,28 +68,27 @@ class Character():
         else:
             raise TypeError(f"Not valid type for armor: {type(armor)}")
         
-        if isinstance(characterAbilities, dict):
-            self.abilities = characterAbilities
+        if isinstance(character_abilities, dict):
+            self.abilities = character_abilities
         else:
-            raise TypeError(f"Not valid type for abilities: {type(characterAbilities)}")
+            raise TypeError(f"Not valid type for character_abilities: \
+            {type(character_abilities)}")
         
-        self.attack_base = self.weapon.damage
-        self.attack_stat = self.attack_base
-        self.defense_base = self.armor.defense
-        self.defense_stat = self.defense_base
-        self.agility_base = agility
-        self.agility_stat = self.agility_base
+        self.attack_base: int = self.weapon.damage
+        self.attack_stat: int = self.attack_base
+        self.defense_base: int = self.armor.defense
+        self.defense_stat: int = self.defense_base
+        self.agility_base: int = agility
+        self.agility_stat: int = self.agility_base
         
-        self.characterAbilities = characterAbilities
+        self.character_abilities = character_abilities
+        self.player_character = False
         
     def attack(self, other_character):
         other_character.hp -= 20
     
-    def add_weapon(self, weapon):
-        raise NotImplementedError;  
-    
-    def remove_weapon(self, weapon):
-        raise NotImplementedError;  
+    def swap_weapon(self, new_weapon) -> None:
+        raise NotImplementedError("help")
     
     def damageSelf(self, damage: int) -> None:
         self.hp -= damage
@@ -112,6 +112,20 @@ class Character():
         return self.agility < other.agility
 
 class Party():
-    def __init__(self, partyList: list):
-        self.partyList = sorted(partyList)
+    def __init__(self, party_list: list):
+        self.party_list = party_list
         
+class PlayerParty(Party):
+    def __init__(self, party_list: list):
+        for p in party_list:
+            p.player_character = True
+        self.party_list = party_list
+            
+class EnemyParty(Party):
+    def __init__(self, party_list: list, enemy_behaviors: dict = None):
+        # i should really really really be banned from programming for this
+        self.party_list = party_list
+        # dict should be of form like i dunno {"enemyName": damageTargetting}
+        # but there's objectively a better way to go about this surely
+        # feel free to not use this if so i should probably just explode tbh
+        self.enemy_behaviors = enemy_behaviors

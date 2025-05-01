@@ -1,24 +1,34 @@
 import gameplay_functions as g
 import combat as c # feel free to organize this better this is a mess
-
+import character_btest as ct
 
 ROUNDS_BEFORE_FINALE = 5
+OPPOSING_TEAMS = {
+    1: [None, None, None],
+    2: [None, None, None],
+    3: [None, None, None],
+    4: [None, None, None],
+    5: [None, None, None],
+    6: [None, None, None]
+}
+# contains potential enemy teams in reach round -- can absolutely be done in a\
+# better way
 
 def gameloop():
-    roundCounter = 1
-    alive = True
+    round_counter: int = 1
+    alive: bool = True
     # Extremely rough idea for how the gameplay will go and loop
     # we have some fancy info, some fancy text, then it's time to 
     # assemble the team.
-    g.assemble_team()
+    player_team: ct.Player_Party = g.assemble_team()
     
     # we've assembled the team, and it's time to begin the main game loop!
     # i dunno have many rounds, but in either case,
-    while roundCounter in range(1, ROUNDS_BEFORE_FINALE + 1) and alive == True:
+    while round_counter in range(1, ROUNDS_BEFORE_FINALE + 1) and alive == True:
         # start combat
         # there's going to be be a lot of logic here that would be called to
         # a combat function
-        alive = c.combat()
+        alive = c.combat(player_team, enemy_team)
 
         # also before shop, maybe hints as to what the next enemy team is 
         # should be mentioned before players make decisions? i dunno 

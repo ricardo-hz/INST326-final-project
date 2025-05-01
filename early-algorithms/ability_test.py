@@ -14,12 +14,12 @@ class Ability:
         is False
         cooldown (int): how many rounds an ability waits before used. by default,
         is 1 (so can be used every turn)
-        replaceAbilityName (str): name of ability that this ability is replacing.
+        replace_ability_name (str): name of ability that this ability is replacing.
         by default, is None
-        replacedByAnother (bool): if ability is replaced by another. if True,
+        replaced_by_another (bool): if ability is replaced by another. if True,
         should not show up in action menu and should not be able to be chosen
         but should be seen when viewing character info. by default, is False
-        abilitySource (None/Weapon/Armor): source ability comes from. by default,
+        ability_source (None/Weapon/Armor): source ability comes from. by default,
         is None (meaning it comes from Shop or is default)
         hits (int): amount of times ability will hit (or go off). by default, 1
         roundLength (int): how long ability will last, if it lasts for multiple
@@ -27,8 +27,8 @@ class Ability:
         
     """
     def __init__(self, name: str, category: str, potency: float, cooldown: int = 1, replacement: bool = False, \
-        replaceAbilityName: str = None, abilitySource: et.Weapon | et.Armor = None, \
-            hits: int = 1, roundLength: int = 0):
+        replace_ability_name: str = None, ability_source: et.Weapon | et.Armor = None, \
+            hits: int = 1, round_length: int = 0):
         # name of ability
         if isinstance(name, str):
             self.name: str = name 
@@ -69,24 +69,25 @@ class Ability:
                 {type(cooldown)}")
         
         #some abilities replace others
-        if isinstance(replacement, bool) and isinstance(replaceAbilityName, str):
-            if replacement == True:
+        if isinstance(replacement, bool) and (isinstance(replace_ability_name, str) or (replace_ability_name is None)) :
+            if (replacement == True) and (isinstance(replace_ability_name, str))\
+                or ((replacement == False) and (replace_ability_name is None)):
                 self.replacement = replacement
-                self.replaceAbilityName = replaceAbilityName
-            elif replacement == False:
+                self.replaceAbilityName = replace_ability_name
+            else:
                 raise ValueError(f"Replacement false yet include replaceAbil\
-                    ityName: {replaceAbilityName}")
+                ityName: {replace_ability_name}")
         else:
             raise TypeError(f"replacement or replaceAbility name may be invalid:\
                 {type(replacement)}, {type(replaceAbilityName)}")
         
         #abilities that are replacedByAnother (by upgrades) should show up
         #when viewing player actions, but not when choosing abilities in-combat
-        self.replacedByAnother = False
+        self.replaced_by_another = False
         
         #want to know where an ability comes from incase the source goes away
         #TODO need find a way to check this lmfao
-        self.abilitySource = abilitySource
+        self.abilitySource = ability_source
         
         # amount of times ability will "hit"
         self.hits: int = hits 
@@ -95,19 +96,19 @@ class Ability:
         # duration of ability, if there is an ability that lasts multiple rounds
         # it will last until start of next turn
         # 0 is instananeous abilities (i.e damage)
-        if roundLength >= 0:
-            self.roundLength = roundLength
+        if round_length >= 0:
+            self.roundLength = round_length
         else:
-            raise ValueError(f"Round length less than 0: {roundLength}")
+            raise ValueError(f"Round length less than 0: {round_length}")
         
 class AbilityList():
-    def __init__(self, initialAbilities: list):
-        if isinstance(initialAbilities, list):
+    def __init__(self, initial_abilities: list):
+        if isinstance(initial_abilities, list):
             self.abilityList = dict()
             self.abilityOrder = dict()
-            self.amountOfAbilities = len(initialAbilities)
+            self.amountOfAbilities = len(initial_abilities)
             self.disabledList = dict()
-            for i, a in enumerate(initialAbilities):
+            for i, a in enumerate(initial_abilities):
                 if isinstance(a, Ability):
                     self.abilityList[a.name] = a
                     self.abilityOrder[i+1] = [a.name]
@@ -118,14 +119,14 @@ class AbilityList():
             raise TypeError(f"Invalid type of object for initalization: \
             {type(initialAbilities)}")
             
-    def addTo(self, newAbility: Ability) -> None:
-        if isinstance(newAbility, Ability):
-            self.abilityList[newAbility.name] = newAbility
+    def addTo(self, new_ability: Ability) -> None:
+        if isinstance(new_ability, Ability):
+            self.abilityList[new_ability.name] = new_ability
             self.amountOfAbilities += 1
-            self.abilityOrder[self.amountOfAbilities] = newAbility.name
-            if newAbility.replacement == True:
+            self.abilityOrder[self.amountOfAbilities] = new_ability.name
+            if new_ability.replacement == True:
                 for a in self.abilityList:
-                    if self.abilityList[a].name == newAbility.replaceAbilityName:
+                    if self.abilityList[a].name == new_ability.replaceAbilityName:
                         self.abilityList[a].replacedByAnother = True
         else:
             raise TypeError(f"Invalid type of object for AbilityList.addTo()\
