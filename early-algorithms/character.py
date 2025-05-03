@@ -18,7 +18,7 @@ class Character():
             abilities list.
     """
     
-    def __init__(self, name, char_id, hp, weapon = None, 
+    def __init__(self, name, hp, weapon = None, 
                  armor = None, abilities = []):
         """Initializes a new character object.
         
@@ -35,7 +35,6 @@ class Character():
             have one weapon only?
         """
         self.name = name
-        self.char_id = char_id
         self.hp = hp
         self.max_hp = hp
         self.weapon = weapon

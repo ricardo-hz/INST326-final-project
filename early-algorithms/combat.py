@@ -1,3 +1,5 @@
+from character import Character
+
 def combat(Player_Team, Enemy_Team) -> bool:
     combat_is_live = True
     
@@ -17,6 +19,7 @@ def combat(Player_Team, Enemy_Team) -> bool:
     
     return combat_is_live
 
+s = Character("Char1", 250)
 def party_info(party, id = -1):
     """Prints out info about everyone in a party.
     
