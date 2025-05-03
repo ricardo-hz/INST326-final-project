@@ -70,4 +70,7 @@ elf_militia = Enemy_Party("Snow Elf Militia", elves)
 LIST_OF_ENEMY_PARTIES = [goblin_horde, wolf_pack, orc_tribe, 
                          cult, elf_militia]
 
-LIST_OF_BOSSES = []
+minotaur = Enemy("Minotaur", 100, 50, 750)
+minotaur_party = Enemy_Party("The Minotaur", [minotaur])
+
+LIST_OF_BOSSES = [minotaur_party]
