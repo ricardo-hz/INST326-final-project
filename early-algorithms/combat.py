@@ -19,7 +19,6 @@ def combat(Player_Team, Enemy_Team) -> bool:
     
     return combat_is_live
 
-s = Character("Char1", 250)
 def party_info(party, id = -1):
     """Prints out info about everyone in a party.
     
@@ -28,10 +27,12 @@ def party_info(party, id = -1):
     """
     i = 0 # Index in party list that will be iterated over
     for character in party:
-        print(f"{i}. {character.name} | {character.hp}HP | {character.role}")
+        print(f"{i}. {character.name} | {character.hp}HP")
         i += 1
-    # Enter -1 to exit or a number for more info on that character
-    menu_option = int(input(f"Enter a number to learn more about a character or"
-                            f" -1 to exit."))
-    while menu_option != -1:
+
+    while True:
+        menu_option = int(input(f"Enter a number to learn more about a character or"
+                        f" -1 to exit. ").strip())
+        if menu_option == -1:
+            break
         print(party[menu_option])
