@@ -7,11 +7,11 @@ import random as r
 ROUNDS_BEFORE_FINALE = 5
 OPPOSING_TEAMS = {
     1: en.ROUND_ONE_ENEMIES,
-    2: [None, None, None],
-    3: [None, None, None],
-    4: [None, None, None],
-    5: [None, None, None],
-    6: [None, None, None]
+    2: en.ROUND_TWO_ENEMIES,
+    3: en.ROUND_THREE_ENEMIES,
+    4: en.ROUND_FOUR_ENEMIES,
+    5: en.ROUND_FIVE_ENEMIES,
+    6: en.LIST_OF_BOSSES
 }
 # contains potential enemy teams in reach round -- can absolutely be done in a\
 # better way
