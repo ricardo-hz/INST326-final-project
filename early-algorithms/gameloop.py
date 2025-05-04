@@ -1,10 +1,12 @@
 import gameplay_functions as g
 import combat as c # feel free to organize this better this is a mess
 import character_btest as ct
+import enemies as en
+import random as r
 
 ROUNDS_BEFORE_FINALE = 5
 OPPOSING_TEAMS = {
-    1: [None, None, None],
+    1: en.ROUND_ONE_ENEMIES,
     2: [None, None, None],
     3: [None, None, None],
     4: [None, None, None],
@@ -28,7 +30,8 @@ def gameloop():
         # start combat
         # there's going to be be a lot of logic here that would be called to
         # a combat function
-        alive = c.combat(player_team, enemy_team)
+        alive = c.combat(player_team, OPPOSING_TEAMS[round_counter]
+                         [r.randint(0, len(OPPOSING_TEAMS[round_counter] - 1))])
 
         # also before shop, maybe hints as to what the next enemy team is 
         # should be mentioned before players make decisions? i dunno 
