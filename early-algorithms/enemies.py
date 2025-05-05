@@ -16,6 +16,9 @@ class Enemy:
         self.max_hp = hp
         self.current_hp = hp
         self.agility = agility
+    
+    def __lt__(self, other) -> bool:
+        return self.agility < other.agility
         
 class Enemy_Party:
     """Represents an enemy party to fight
