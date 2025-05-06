@@ -25,7 +25,7 @@ def character_equipment(name, weapons, armour, battle_outcome):
     """
     
     print(f"It is now {name}'s turn. The weapons that {name} " 
-            f"currrently has are: {weapons} and their current armour "
+            f"currently has are: {weapons} and their current armour "
             f"is: {armour}.")
     weapon_input = input(f"Please choose one weapon from the list given or let " 
                          f"the game pick at random. If random, input "
@@ -46,14 +46,12 @@ def character_equipment(name, weapons, armour, battle_outcome):
     else:
         return armour_input
     if battle_outcome == "Won":
-        weapon_addition = input(f"Congrats on winning the battle! Please "
-                f"choose one weapon to add to your character's weapons from "
-                f"this list: {Character.add_ability} ")
-        armour_addition = input(f"Now please choose one armour to add to "
-                                f"your character's armour from this list:"
-                                f"{Character.add_ability} ")
-        weapons.append(weapon_addition)
-        armour.append(armour_addition)
+        weapon_upgrade = input("Congrats on winning the battle! Please "
+                "choose one weapon to upgrade from your list of weapons. ")
+        armour_upgrade = input("Now please choose one armor to upgrade from "
+                               "your list of armor. ")
+        weapons.append(weapon_upgrade)
+        armour.append(armour_upgrade)
     elif battle_outcome == "Lost":
         print(f"Unfortunately, you lost your battle and are not able to "
                 f"upgrade your weapons and armour. Your weapons are: "
@@ -107,15 +105,6 @@ def ComputerTurn(human_party, monster_party):
             human_party.remove(selected_target)
     print(f"Party HP: {human_party}")
 
-def print_character_options(characters):
-    for character in characters:
-        print(f"{character.char_id}. {character.name} | {character.hp}HP | "
-              f"{character.role}")
-        
-def print_characters(characters):
-    for character in characters:
-        print(f"{character.name} | {character.hp}HP | {character.role}")
-
 
 # Ricardo's function
 def assemble_team(characters):
@@ -131,20 +120,54 @@ def assemble_team(characters):
     Returns:
         The player's team as a list of Character objects.
     """
-    print("Assemble your team!")
-    # The below line should probably be moved out of this function and into 
-    # start() when it is implemented.
-    print_character_options(characters)
+    
     team = []
-    chosen_numbers = []
     while len(team) != MAX_TEAM_SIZE:
-        choice = int(input("Enter the number of the character you would like on"
+        choice = input("Enter the name of the character you would like on"
+                f" your team. You may only have "
+                f"one of each character. ").split("--")
+        
+        choice[0] = choice[0].strip()
+        
+        # One branch for info
+        if len(choice) == 2:
+            if choice[1] != 'v':
+                print("Invalid flag.")
+            elif choice[0] not in [character.name for character in characters]:
+                print("Character doesn't exist.")
+            else:
+                print_character(choice[0])
+                print()
+                
+        # One branch for adding
+        elif len(choice) == 1:
+            # First verify that what was entered is even a character
+            if choice[0] not in [character.name for character in characters]:
+                print("Character doesn't exist")
+            # Then check if the character is already on their team
+            elif choice[0] in [character.name for character in team]:
+                print("Character already on team")
+            else:
+                team.append(Character(choice[0], *CHARACTER_DICT[choice[0]]))
+        else:
+            print("Too many arguments entered.")
+    
+    return team
+
+
+        
+        
+        
+        
+"""   
+    while len(team) != MAX_TEAM_SIZE:
+        choice = input("Enter the name of the character you would like on"
                        f" your team. You may only have "
-                       f"one of each character. "))
+                       f"one of each character. ")
         # There's probably a more legible way to document the fact that the 
         # choice needs to be within the valid 1 - 6 range
-        if (choice in range(1,7) and choice not in chosen_numbers):
-                chosen_numbers.append(choice)
+        if (choice not in):
+                team.append(choice)
                 team.append(characters[choice - 1])
                 print(f"Your team: ")
                 print_characters(team)
@@ -154,7 +177,7 @@ def assemble_team(characters):
                   f"each character. ")
             
     return team
-        
+"""   
 def start():
     """Starts the gameplay loop.
     """

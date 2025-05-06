@@ -1,4 +1,5 @@
 import equipment
+from weapon_and_armor_test import *
 import random
 
 class Character():
@@ -63,3 +64,35 @@ class Character():
     
     def __repr__(self):
         return f"{self.name}: {self.hp}"
+
+CHARACTER_DICT = {
+    "Char1" : [100, WEAPONS[0], "Generic Armor 1", []],
+    "Char2" : [150, WEAPONS[1], "Generic Armor 2", []],
+    "Char3" : [200, WEAPONS[2], "Generic Armor 3", []],
+    "Char4" : [250, WEAPONS[3], "Generic Armor 4", []]
+}
+
+CHARACTER_LIST = [Character(key, *value) for key,value in CHARACTER_DICT.items()]
+
+def print_character(character):
+    """Prints detailed information about a character.
+    """
+    print(f"Name: {character}")
+    print(f"HP: {CHARACTER_DICT[character][0]}")
+    print(f"Weapon: {CHARACTER_DICT[character][1].name} - {CHARACTER_DICT[character][1].damage} DMG")
+    print(f"Armor: {CHARACTER_DICT[character][2]}")
+    print(f"Abilities: {CHARACTER_DICT[character][3]}")
+
+        
+def print_characters(characters):
+    """Prints basic information about a list or dict of characters.
+    
+    Args:
+        characters (list or dict) : The characters to be printed.
+    """
+    # Convert passed dicts to list of characters
+    if isinstance(characters, dict):
+        characters = CHARACTER_LIST
+        
+    for character in characters:
+        print(f"{character.name} | {character.hp}HP")

@@ -1,8 +1,8 @@
-from character_btest import Character
+import character_btest as ct
+import enemies as ees
 
 def combat(Player_Team, Enemy_Team) -> bool:
     combat_is_live = True
-    
     # ultimately, we're going to return a boolean with like, did the player
     # make it out alive or not
     # b/c we're not really concerned with how the player ended up other than
@@ -31,8 +31,19 @@ def party_info(party, id = -1):
         i += 1
 
     while True:
-        menu_option = int(input(f"Enter a number to learn more about a character or"
-                        f" -1 to exit. ").strip())
+        menu_option = int(input(f"Enter a number to learn more about a "
+                        f" character or -1 to exit. ").strip())
         if menu_option == -1:
             break
         print(party[menu_option])
+        
+class Initative():
+    #aisudgasoikldjawlKdjsakjfhasklfj,shisk
+    def __init__(self, party_player: ct.Player_Party, \
+        party_enemy: ees.Enemy_Party):
+        self.combatOrder = list()
+        for c in party_player:
+            self.combatOrder.append(c)
+        for c in party_enemy:
+            self.combatOrder.append(c)
+        self.combatOrder.sort(reverse = True)
