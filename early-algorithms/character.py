@@ -1,6 +1,13 @@
 import equipment
 import random
 
+CHARACTERS = {
+    "Char1" : [100, "Generic Weapon 1", "Generic Armor 1", []],
+    "Char2" : [150, "Generic Weapon 2", "Generic Armor 2", []],
+    "Char3" : [200, "Generic Weapon 3", "Generic Armor 3", []],
+    "Char4" : [250, "Generic Weapon 4", "Generic Armor 4", []]
+}
+
 class Character():
     """Represents a character.
     
@@ -63,3 +70,12 @@ class Character():
     
     def __repr__(self):
         return f"{self.name}: {self.hp}"
+    
+def print_character_options(characters):
+    for character in characters:
+        print(f"{character.char_id}. {character.name} | {character.hp}HP | "
+              f"{character.role}")
+        
+def print_characters(characters):
+    for character in characters:
+        print(f"{character.name} | {character.hp}HP | {character.role}")

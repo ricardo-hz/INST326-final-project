@@ -107,15 +107,6 @@ def ComputerTurn(human_party, monster_party):
             human_party.remove(selected_target)
     print(f"Party HP: {human_party}")
 
-def print_character_options(characters):
-    for character in characters:
-        print(f"{character.char_id}. {character.name} | {character.hp}HP | "
-              f"{character.role}")
-        
-def print_characters(characters):
-    for character in characters:
-        print(f"{character.name} | {character.hp}HP | {character.role}")
-
 
 # Ricardo's function
 def assemble_team(characters):
