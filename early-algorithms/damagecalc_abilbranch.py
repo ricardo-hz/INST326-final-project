@@ -1,6 +1,6 @@
 from math import ceil
 from random import uniform
-import weaponarmor_btest as et
+import equipment as et
 import character as ct
 import ability_test as at
 

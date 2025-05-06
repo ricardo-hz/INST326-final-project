@@ -1,6 +1,6 @@
 import equipment
 import random
-from weaponarmor_btest import *
+from equipment import *
 from ability_test import *
 
 CHARACTER_DICT = {

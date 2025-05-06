@@ -1,5 +1,5 @@
 import warnings
-import weaponarmor_btest as et
+import equipment as et
 
 CATEGORIES_OF_ABILITIES = {"Damage", "Heal", "Debuff", "Buff"}
 
