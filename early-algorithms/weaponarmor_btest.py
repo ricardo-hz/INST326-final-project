@@ -1,4 +1,4 @@
-import ability_test as at
+from ability_test import *
 
 class Weapon:
     """Representation of a Weapon.
@@ -10,7 +10,7 @@ class Weapon:
         hitMod (int): amount of additional hits this weapon adds to abilities.
         by default, 0
     """
-    def __init__(self, name: str, damage: int, ability_included: at.Ability = None, \
+    def __init__(self, name: str, damage: int, ability_included: Ability = None, \
         hitMod: int = 0):
         # name of weapon, str
         if isinstance(name, str):
@@ -26,7 +26,7 @@ class Weapon:
         
         
         # ability that is modified by weapon, has orig abil and new abil
-        self.ability_included: at.Ability = ability_included
+        self.ability_included: Ability = ability_included
         # abilMod is list of two strings containing name of orig ability, name
         # of enhanced ability with weapon
         
@@ -40,7 +40,7 @@ class Armor:
         ability_included (None/list): ability given by armor
     """
     def __init__(self, name: str, defense:int, \
-        ability_included: at.Ability = None):
+        ability_included: Ability = None):
         # weapon damage. an integer value
         if isinstance(defense, int):
             self.defense: int = defense
@@ -54,4 +54,10 @@ class Armor:
             raise TypeError(f"Not valid type for name: {type(name)}")
         
         # ability that is modified by weapon, has orig abil and new abil
-        self.ability_included: at.Ability = ability_included
+        self.ability_included: Ability = ability_included
+        
+WEAPONS = [Weapon("Generic Weapon 1", 20, []),
+           Weapon("Generic Weapon 2", 25, []),
+           Weapon("Generic Weapon 3", 15, []),
+           Weapon("Generic Weapon 4", 35, []),
+        ]

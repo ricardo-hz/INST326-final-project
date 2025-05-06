@@ -1,7 +1,7 @@
 import warnings
 import weaponarmor_btest as et
 
-CATEGORIES_OF_ABILITIES = {"damage", "heal", "debuff", "buff"}
+CATEGORIES_OF_ABILITIES = {"Damage", "Heal", "Debuff", "Buff"}
 
 class Ability:
     """Representation of an ability.
@@ -79,13 +79,16 @@ class Ability:
         else:
             raise ValueError(f"Round length less than 0: {round_length}")
         
+    def __str__(self) -> str:
+        return f"Ability Name: {self.name} | Category: {self.category} | Potency: {self.potency} | Cooldown: {self.cooldown} | Hits: {self.hits} | Round Length: {self.roundLength}"
+        
+        
 class AbilityList():
     def __init__(self, initial_abilities: list):
         if isinstance(initial_abilities, list):
             self.abilityList = dict()
             self.abilityOrder = dict()
             self.amountOfAbilities = len(initial_abilities)
-            self.disabledList = dict()
             for i, a in enumerate(initial_abilities):
                 if isinstance(a, Ability):
                     self.abilityList[a.name] = a
@@ -105,3 +108,8 @@ class AbilityList():
         else:
             raise TypeError(f"Invalid type of object for AbilityList.addTo()\
             : {type(newAbility)}")
+            
+    def __str__(self) -> str:
+        listofabilityamongus = str()
+        for a in self.abilityOrder:
+            listofabilityamongus = listofabilityamongus + f"#{a}: {self.abilityList(self.abilityOrder(a))}"

@@ -1,7 +1,16 @@
 import equipment
 import random
-import weaponarmor_btest as et
-import ability_test as at
+from weaponarmor_btest import *
+from ability_test import *
+
+CHARACTER_DICT = {
+    "Char1" : [100, WEAPONS[0], "Generic Armor 1", []],
+    "Char2" : [150, WEAPONS[1], "Generic Armor 2", []],
+    "Char3" : [200, WEAPONS[2], "Generic Armor 3", []],
+    "Char4" : [250, WEAPONS[3], "Generic Armor 4", []]
+}
+
+CHARACTER_LIST = [Character(key, *value) for key,value in CHARACTER_DICT.items()]
 
 class Character():
     """Representation of a character.
@@ -26,7 +35,7 @@ class Character():
     """
     
     def __init__(self, name: str, character_id: int, hp: int, agility: int, weapon: et.Weapon, 
-                 armor: et.Armor, character_abilities: at.AbilityList):
+                 armor: et.Armor, character_abilities: AbilityList):
         """Initializes a new character object.
         
         Args:
@@ -106,26 +115,45 @@ class Character():
             self.abilities.append(equipment.Ability(ability.name.upper())) 
     
     def __str__(self) -> str:
-        return f"{self.name}: {self.hp}"
-    
+        """Prints detailed information about a character.
+        """
+        print(f"Name: {self.name}")
+        print(f"HP: {self.hp} ({self.max_hp})")
+        print(f"Weapon: {self.weapon.name} - {self.attack_stat} ({self.attack_base})")
+        print(f"Armor: {self.armor.name} - {self.defense_stat} ({self.defense_base})")
+        print(f"Abilities: {self.character_abilities}")
+        
     def __lt__(self, other) -> bool:
         return self.agility < other.agility
+    
+    def __rt__(self ,other) -> bool:
+        return self.agility_base > other.agility
 
 class Party():
     def __init__(self, party_list: list):
         self.party_list = party_list
         
-class PlayerParty(Party):
+    def __str__(self) -> str:
+        listofcharacteramongus = str()
+        for c in self.party_list:
+            listofcharacteramongus = listofcharacteramongus + f"Name: {c.name} | HP: {c.hp} ({c.max_hp})"
+        return listofcharacteramongus
+        
+class Player_Party(Party):
     def __init__(self, party_list: list):
         for p in party_list:
             p.player_character = True
         self.party_list = party_list
             
-class EnemyParty(Party):
-    def __init__(self, party_list: list, enemy_behaviors: dict = None):
+class Enemy_Party(Party):
+    def __init__(self, party_list: list, enemy_behaviors: dict = None, intro_message: str = None):
         # i should really really really be banned from programming for this
         self.party_list = party_list
+        
         # dict should be of form like i dunno {"enemyName": damageTargetting}
         # but there's objectively a better way to go about this surely
         # feel free to not use this if so i should probably just explode tbh
         self.enemy_behaviors = enemy_behaviors
+        
+        #gotta give the enemy party a bit of a hype-up of course
+        self.intro_message = intro_message
