@@ -25,7 +25,7 @@ def character_equipment(name, weapons, armour, battle_outcome):
     """
     
     print(f"It is now {name}'s turn. The weapons that {name} " 
-            f"currrently has are: {weapons} and their current armour "
+            f"currently has are: {weapons} and their current armour "
             f"is: {armour}.")
     weapon_input = input(f"Please choose one weapon from the list given or let " 
                          f"the game pick at random. If random, input "
@@ -46,14 +46,12 @@ def character_equipment(name, weapons, armour, battle_outcome):
     else:
         return armour_input
     if battle_outcome == "Won":
-        weapon_addition = input(f"Congrats on winning the battle! Please "
-                f"choose one weapon to add to your character's weapons from "
-                f"this list: {Character.add_ability} ")
-        armour_addition = input(f"Now please choose one armour to add to "
-                                f"your character's armour from this list:"
-                                f"{Character.add_ability} ")
-        weapons.append(weapon_addition)
-        armour.append(armour_addition)
+        weapon_upgrade = input("Congrats on winning the battle! Please "
+                "choose one weapon to upgrade from your list of weapons. ")
+        armour_upgrade = input("Now please choose one armor to upgrade from "
+                               "your list of armor. ")
+        weapons.append(weapon_upgrade)
+        armour.append(armour_upgrade)
     elif battle_outcome == "Lost":
         print(f"Unfortunately, you lost your battle and are not able to "
                 f"upgrade your weapons and armour. Your weapons are: "
