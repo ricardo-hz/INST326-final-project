@@ -77,5 +77,14 @@ def print_character_options(characters):
               f"{character.role}")
         
 def print_characters(characters):
+    """Prints basic information about a character.
+    
+    Args:
+        characters (list or dict) : The characters to be printed.
+    """
+    # Convert passed dicts to list of characters
+    if isinstance(characters, dict):
+        characters = [Character(key, *value) for key,value in characters.items()]
+        
     for character in characters:
-        print(f"{character.name} | {character.hp}HP | {character.role}")
+        print(f"{character.name} | {character.hp}HP")
