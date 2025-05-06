@@ -27,5 +27,5 @@ team = assemble_team(CHARACTER_LIST)
 print_characters(team)
 
 # Generate an enemy team
-# Battle???
+# Battle??? combat should be called here
 # Display shop if character won

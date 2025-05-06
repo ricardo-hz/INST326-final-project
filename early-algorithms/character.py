@@ -1,4 +1,5 @@
 import equipment
+from weapon_and_armor_test import *
 import random
 
 class Character():
@@ -65,7 +66,7 @@ class Character():
         return f"{self.name}: {self.hp}"
 
 CHARACTER_DICT = {
-    "Char1" : [100, Weapon("Generic Weapon 1"), "Generic Armor 1", []],
+    "Char1" : [100, WEAPONS[0], "Generic Armor 1", []],
     "Char2" : [150, "Generic Weapon 2", "Generic Armor 2", []],
     "Char3" : [200, "Generic Weapon 3", "Generic Armor 3", []],
     "Char4" : [250, "Generic Weapon 4", "Generic Armor 4", []]

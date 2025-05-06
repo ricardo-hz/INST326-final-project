@@ -18,7 +18,8 @@ class Weapon:
         self.abilMod: list | None = abilMod
         # abilMod is list of two strings containing name of orig ability, name
         # of enhanced ability with weapon
-        
+
+WEAPONS = [Weapon("Generic Weapon 1", 20, [])]
 class Armor:
     def __init__(self, name: str, defense:int, abilMod: list | None = None):
         # weapon damage. an integer value
