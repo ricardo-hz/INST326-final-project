@@ -18,9 +18,9 @@ print("Welcome!")
 print_characters(CHARACTER_LIST)
 
 print()
-print(f"Enter the name of a character to add them to your team. "
+input(f"Enter the name of a character to add them to your team. "
       f"Obtain more information about a character by using the flag '--v'."
-      f"\n\n Example: {CHARACTER_LIST[0].name} --v")
+      f"\n\n Example: {CHARACTER_LIST[0].name} --v ")
 
 # Get team selection
 team = assemble_team(CHARACTER_LIST)

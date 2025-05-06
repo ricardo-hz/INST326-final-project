@@ -31,8 +31,8 @@ def party_info(party, id = -1):
         i += 1
 
     while True:
-        menu_option = int(input(f"Enter a number to learn more about a character or"
-                        f" -1 to exit. ").strip())
+        menu_option = int(input(f"Enter a number to learn more about a "
+                        f" character or -1 to exit. ").strip())
         if menu_option == -1:
             break
         print(party[menu_option])
