@@ -1,13 +1,6 @@
 import equipment
 import random
 
-CHARACTERS = {
-    "Char1" : [100, "Generic Weapon 1", "Generic Armor 1", []],
-    "Char2" : [150, "Generic Weapon 2", "Generic Armor 2", []],
-    "Char3" : [200, "Generic Weapon 3", "Generic Armor 3", []],
-    "Char4" : [250, "Generic Weapon 4", "Generic Armor 4", []]
-}
-
 class Character():
     """Represents a character.
     
@@ -70,7 +63,16 @@ class Character():
     
     def __repr__(self):
         return f"{self.name}: {self.hp}"
-    
+
+CHARACTER_DICT = {
+    "Char1" : [100, "Generic Weapon 1", "Generic Armor 1", []],
+    "Char2" : [150, "Generic Weapon 2", "Generic Armor 2", []],
+    "Char3" : [200, "Generic Weapon 3", "Generic Armor 3", []],
+    "Char4" : [250, "Generic Weapon 4", "Generic Armor 4", []]
+}
+
+CHARACTER_LIST = [Character(key, *value) for key,value in CHARACTER_DICT.items()]
+
 def print_character_options(characters):
     for character in characters:
         print(f"{character.char_id}. {character.name} | {character.hp}HP | "
@@ -84,7 +86,7 @@ def print_characters(characters):
     """
     # Convert passed dicts to list of characters
     if isinstance(characters, dict):
-        characters = [Character(key, *value) for key,value in characters.items()]
+        characters = CHARACTER_LIST
         
     for character in characters:
         print(f"{character.name} | {character.hp}HP")

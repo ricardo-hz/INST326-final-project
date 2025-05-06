@@ -122,20 +122,34 @@ def assemble_team(characters):
     Returns:
         The player's team as a list of Character objects.
     """
-    print("Assemble your team!")
-    # The below line should probably be moved out of this function and into 
-    # start() when it is implemented.
-    print_character_options(characters)
+    
     team = []
-    chosen_numbers = []
     while len(team) != MAX_TEAM_SIZE:
-        choice = int(input("Enter the number of the character you would like on"
+        choice = input("Enter the name of the character you would like on"
+                f" your team. You may only have "
+                f"one of each character. ")
+        # First verify that what was entered is even a character
+        if choice not in [character.name for character in characters]:
+            print("Character doesn't exist")
+        # Then check if the character is already on their team
+        elif choice in [character.name for character in team]:
+            print("Character already on team")
+        # If all other checks pass, add the character to the team
+        else:
+            team.append(Character(choice, *CHARACTER_DICT[choice]))
+        
+        
+        
+        
+"""   
+    while len(team) != MAX_TEAM_SIZE:
+        choice = input("Enter the name of the character you would like on"
                        f" your team. You may only have "
-                       f"one of each character. "))
+                       f"one of each character. ")
         # There's probably a more legible way to document the fact that the 
         # choice needs to be within the valid 1 - 6 range
-        if (choice in range(1,7) and choice not in chosen_numbers):
-                chosen_numbers.append(choice)
+        if (choice not in):
+                team.append(choice)
                 team.append(characters[choice - 1])
                 print(f"Your team: ")
                 print_characters(team)
@@ -145,7 +159,7 @@ def assemble_team(characters):
                   f"each character. ")
             
     return team
-        
+"""   
 def start():
     """Starts the gameplay loop.
     """
