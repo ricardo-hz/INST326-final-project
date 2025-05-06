@@ -1,7 +1,7 @@
 from math import ceil
 from random import uniform
 import weaponarmor_btest as et
-import character_btest as ct
+import character as ct
 import ability_test as at
 
 def dmgcalc(attacker, attack, defender, attackModifier = 1, defenseModifier = 1, specialSauce = 1.5, \

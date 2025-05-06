@@ -1,5 +1,5 @@
 from random import randint
-import character_btest
+import character
 
 class Enemy:
     """Represents an enemy

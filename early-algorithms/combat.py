@@ -1,4 +1,4 @@
-import character_btest as ct
+import character as ct
 import enemies as ees
 
 def combat(Player_Team, Enemy_Team) -> bool:
