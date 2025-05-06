@@ -65,7 +65,7 @@ class Character():
         return f"{self.name}: {self.hp}"
 
 CHARACTER_DICT = {
-    "Char1" : [100, "Generic Weapon 1", "Generic Armor 1", []],
+    "Char1" : [100, Weapon("Generic Weapon 1"), "Generic Armor 1", []],
     "Char2" : [150, "Generic Weapon 2", "Generic Armor 2", []],
     "Char3" : [200, "Generic Weapon 3", "Generic Armor 3", []],
     "Char4" : [250, "Generic Weapon 4", "Generic Armor 4", []]
@@ -78,7 +78,7 @@ def print_character(character):
     """
     print(f"Name: {character}")
     print(f"HP: {CHARACTER_DICT[character][0]}")
-    print(f"Weapons: {CHARACTER_DICT[character][1]}")
+    print(f"Weapon: {CHARACTER_DICT[character][1]}")
     print(f"Armor: {CHARACTER_DICT[character][2]}")
     print(f"Abilities: {CHARACTER_DICT[character][3]}")
 

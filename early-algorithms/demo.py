@@ -25,6 +25,7 @@ print(f"Enter the name of a character to add them to your team. "
 # Get team selection
 team = assemble_team(CHARACTER_LIST)
 print_characters(team)
+
 # Generate an enemy team
 # Battle???
 # Display shop if character won

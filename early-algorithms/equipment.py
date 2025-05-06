@@ -1,16 +1,3 @@
-# Idk if we'll actually need all or any of these classes, I'm just putting them 
-# here as a foundation of sorts
-
-class Weapon():
-    def __init__(self, name, damage):
-        self.name = name
-        self.damage = damage
-
-class Armor():
-    def __init__(self, name, armor_value):
-        self.name = name
-        self.armor_value = armor_value
-
 # Abilities dictionary with all possible abilities?
 # Name : dmg, heal, cooldown
 ABILITIES = {
