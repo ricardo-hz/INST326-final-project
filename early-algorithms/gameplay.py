@@ -127,16 +127,36 @@ def assemble_team(characters):
     while len(team) != MAX_TEAM_SIZE:
         choice = input("Enter the name of the character you would like on"
                 f" your team. You may only have "
-                f"one of each character. ")
-        # First verify that what was entered is even a character
-        if choice not in [character.name for character in characters]:
-            print("Character doesn't exist")
-        # Then check if the character is already on their team
-        elif choice in [character.name for character in team]:
-            print("Character already on team")
-        # If all other checks pass, add the character to the team
+                f"one of each character. ").split("--")
+        
+        choice[0] = choice[0].strip()
+        
+        # One branch for info
+        if len(choice) == 2:
+            if choice[1] != 'v':
+                print("Invalid flag.")
+            elif choice[0] not in [character.name for character in characters]:
+                print("Character doesn't exist.")
+            else:
+                print_character(choice[0])
+                print()
+                
+        # One branch for adding
+        elif len(choice) == 1:
+            # First verify that what was entered is even a character
+            if choice[0] not in [character.name for character in characters]:
+                print("Character doesn't exist")
+            # Then check if the character is already on their team
+            elif choice[0] in [character.name for character in team]:
+                print("Character already on team")
+            else:
+                team.append(Character(choice[0], *CHARACTER_DICT[choice[0]]))
         else:
-            team.append(Character(choice, *CHARACTER_DICT[choice]))
+            print("Too many arguments entered.")
+    
+    return team
+
+
         
         
         

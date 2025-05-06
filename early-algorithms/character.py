@@ -73,13 +73,18 @@ CHARACTER_DICT = {
 
 CHARACTER_LIST = [Character(key, *value) for key,value in CHARACTER_DICT.items()]
 
-def print_character_options(characters):
-    for character in characters:
-        print(f"{character.char_id}. {character.name} | {character.hp}HP | "
-              f"{character.role}")
+def print_character(character):
+    """Prints detailed information about a character.
+    """
+    print(f"Name: {character}")
+    print(f"HP: {CHARACTER_DICT[character][0]}")
+    print(f"Weapons: {CHARACTER_DICT[character][1]}")
+    print(f"Armor: {CHARACTER_DICT[character][2]}")
+    print(f"Abilities: {CHARACTER_DICT[character][3]}")
+
         
 def print_characters(characters):
-    """Prints basic information about a character.
+    """Prints basic information about a list or dict of characters.
     
     Args:
         characters (list or dict) : The characters to be printed.
