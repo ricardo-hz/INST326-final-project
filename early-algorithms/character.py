@@ -67,9 +67,9 @@ class Character():
 
 CHARACTER_DICT = {
     "Char1" : [100, WEAPONS[0], "Generic Armor 1", []],
-    "Char2" : [150, "Generic Weapon 2", "Generic Armor 2", []],
-    "Char3" : [200, "Generic Weapon 3", "Generic Armor 3", []],
-    "Char4" : [250, "Generic Weapon 4", "Generic Armor 4", []]
+    "Char2" : [150, WEAPONS[1], "Generic Armor 2", []],
+    "Char3" : [200, WEAPONS[2], "Generic Armor 3", []],
+    "Char4" : [250, WEAPONS[3], "Generic Armor 4", []]
 }
 
 CHARACTER_LIST = [Character(key, *value) for key,value in CHARACTER_DICT.items()]
@@ -79,7 +79,7 @@ def print_character(character):
     """
     print(f"Name: {character}")
     print(f"HP: {CHARACTER_DICT[character][0]}")
-    print(f"Weapon: {CHARACTER_DICT[character][1]}")
+    print(f"Weapon: {CHARACTER_DICT[character][1].name} - {CHARACTER_DICT[character][1].damage} DMG")
     print(f"Armor: {CHARACTER_DICT[character][2]}")
     print(f"Abilities: {CHARACTER_DICT[character][3]}")
 
