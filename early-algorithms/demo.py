@@ -24,6 +24,7 @@ print(f"Enter the name of a character to add them to your team. "
 print()
 
 # Get team selection
+
 team = assemble_team(CHARACTER_LIST)
 print_characters(team)
 
