@@ -1,4 +1,4 @@
-from character import Character
+from character_btest import Character
 
 def combat(Player_Team, Enemy_Team) -> bool:
     combat_is_live = True
