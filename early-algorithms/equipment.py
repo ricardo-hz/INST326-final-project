@@ -68,7 +68,7 @@ class Ability():
         """Initializes an ability object.
         
         """
-
+        # TODO: Add code that verifies the ability exists
         # Set the other ability elements
         self.name = name
         self.damage, self.heal, self.maximum_cooldown = [*ABILITIES[name]]
