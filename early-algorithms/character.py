@@ -10,7 +10,7 @@ CHARACTER_DICT = {
     "Char4" : [250, 1, WEAPONS[3], "Generic Armor 4", AbilityList(ABILITIES["Strike"])]
 }
 
-class Character():
+class Character:
     """Representation of a character.
     
     Attributes:
@@ -71,7 +71,7 @@ class Character():
             raise TypeError(f"Not valid type for armor: {type(armor)}")
         
         if isinstance(character_abilities, dict):
-            self.abilities = character_abilities
+            self.character_abilities = character_abilities
         else:
             raise TypeError(f"Not valid type for character_abilities: \
             {type(character_abilities)}")
@@ -141,7 +141,7 @@ class Party():
     def __str__(self) -> str:
         listofcharacteramongus = str()
         for c in self.party_list:
-            listofcharacteramongus = listofcharacteramongus + f"Name: {c.name} | HP: {c.current_hp} ({c.max_hp})"
+            listofcharacteramongus = listofcharacteramongus + f"Name: {c.name} | HP: {c.current_hp} ({c.max_hp})\n"
         return listofcharacteramongus
         
 class Player_Party(Party):

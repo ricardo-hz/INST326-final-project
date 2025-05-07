@@ -1,6 +1,10 @@
 from random import randint
 from character import *
 from damagecalc_abilbranch import *
+from ability_test import *
+
+ENEMY_ATTACK_ABILITY = Ability("Attack", "damage", 1) # this is bad but
+# yknow
 
 class Enemy:
     """Represents an enemy

@@ -46,22 +46,26 @@ def ability_handler(user, ability_used, target) -> None:
     if ability_used.category == "damage":
         funny_number = damage_calculation(user, ability_used, target)
         target.current_hp -= funny_number
+        print(f"{user.name} uses {ability_used.name} to deal {funny_number} damage!")
         # note: should make it so you can't target creatures with no hp.
         # atm it's a demo and will just do More Damage Lol
         if target.current_hp <= 0:
             target.consciousness = False
+            print(f"{target.name} is knocked unconscious!")
     elif ability_used.category == "heal":
         funny_number = healing_calculation(user, ability_used, target)
         target.current_hp += funny_number
+        print(f"{user.name} uses {ability_used.name} to heal {funny_number} damage!")
         # make it so you prolly can't heal people with <= 0 hp? idk lol
-    
+    else:
+        raise ValueError(f"not a valid category: {ability_used.category}")
     
 if __name__ == "__main__":
     wepTest = Weapon("Sword", 5)
     armTest = Armor("Chainmail", 5)
     slash = Ability("Slash", "damage", 1)
-    p1 = Character("Warrior", 1, 40, 1, wepTest, armTest, characterAbilities= AbilityList({f"{slash.name}": slash}))
-    p2 = Character("Warrior", 1, 40, 1, wepTest, armTest, characterAbilities= AbilityList({f"{slash.name}": slash}))
+    p1 = Character("Warrior", 40, 1, wepTest, armTest, character_abilities = AbilityList([slash]))
+    p2 = Character("Warrior", 40, 1, wepTest, armTest, character_abilities = AbilityList([slash]))
     #print(f"{p1.name}'s {slash.name} does {dmgcalc(p1, slash, p2)} damage against \
     #{p2.name}!") # test print function. needs work objectively
     print(f"{p1.name} uses {slash.name} with {p1.weapon.name} to do\

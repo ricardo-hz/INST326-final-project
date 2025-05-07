@@ -1,6 +1,7 @@
-import character as ct
-import enemies as ees
+from character import *
+from enemies import *
 from ability_test import *
+from damagecalc_abilbranch import *
 
 def combat(Player_Team, Enemy_Team) -> bool:
     combat_result = True
@@ -42,7 +43,7 @@ def combat(Player_Team, Enemy_Team) -> bool:
                                     combat_action = input("Choose target. -1 to go back.").strip()
                                     chosen_target = initative_tracker.combat_order.get(combat_action, None)
                                     if chosen_target is not None:
-                                        pass # attack function here ohdear
+                                        ability_handler(active_combatant, chosen_ability, chosen_target)
                                         active_turn = False
                                         combat_action = -1
                                     elif (chosen_target is None) and (combat_action == -1):
@@ -69,10 +70,19 @@ def combat(Player_Team, Enemy_Team) -> bool:
                         print("Invalid action.")
                 # end of turn checks for victory and such
             else:
-                print("Enemy Stuff")
+                ability_handler(active_combatant, ENEMY_ATTACK_ABILITY, \
+                    active_combatant.enemy_logic(Player_Team))
+
         else:
             print(f"{active_combatant.name} is unable to act!")
-        
+        # end of turn checks very exciting
+        initative_tracker.check_consciousness()
+        if initative_tracker.players_active == False:
+            combat_result = False
+            combat_in_progress = False
+        elif initative_tracker.enemies_active == False:
+            combat_result = True
+            combat_in_progress = False
     return combat_result
 
 def party_info(party, id = -1):
@@ -95,8 +105,8 @@ def party_info(party, id = -1):
         
 class Initative():
     #aisudgasoikldjawlKdjsakjfhasklfj,shisk
-    def __init__(self, party_player: ct.Player_Party, \
-        party_enemy: ees.Enemy_Party):
+    def __init__(self, party_player: Player_Party, \
+        party_enemy: Enemy_Party):
         psuedo_order = list()
         for c in party_player:
             self.combat_order.append(c)
@@ -128,3 +138,16 @@ class Initative():
                 enemy_view = enemy_view + additive_string
                 
         return f"{player_view}\n{enemy_view}"
+    
+    def check_consciousness(self):
+        p_act = False
+        e_act = False
+        for c in self.combat_order:
+            if c.playerCharacter == True:
+                if c.consciousness == True:
+                    e_act = True
+            if c.playerCharacter == False:
+                if c.consciousness == True:
+                    e_act = True
+        self.players_active = p_act
+        self.enemies_active = e_act

@@ -1,10 +1,11 @@
-from ability_test import *
+from ability_test import at
+
 # Abilities dictionary with all possible abilities?
 # Name : dmg, heal, cooldown
 ABILITIES = {
     "ABILITY NOT FOUND" : [3.14, 3.14, 9999], # Special ability reserved for debugging
     "SUPER SMASH" : [10, 0, 0],
-    "Strike": Ability("Strike", "Damage", 1)
+    "Strike": at.Ability("Strike", "Damage", 1)
 }
 
 class Weapon:
@@ -17,7 +18,7 @@ class Weapon:
          hitMod (int): amount of additional hits this weapon adds to abilities.
          by default, 0
      """
-     def __init__(self, name: str, damage: int, ability_included: Ability = None, \
+     def __init__(self, name: str, damage: int, ability_included: at.Ability = None, \
          hitMod: int = 0):
          # name of weapon, str
          if isinstance(name, str):
@@ -48,7 +49,7 @@ class Armor:
          ability_included (None/list): ability given by armor
      """
      def __init__(self, name: str, defense:int, \
-         ability_included: Ability = None):
+         ability_included: at.Ability = None):
          # weapon damage. an integer value
          if isinstance(defense, int):
              self.defense: int = defense
@@ -70,7 +71,7 @@ WEAPONS = [Weapon("Generic Weapon 1", 20, []),
             Weapon("Generic Weapon 4", 35, []),
          ]
  
-class Ability():
+class Ability:
     def __init__(self, name, damage = 0, heal = 0, cooldown = 0):
         """Initializes an ability object.
         
