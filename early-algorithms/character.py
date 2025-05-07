@@ -89,8 +89,8 @@ class Character():
     def attack(self, other_character):
         other_character.hp -= 20
     
-    def swap_weapon(self, new_weapon) -> None:
-        raise NotImplementedError("help")
+    def swap_weapon(self, new_weapon):
+        self.weapon = new_weapon
     
     def damageSelf(self, damage: int) -> None:
         self.hp -= damage
@@ -106,13 +106,6 @@ class Character():
         """
         if ability not in self.abilities:
             self.abilities.append(ability)
-    
-    
-    def add_weapon(self, weapon):
-        raise NotImplementedError;  
-    
-    def remove_weapon(self, weapon):
-        raise NotImplementedError;  
     
     def __str__(self) -> str:
         """Prints detailed information about a character.

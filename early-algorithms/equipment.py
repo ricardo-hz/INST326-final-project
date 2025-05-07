@@ -1,5 +1,12 @@
 #from ability_test import *
 
+# Name, dmg, allowed characters?
+WEAPON_DICT = {"Generic Weapon 1" : 20,
+           "Generic Weapon 2" : 25,
+           "Generic Weapon 3": 15,
+           "Generic Weapon 4" : 35
+            }
+
 class Weapon:
     """Representation of a Weapon.
     
@@ -7,7 +14,7 @@ class Weapon:
         name (str): name of weapon
         damage (int): damage of weapon
     """
-    def __init__(self, name, damage):
+    def __init__(self, name, damage = 0):
         # name of weapon, str
         if isinstance(name, str):
             self.name: str = name
@@ -16,18 +23,15 @@ class Weapon:
         
         # weapon damage. an integer value
         if isinstance(damage, int):
-            self.damage = damage
+            self.damage = WEAPON_DICT[name]
         else:
             raise TypeError(f"Not valid type for dmg: {type(damage)}")
+    
+    def __str__(self):
+        return(f"Name: {self.name} "
+               f"Damage: {self.damage}")
 
-# Name, dmg, allowed characters?
-WEAPONS = [Weapon("Generic Weapon 1", 20),
-           Weapon("Generic Weapon 2", 25),
-           Weapon("Generic Weapon 3", 15),
-           Weapon("Generic Weapon 4", 35),
-        ]
-
-
+WEAPONS = [Weapon(key, value) for key,value in WEAPON_DICT.items()]
 class Armor:
     """Representation of armor.
     

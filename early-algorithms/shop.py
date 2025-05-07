@@ -19,9 +19,13 @@ def shop(team):
                                 f"Enter NONE to skip the shop for this character. ")
             match(shop_choice):
                 case("WEAPONS"):
-                    break
+                    for weapon in WEAPONS:
+                        print(weapon)
+                    character.swap_weapon(Weapon(input().strip()))
+                    
                 case("ARMOR"):
                     break
+                
                 case("ABILITIES"):
                     print()
                     print("Choose from one of the following abilities:")
