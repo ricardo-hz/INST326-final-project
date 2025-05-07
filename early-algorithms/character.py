@@ -31,8 +31,8 @@ class Character():
     
     """
     
-    def __init__(self, name: str, hp: int, agility: int, weapon: et.Weapon, 
-                 armor: et.Armor, character_abilities: AbilityList):
+    def __init__(self, name: str, hp: int, agility: int, weapon: Weapon, 
+                 armor: Armor, abilities: list):
         """Initializes a new character object.
         
         Args:
@@ -58,12 +58,12 @@ class Character():
         else:
             raise TypeError(f"Not valid type for hp: {type(hp)}")
         
-        if isinstance(weapon, et.Weapon) or weapon is None:
+        if isinstance(weapon, Weapon) or weapon is None:
             self.weapon = weapon
         else:
             raise TypeError(f"Not valid type for weapon: {type(weapon)}")
         
-        if isinstance(armor, et.Armor) or armor is None:
+        if isinstance(armor, Armor) or armor is None:
             self.armor = armor
         else:
             raise TypeError(f"Not valid type for armor: {type(armor)}")
@@ -71,7 +71,7 @@ class Character():
         # The below lines should be uncommented when using abilities from
         # ability_test.py
         #if isinstance(character_abilities, dict):
-        self.abilities = character_abilities
+        self.abilities = abilities
         #else:
             #raise TypeError(f"Not valid type for character_abilities: \
             #{type(character_abilities)}")
@@ -83,7 +83,7 @@ class Character():
         self.agility_base: int = agility
         self.agility_stat: int = self.agility_base
         
-        self.character_abilities = character_abilities
+        self.character_abilities = abilities
         self.player_character = False
         
     def attack(self, other_character):
@@ -104,8 +104,8 @@ class Character():
                 pertaining to it's use should be present in the ABILITIES
                 dictionary of equipment.py.
         """
-        if ability.name.upper() not in self.abilities:
-            self.abilities.append(equipment.Ability(ability.name.upper()))
+        if ability not in self.abilities:
+            self.abilities.append(ability)
     
     
     def add_weapon(self, weapon):
@@ -121,7 +121,7 @@ class Character():
         f"HP: {self.hp} ({self.max_hp})\n"
         f"Weapon: {self.weapon.name} - {self.attack_stat} ({self.attack_base})\n"
         f"Armor: {self.armor.name} - {self.defense_stat} ({self.defense_base})\n"
-        f"Abilities: {self.character_abilities}")
+        f"Abilities: {[ability.__str__() for ability in self.abilities]}")
         
         return s
         

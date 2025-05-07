@@ -1,4 +1,4 @@
-from ability_test import *
+#from ability_test import *
 
 class Weapon:
     """Representation of a Weapon.
@@ -6,12 +6,8 @@ class Weapon:
     Attributes:
         name (str): name of weapon
         damage (int): damage of weapon
-        ability_included (None/list): ability given by weapon
-        hitMod (int): amount of additional hits this weapon adds to abilities.
-        by default, 0
     """
-    def __init__(self, name: str, damage: int, ability_included: Ability = None, \
-        hitMod: int = 0):
+    def __init__(self, name, damage):
         # name of weapon, str
         if isinstance(name, str):
             self.name: str = name
@@ -20,22 +16,15 @@ class Weapon:
         
         # weapon damage. an integer value
         if isinstance(damage, int):
-            self.damage: int = damage
+            self.damage = damage
         else:
             raise TypeError(f"Not valid type for dmg: {type(damage)}")
-        
-        
-        # ability that is modified by weapon, has orig abil and new abil
-        self.ability_included: Ability = ability_included
-        # abilMod is list of two strings containing name of orig ability, name
-        # of enhanced ability with weapon
-        
-        hitMod: int = hitMod
 
-WEAPONS = [Weapon("Generic Weapon 1", 20, []),
-           Weapon("Generic Weapon 2", 25, []),
-           Weapon("Generic Weapon 3", 15, []),
-           Weapon("Generic Weapon 4", 35, []),
+# Name, dmg, allowed characters?
+WEAPONS = [Weapon("Generic Weapon 1", 20),
+           Weapon("Generic Weapon 2", 25),
+           Weapon("Generic Weapon 3", 15),
+           Weapon("Generic Weapon 4", 35),
         ]
 
 
@@ -43,46 +32,35 @@ class Armor:
     """Representation of armor.
     
     Attributes:
-        name (str): name of weapon
-        damage (int): damage of weapon
-        ability_included (None/list): ability given by armor
+        name (str): name of armor
+        defense (float): damage reduction as a float 0 - 1
     """
-    def __init__(self, name: str, defense:int, \
-        ability_included: Ability = None):
-        # weapon damage. an integer value
-        if isinstance(defense, int):
-            self.defense: int = defense
+    def __init__(self, name, defense):
+        # armor defense. an integer value
+        if isinstance(defense, float):
+            self.defense = defense
         else:
             raise TypeError(f"Not valid type for defn: {type(defense)}")
         
         # name of weapon, str
         if isinstance(name, str):
-            self.name: str = name
+            self.name = name
         else:
             raise TypeError(f"Not valid type for name: {type(name)}")
         
-        # ability that is modified by weapon, has orig abil and new abil
-        self.ability_included: Ability = ability_included
-
-ARMOR = [Armor("Generic Armor 1", 20, []),
-           Armor("Generic Armor 2", 25, []),
-           Armor("Generic Armor 3", 15, []),
-           Armor("Generic Armor 4", 35, []),
+ARMOR = [Armor("Generic Armor 1", 0.20),
+           Armor("Generic Armor 2", 0.25),
+           Armor("Generic Armor 3", 0.15),
+           Armor("Generic Armor 4", 0.35),
         ]
 
 
 
-
-
-
-
-
-
-# Abilities dictionary with all possible abilities?
-# Name : dmg, heal, cooldown
 ABILITIES = {
-    "ABILITY NOT FOUND" : [3.14, 3.14, 9999], # Special ability reserved for debugging
-    "SUPER SMASH" : [10, 0, 0]
+    "Generic Ability 1" : [100, 0, 2],
+    "Generic Ability 2" : [85, 0, 3],
+    "Generic Ability 3" : [0, 100, 1],
+    "Generic Ability 4" : [10, 63, 2]
 }
 
 class Ability():
@@ -90,16 +68,14 @@ class Ability():
         """Initializes an ability object.
         
         """
-        # Ensure ability is in ability dictionary
-        if name.upper() in ABILITIES:
-            self.name = name.upper()
-        else:
-            raise NameError(f"{name} is not a valid ability.")
-        
+
         # Set the other ability elements
-        self.damage = ABILITIES[self.name][0]
-        self.heal = ABILITIES[self.name][1]
-        self.cooldown = ABILITIES[self.name][2]
+        self.name = name
+        self.damage, self.heal, self.maximum_cooldown = [*ABILITIES[name]]
+        #self.damage = damage
+        #self.heal = heal
+        #self.maximum_cooldown = cooldown
+        self.cooldown = cooldown
     
     def use(self, other_character):
         """Casts an ability object onto a character.
@@ -108,5 +84,19 @@ class Ability():
         other_character.hp += self.heal
         other_character.hp -= self.damage
         # Reset cooldown to maximum according to dictionary
-        self.cooldown = ABILITIES[self.name][2]
+        self.cooldown = self.maximum_cooldown
         print("ability used!")
+        
+    def __str__(self):
+        return(f"Name: {self.name} "
+               f"Damage: {self.damage} "
+               f"Healing: {self.heal} "
+               f"Maximum cooldown: {self.maximum_cooldown} "
+               f"Current cooldown: {self.cooldown} "
+               )
+# Abilities dictionary with all possible abilities?
+# Name : dmg, heal, cooldown
+# Maybe damage can be a percentage of the enemies health to make this more
+# interesting
+
+ABILITIES_LIST = [Ability(key, *value) for key,value in ABILITIES.items()]
