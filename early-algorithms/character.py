@@ -1,15 +1,13 @@
-import equipment
+from equipment import *
 import random
-from weaponarmor_btest import *
 from ability_test import *
-from ability_list_pleasegodhelpme import *
 from enemies import *
 
 CHARACTER_DICT = {
-    "Char1" : [100, 4, WEAPONS[0], "Generic Armor 1", AbilityList(ABILITY_DICT["Strike"])],
-    "Char2" : [150, 3, WEAPONS[1], "Generic Armor 2", AbilityList(ABILITY_DICT["Strike"])],
-    "Char3" : [200, 2, WEAPONS[2], "Generic Armor 3", AbilityList(ABILITY_DICT["Strike"])],
-    "Char4" : [250, 1, WEAPONS[3], "Generic Armor 4", AbilityList(ABILITY_DICT["Strike"])]
+    "Char1" : [100, 4, WEAPONS[0], "Generic Armor 1", AbilityList(ABILITIES["Strike"])],
+    "Char2" : [150, 3, WEAPONS[1], "Generic Armor 2", AbilityList(ABILITIES["Strike"])],
+    "Char3" : [200, 2, WEAPONS[2], "Generic Armor 3", AbilityList(ABILITIES["Strike"])],
+    "Char4" : [250, 1, WEAPONS[3], "Generic Armor 4", AbilityList(ABILITIES["Strike"])]
 }
 
 class Character():
@@ -22,7 +20,7 @@ class Character():
         max_hp (int): maximum health of character
         weapon (Weapon): weapon character wields
         armor (Armor): armor character wields
-        abilities (dict): abilities character has access to
+        character_abilities (dict): abilities character has access to
         attack_base (int): base attack stat character has. based off of weapon
         attack_stat (int): attack stat used in calculations, incl. modifications
         defense_base (int): base defense stat character has, based off of armor
@@ -35,8 +33,8 @@ class Character():
     
     """
     
-    def __init__(self, name: str, hp: int, agility: int, weapon: et.Weapon, 
-            armor: et.Armor, character_abilities: AbilityList):
+    def __init__(self, name: str, hp: int, agility: int, weapon: Weapon, 
+            armor: Armor, character_abilities: AbilityList):
         """Initializes a new character object.
         
         Args:
@@ -62,12 +60,12 @@ class Character():
         else:
             raise TypeError(f"Not valid type for hp: {type(hp)}")
         
-        if isinstance(weapon, et.Weapon) or weapon is None:
+        if isinstance(weapon, Weapon) or weapon is None:
             self.weapon = weapon
         else:
             raise TypeError(f"Not valid type for weapon: {type(weapon)}")
         
-        if isinstance(armor, et.Armor) or armor is None:
+        if isinstance(armor, Armor) or armor is None:
             self.armor = armor
         else:
             raise TypeError(f"Not valid type for armor: {type(armor)}")
@@ -108,7 +106,7 @@ class Character():
                 dictionary of equipment.py.
         """
         if ability.name.upper() not in self.abilities:
-            self.abilities.append(equipment.Ability(ability.name.upper()))
+            self.abilities.append(Ability(ability.name.upper()))
     
     
     def add_weapon(self, weapon):
@@ -122,8 +120,8 @@ class Character():
         """
         return f"Name: {self.name}\n" + \
         f"HP: {self.current_hp} ({self.max_hp})\n" + \
-        f"Weapon: {self.weapon.name} - {self.attack_stat} ({self.attack_base})\n" + \
-        f"Armor: {self.armor.name} - {self.defense_stat} ({self.defense_base})\n" + \
+        f"Weapon: {self.weapon.name} - {self.attack_stat} (Base: {self.attack_base}) ATK\n" + \
+        f"Armor: {self.armor.name} - {self.defense_stat} (Base: {self.defense_base}) DEF\n" + \
         f"Abilities: {self.character_abilities}\n"
         
     def __lt__(self, other: "Character" | "Enemy") -> bool:
@@ -151,19 +149,6 @@ class Player_Party(Party):
         for p in party_list:
             p.player_character = True
         self.party_list = party_list
-            
-class Enemy_Party(Party):
-    def __init__(self, party_list: list, enemy_behaviors: dict = None, intro_message: str = None):
-        # i should really really really be banned from programming for this
-        self.party_list = party_list
-        
-        # dict should be of form like i dunno {"enemyName": damageTargetting}
-        # but there's objectively a better way to go about this surely
-        # feel free to not use this if so i should probably just explode tbh
-        self.enemy_behaviors = enemy_behaviors
-        
-        #gotta give the enemy party a bit of a hype-up of course
-        self.intro_message = intro_message
 
 # not using this -- implemented __str__ method 
 def print_character(character):

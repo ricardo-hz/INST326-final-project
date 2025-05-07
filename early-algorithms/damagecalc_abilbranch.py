@@ -1,10 +1,9 @@
 from math import ceil
 from random import uniform
-import weaponarmor_btest as et
-import character_btest as ct
-import ability_test as at
+from character import *
+from ability_test import *
 
-def dmgcalc(attacker, attack, defender, attackModifier = 1, defenseModifier = 1, specialSauce = 1.5, \
+def damage_calculation(attacker, attack, defender, attackModifier = 1, defenseModifier = 1, specialSauce = 1.5, \
     minimumDamage = 1, minVar = 0.95, maxVar = 1.05):
     # you want there to be some damage, so preferring attack over damage with 
     # a 'constant' modifier by default makes sense
@@ -38,13 +37,32 @@ def dmgcalc(attacker, attack, defender, attackModifier = 1, defenseModifier = 1,
     # this has room for a lot of modifications and adjustments -- but it's a 
     # flexible dmgcalc function and it's more relevant in use than anything else
     
+def healing_calculation(healer, heal_ability, healing_target):
+    return ceil(healer.attack_stat * heal_ability.potency)
+    
+def ability_handler(user, ability_used, target) -> None:
+    # doesn't return anything. just does a lot of very funny things
+    funny_number = 0
+    if ability_used.category == "damage":
+        funny_number = damage_calculation(user, ability_used, target)
+        target.current_hp -= funny_number
+        # note: should make it so you can't target creatures with no hp.
+        # atm it's a demo and will just do More Damage Lol
+        if target.current_hp <= 0:
+            target.consciousness = False
+    elif ability_used.category == "heal":
+        funny_number = healing_calculation(user, ability_used, target)
+        target.current_hp += funny_number
+        # make it so you prolly can't heal people with <= 0 hp? idk lol
+    
+    
 if __name__ == "__main__":
-    wepTest = et.Weapon("Sword", 5)
-    armTest = et.Armor("Chainmail", 5)
-    slash = at.Ability("Slash", "damage", 1)
-    p1 = ct.Character("Warrior", 1, 40, 1, wepTest, armTest, characterAbilities= {f"{slash.name}": slash})
-    p2 = ct.Character("Warrior", 1, 40, 1, wepTest, armTest, characterAbilities= {f"{slash.name}": slash})
+    wepTest = Weapon("Sword", 5)
+    armTest = Armor("Chainmail", 5)
+    slash = Ability("Slash", "damage", 1)
+    p1 = Character("Warrior", 1, 40, 1, wepTest, armTest, characterAbilities= AbilityList({f"{slash.name}": slash}))
+    p2 = Character("Warrior", 1, 40, 1, wepTest, armTest, characterAbilities= AbilityList({f"{slash.name}": slash}))
     #print(f"{p1.name}'s {slash.name} does {dmgcalc(p1, slash, p2)} damage against \
     #{p2.name}!") # test print function. needs work objectively
     print(f"{p1.name} uses {slash.name} with {p1.weapon.name} to do\
- {dmgcalc(p1, p1.abilities.get("Slash"), p2)} damage to {p2.name}!")
+    {damage_calculation(p1, p1.abilities.get("Slash"), p2)} damage to {p2.name}!")

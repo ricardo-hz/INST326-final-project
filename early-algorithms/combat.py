@@ -1,5 +1,6 @@
 import character as ct
 import enemies as ees
+from ability_test import *
 
 def combat(Player_Team, Enemy_Team) -> bool:
     combat_result = True
@@ -13,6 +14,8 @@ def combat(Player_Team, Enemy_Team) -> bool:
     initative_order = 0 #im seeing the appeal of arrays starting at 1 now tbh
     combat_action = 0
     active_turn = True
+    chosen_ability: None | Ability = None
+    chosen_target: None | Ability = None
     print("TURN ORDER:")
     for c in initative_tracker.combat_order:
         print(f"{c}. {initative_tracker.combat_order(c).name}{" (YOU)" if c.player_character == True else ""}")
@@ -27,7 +30,35 @@ def combat(Player_Team, Enemy_Team) -> bool:
                     print(f"Your turn as {active_combatant.name}. Chose action:")
                     combat_action = input("1. Use Ability // 2. Combat Overview // 3. Party Overview").strip()
                     if combat_action == "1":
-                        print("Actions stuff ohdear")
+                        print(f"{active_combatant.name}'s abilities:\n{active_combatant.character_abilities}")
+                        while combat_action != -1:
+                            combat_action = input("Choose ability. -1 to go back.").strip()
+                            chosen_ability = active_combatant.character_abilities.abilityOrder.get(combat_action, None)
+                            
+                            if chosen_ability is not None:
+                                print(initative_order)
+                                
+                                while combat_action != -1:
+                                    combat_action = input("Choose target. -1 to go back.").strip()
+                                    chosen_target = initative_tracker.combat_order.get(combat_action, None)
+                                    if chosen_target is not None:
+                                        pass # attack function here ohdear
+                                        active_turn = False
+                                        combat_action = -1
+                                    elif (chosen_target is None) and (combat_action == -1):
+                                        pass #combat action -1
+                                    else:
+                                        print("Invalid target.")
+                                        combat_action = 0 # so it doesn't fall
+                                        # through 
+                                        
+                                chosen_ability = None
+                                
+                            elif (chosen_ability is None and combat_action == -1):
+                                pass #combat action -1
+                            else:
+                                print("Invalid ability.")
+                                
                     elif combat_action == "2":
                         print(initative_tracker)
                         # active_turn still true, send up to the top!
@@ -36,10 +67,11 @@ def combat(Player_Team, Enemy_Team) -> bool:
                         # active_turn still true im blue ba ba be ba bo
                     else:
                         print("Invalid action.")
+                # end of turn checks for victory and such
             else:
                 print("Enemy Stuff")
         else:
-            print("bruhhh you dead")
+            print(f"{active_combatant.name} is unable to act!")
         
     return combat_result
 

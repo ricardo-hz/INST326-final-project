@@ -1,5 +1,5 @@
 import warnings
-import weaponarmor_btest as et
+from equipment import *
 
 CATEGORIES_OF_ABILITIES = {"damage", "heal", "debuff", "buff"}
 # all lowercase, actually. please look forward to it.
@@ -33,7 +33,7 @@ class Ability:
             
         # the type of ability. this is mainly a documentation thing
         if category.lower() in CATEGORIES_OF_ABILITIES:
-            self.category = category
+            self.category = category.lower()
         else:
             raise ValueError(f"Not a valid type of ability. Valid categories \
             are: {CATEGORIES_OF_ABILITIES}")
@@ -63,11 +63,6 @@ class Ability:
         else:
             raise TypeError(f"Invalid type of object for cooldown:\
                 {type(cooldown)}")
-        
-        
-        #want to know where an ability comes from incase the source goes away
-        #TODO need find a way to check this lmfao
-        self.abilitySource = ability_source
         
         # amount of times ability will "hit"
         self.hits: int = hits 
@@ -111,8 +106,14 @@ class AbilityList():
             raise TypeError(f"Invalid type of object for AbilityList.addTo()\
             : {type(newAbility)}")
             
+    def simplified_view(self) -> str:
+        hhhh = str()
+        for a in self.abilityList:
+            hhhh = hhhh + f"{a} //"
+        return hhhh
+        
     def __str__(self) -> str:
         listofabilityamongus = str()
         for a in self.abilityOrder:
-            listofabilityamongus = listofabilityamongus + f"#{a}: {self.abilityList(self.abilityOrder(a))}"
+            listofabilityamongus = listofabilityamongus + f"#{a}: {self.abilityList(self.abilityOrder(a))}\n"
         return listofabilityamongus
