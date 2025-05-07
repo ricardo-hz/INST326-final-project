@@ -101,10 +101,10 @@ class Enemy_Party:
     Attributes:
         name (str): the name of the party
         enemies (list of Enemy): the enemies to be in the party
-        intro_message (str, default: None): What the enemies say upon starting
+        intro_message (str, default: "Har Har"): What the enemies say upon starting
             battle
     """
-    def __init__(self, name, enemies, intro_message = None):
+    def __init__(self, name, enemies, intro_message = "Har Har"):
         self.name = name
         self.enemies = enemies
         self.intro_message = intro_message
