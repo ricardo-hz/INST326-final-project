@@ -1,8 +1,15 @@
 from gameloop import *
 from combat import *
+from argparse import ArgumentParser
+import sys
+
+def parse_args(args):
+    parser = ArgumentParser()
+    parser.add_argument("file", help="demo file")
+    return parser.parse_args(args)
 
 if __name__ == "__main__":
-
+    arguments = parse_args(sys.argv[1:])
     while True:
         # title screen loop here, that's probably it's own function
         # title screen /should/ have some fancy title in ascii or w/e
