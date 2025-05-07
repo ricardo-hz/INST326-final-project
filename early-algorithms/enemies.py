@@ -1,13 +1,14 @@
 from random import randint
-import character_btest
+from character import *
+from damagecalc_abilbranch import *
 
 class Enemy:
     """Represents an enemy
     
     Attributes:
         name (str): name of enemy
-        atk (int): enemy's base attack to be used for combat
-        defs (int): enemy's base defense to be used for combat
+        attack_stat (int): enemy's base attack to be used for combat
+        defense_stat (int): enemy's base defense to be used for combat
         max_hp (int): enemy's total hp
         current_hp (int): enemy's current hp (subject to change during combat)
         agility (int): the agility of an enemy (what turn they take)
@@ -15,15 +16,19 @@ class Enemy:
             -Boss
             -Strong Enemy
             -Normal Enemy
+        player_character (bool): if enemy is a player character. SHOULD ALWAYS BE FALSE
+        conscious (bool): whether or not enemy can act
     """
     def __init__(self, name, atk, defs, hp, agility, e_type):
         self.name = name
-        self.atk = atk
-        self.defs = defs
+        self.attack_stat = atk
+        self.defense_stat = defs
         self.max_hp = hp
         self.current_hp = hp
         self.agility = agility
         self.e_type = e_type
+        self.player_character = False # this is critically important i swear
+        self.conscious = True
     
     def __lt__(self, other) -> bool:
         return self.agility < other.agility
@@ -42,8 +47,8 @@ class Enemy:
         atk_list = []
         hp_list = []
         for char in character_party:
-                defs_list.append(char.defense_base)
-                atk_list.append(char.attack_base)
+                defs_list.append(char.defense_stat)
+                atk_list.append(char.attack_stat)
                 hp_list.append(char.max_hp)
                 
         strongest_defense = max(defs_list)
@@ -51,7 +56,7 @@ class Enemy:
         strongest_attack = max(atk_list)
         
         for char in character_party:
-            if char.hp <= char.max_hp * .10:
+            if char.current_hp <= char.max_hp * .10:
                 selected_target = char
                 return selected_target
             
