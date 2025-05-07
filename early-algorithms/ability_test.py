@@ -1,7 +1,9 @@
 import warnings
 import equipment as et
 
-CATEGORIES_OF_ABILITIES = {"Damage", "Heal", "Debuff", "Buff"}
+CATEGORIES_OF_ABILITIES = {"damage", "heal", "debuff", "buff"}
+# all lowercase, actually. please look forward to it.
+
 
 class Ability:
     """Representation of an ability.
@@ -29,7 +31,7 @@ class Ability:
             raise TypeError(f"Invalid type of object for name: {type(name)}")
             
         # the type of ability. this is mainly a documentation thing
-        if category in CATEGORIES_OF_ABILITIES:
+        if category.lower() in CATEGORIES_OF_ABILITIES:
             self.category = category
         else:
             raise ValueError(f"Not a valid type of ability. Valid categories \
@@ -106,3 +108,4 @@ class AbilityList():
         listofabilityamongus = str()
         for a in self.abilityOrder:
             listofabilityamongus = listofabilityamongus + f"#{a}: {self.abilityList(self.abilityOrder(a))}"
+        return listofabilityamongus

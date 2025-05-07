@@ -2,12 +2,20 @@ import equipment
 import random
 from equipment import *
 #from ability_test import *
+from weaponarmor_btest import *
+from ability_test import *
+from ability_list_pleasegodhelpme import *
+from enemies import *
 
 CHARACTER_DICT = {
     "Char1" : [100, 1, WEAPONS[0], ARMOR[0], []],
     "Char2" : [150, 2, WEAPONS[1], ARMOR[1], []],
     "Char3" : [200, 3, WEAPONS[2], ARMOR[2], []],
     "Char4" : [250, 4, WEAPONS[3], ARMOR[3], []]
+    "Char1" : [100, 4, WEAPONS[0], "Generic Armor 1", AbilityList(ABILITY_DICT["Strike"])],
+    "Char2" : [150, 3, WEAPONS[1], "Generic Armor 2", AbilityList(ABILITY_DICT["Strike"])],
+    "Char3" : [200, 2, WEAPONS[2], "Generic Armor 3", AbilityList(ABILITY_DICT["Strike"])],
+    "Char4" : [250, 1, WEAPONS[3], "Generic Armor 4", AbilityList(ABILITY_DICT["Strike"])]
 }
 
 class Character():
@@ -15,7 +23,8 @@ class Character():
     
     Attributes:
         name (str): The character's name
-        hp (int): current health of character
+        character_id (int): The numeric, unique id of the character
+        current_hp (int): current health of character
         max_hp (int): maximum health of character
         weapon (Weapon): weapon character wields
         armor (Armor): armor character wields
@@ -28,9 +37,11 @@ class Character():
         agility_stat (int): agility stat used in party order
         player_character (bool): whether or not character is controlled by player.
         false unless chosen in character select
+        conscious (bool): whether or not character can act
     
     """
     
+    def __init__(self, name: str, hp: int, agility: int, weapon: et.Weapon, 
     def __init__(self, name: str, hp: int, agility: int, weapon: et.Weapon, 
                  armor: et.Armor, character_abilities: AbilityList):
         """Initializes a new character object.
@@ -53,7 +64,7 @@ class Character():
             raise TypeError(f"Not valid type for name: {type(name)}")
         
         if isinstance(hp, int):
-            self.hp = hp
+            self.current_hp = hp
             self.max_hp = hp
         else:
             raise TypeError(f"Not valid type for hp: {type(hp)}")
@@ -68,13 +79,11 @@ class Character():
         else:
             raise TypeError(f"Not valid type for armor: {type(armor)}")
         
-        # The below lines should be uncommented when using abilities from
-        # ability_test.py
-        #if isinstance(character_abilities, dict):
-        self.abilities = character_abilities
-        #else:
-            #raise TypeError(f"Not valid type for character_abilities: \
-            #{type(character_abilities)}")
+        if isinstance(character_abilities, dict):
+            self.abilities = character_abilities
+        else:
+            raise TypeError(f"Not valid type for character_abilities: \
+            {type(character_abilities)}")
         
         self.attack_base: int = self.weapon.damage
         self.attack_stat: int = self.attack_base
@@ -85,6 +94,7 @@ class Character():
         
         self.character_abilities = character_abilities
         self.player_character = False
+        self.conscious = True
         
     def attack(self, other_character):
         other_character.hp -= 20
@@ -117,6 +127,11 @@ class Character():
     def __str__(self) -> str:
         """Prints detailed information about a character.
         """
+        return f"Name: {self.name}\n" + \
+        f"HP: {self.current_hp} ({self.max_hp})\n" + \
+        f"Weapon: {self.weapon.name} - {self.attack_stat} ({self.attack_base})\n" + \
+        f"Armor: {self.armor.name} - {self.defense_stat} ({self.defense_base})\n" + \
+        f"Abilities: {self.character_abilities}\n"
         s = (f"Name: {self.name}\n"
         f"HP: {self.hp} ({self.max_hp})\n"
         f"Weapon: {self.weapon.name} - {self.attack_stat} ({self.attack_base})\n"
@@ -125,10 +140,10 @@ class Character():
         
         return s
         
-    def __lt__(self, other) -> bool:
+    def __lt__(self, other: "Character" | "Enemy") -> bool:
         return self.agility < other.agility
     
-    def __rt__(self ,other) -> bool:
+    def __rt__(self ,other: "Character" | "Enemy") -> bool:
         return self.agility_base > other.agility
 
 # I know constants are traditionally placed at top, this
@@ -142,8 +157,11 @@ class Party():
     def __str__(self) -> str:
         listofcharacteramongus = str()
         for c in self.party_list:
-            listofcharacteramongus = listofcharacteramongus + f"Name: {c.name} | HP: {c.hp} ({c.max_hp})"
+            listofcharacteramongus = listofcharacteramongus + f"Name: {c.name} | HP: {c.current_hp} ({c.max_hp})"
         return listofcharacteramongus
+    
+    def __getitem__(self, index) -> Character:
+        return self.party_list[index]
         
 class Player_Party(Party):
     def __init__(self, party_list: list):
@@ -163,6 +181,17 @@ class Enemy_Party(Party):
         
         #gotta give the enemy party a bit of a hype-up of course
         self.intro_message = intro_message
+
+# not using this -- implemented __str__ method 
+def print_character(character):
+    """Prints detailed information about a character.
+    """
+    print(f"Name: {character}")
+    print(f"HP: {CHARACTER_DICT[character][0]}")
+    print(f"Weapon: {CHARACTER_DICT[character][1].name} - {CHARACTER_DICT[character][1].damage} DMG")
+    print(f"Armor: {CHARACTER_DICT[character][2]}")
+    print(f"Abilities: {CHARACTER_DICT[character][3]}")
+
     
 def print_characters(characters):
     """Prints basic information about a list or dict of characters.
