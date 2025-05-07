@@ -54,7 +54,9 @@ class Enemy:
             if char.hp <= char.max_hp * .10:
                 selected_target = char
                 return selected_target
-            
+        
+        # Normal enemies will tend to target the tanks before attacking
+        # the biggest threat on the other team
         if self.e_type == "Normal Enemy":
             for char in character_party:
                 if char.defense_base == strongest_defense:
@@ -71,7 +73,9 @@ class Enemy:
             if selected_target == None:
                 selected_target = character_party[randint(0, len(character_party) - 1)]
                 return selected_target
-            
+        
+        # Since they are aggressive, they will tend to attack the character
+        # With the weakest defense and will attack the biggest threat otherwise
         if self.e_type == "Strong Enemy":
             for char in character_party:
                 if char.defense_base == weakest_defense:
@@ -86,6 +90,9 @@ class Enemy:
                         selected_target = char
                         return selected_target
             
+            # Basically indicates if the computer fails the RNG check then they
+            # Resort to choosing a random target which could be a squishy or tanky character
+            # It's like a last chance for them to properly attack.
             if selected_target == None:
                 selected_target = character_party[randint(0, len(character_party) - 1)]
                 return selected_target
