@@ -8,10 +8,6 @@ from ability_list_pleasegodhelpme import *
 from enemies import *
 
 CHARACTER_DICT = {
-    "Char1" : [100, 1, WEAPONS[0], ARMOR[0], []],
-    "Char2" : [150, 2, WEAPONS[1], ARMOR[1], []],
-    "Char3" : [200, 3, WEAPONS[2], ARMOR[2], []],
-    "Char4" : [250, 4, WEAPONS[3], ARMOR[3], []]
     "Char1" : [100, 4, WEAPONS[0], "Generic Armor 1", AbilityList(ABILITY_DICT["Strike"])],
     "Char2" : [150, 3, WEAPONS[1], "Generic Armor 2", AbilityList(ABILITY_DICT["Strike"])],
     "Char3" : [200, 2, WEAPONS[2], "Generic Armor 3", AbilityList(ABILITY_DICT["Strike"])],
@@ -40,8 +36,7 @@ class Character():
         conscious (bool): whether or not character can act
     
     """
-    
-    def __init__(self, name: str, hp: int, agility: int, weapon: et.Weapon, 
+
     def __init__(self, name: str, hp: int, agility: int, weapon: et.Weapon, 
                  armor: et.Armor, character_abilities: AbilityList):
         """Initializes a new character object.

@@ -2,6 +2,7 @@ from math import ceil
 from random import uniform
 import equipment as et
 import character as ct
+from enemies import *
 import ability_test as at
 
 def dmgcalc(attacker, attack, defender, attackModifier = 1, defenseModifier = 1, specialSauce = 1.5, \
@@ -37,6 +38,9 @@ def dmgcalc(attacker, attack, defender, attackModifier = 1, defenseModifier = 1,
 
     # this has room for a lot of modifications and adjustments -- but it's a 
     # flexible dmgcalc function and it's more relevant in use than anything else
+    
+def ability_use(attacker: ct.Character | "Enemy", ability_executed: at.Ability, defender: ct.Character | "Enemy"):
+    if abil
     
 if __name__ == "__main__":
     wepTest = et.Weapon("Sword", 5)
