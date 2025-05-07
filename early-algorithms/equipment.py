@@ -31,6 +31,14 @@ class Weapon:
         # of enhanced ability with weapon
         
         hitMod: int = hitMod
+
+WEAPONS = [Weapon("Generic Weapon 1", 20, []),
+           Weapon("Generic Weapon 2", 25, []),
+           Weapon("Generic Weapon 3", 15, []),
+           Weapon("Generic Weapon 4", 35, []),
+        ]
+
+
 class Armor:
     """Representation of armor.
     
@@ -55,12 +63,20 @@ class Armor:
         
         # ability that is modified by weapon, has orig abil and new abil
         self.ability_included: Ability = ability_included
-        
-WEAPONS = [Weapon("Generic Weapon 1", 20, []),
-           Weapon("Generic Weapon 2", 25, []),
-           Weapon("Generic Weapon 3", 15, []),
-           Weapon("Generic Weapon 4", 35, []),
+
+ARMOR = [Armor("Generic Armor 1", 20, []),
+           Armor("Generic Armor 2", 25, []),
+           Armor("Generic Armor 3", 15, []),
+           Armor("Generic Armor 4", 35, []),
         ]
+
+
+
+
+
+
+
+
 
 # Abilities dictionary with all possible abilities?
 # Name : dmg, heal, cooldown

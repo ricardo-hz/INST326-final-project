@@ -4,10 +4,10 @@ from equipment import *
 from ability_test import *
 
 CHARACTER_DICT = {
-    "Char1" : [100, WEAPONS[0], "Generic Armor 1", []],
-    "Char2" : [150, WEAPONS[1], "Generic Armor 2", []],
-    "Char3" : [200, WEAPONS[2], "Generic Armor 3", []],
-    "Char4" : [250, WEAPONS[3], "Generic Armor 4", []]
+    "Char1" : [100, 1, WEAPONS[0], ARMOR[0], []],
+    "Char2" : [150, 2, WEAPONS[1], ARMOR[1], []],
+    "Char3" : [200, 3, WEAPONS[2], ARMOR[2], []],
+    "Char4" : [250, 4, WEAPONS[3], ARMOR[3], []]
 }
 
 class Character():
@@ -15,7 +15,6 @@ class Character():
     
     Attributes:
         name (str): The character's name
-        character_id (int): The numeric, unique id of the character
         hp (int): current health of character
         max_hp (int): maximum health of character
         weapon (Weapon): weapon character wields
@@ -32,13 +31,12 @@ class Character():
     
     """
     
-    def __init__(self, name: str, character_id: int, hp: int, agility: int, weapon: et.Weapon, 
+    def __init__(self, name: str, hp: int, agility: int, weapon: et.Weapon, 
                  armor: et.Armor, character_abilities: AbilityList):
         """Initializes a new character object.
         
         Args:
             name (str) : The character's name
-            character_id (int): The numeric, unique id of the character
             hp (int): The character's starting health points.
             agility (int): The character's agility
             weapon (Weapon) : The character's starting weapon.
@@ -53,11 +51,6 @@ class Character():
             self.name = name
         else:
             raise TypeError(f"Not valid type for name: {type(name)}")
-        
-        if isinstance(character_id, int):
-            self.character_id = character_id
-        else: 
-            raise TypeError(f"Not valid type for char id: {type(character_id)}")
         
         if isinstance(hp, int):
             self.hp = hp
@@ -75,11 +68,11 @@ class Character():
         else:
             raise TypeError(f"Not valid type for armor: {type(armor)}")
         
-        if isinstance(character_abilities, dict):
-            self.abilities = character_abilities
-        else:
-            raise TypeError(f"Not valid type for character_abilities: \
-            {type(character_abilities)}")
+        #if isinstance(character_abilities, dict):
+        self.abilities = character_abilities
+        #else:
+            #raise TypeError(f"Not valid type for character_abilities: \
+            #{type(character_abilities)}")
         
         self.attack_base: int = self.weapon.damage
         self.attack_stat: int = self.attack_base
@@ -122,11 +115,13 @@ class Character():
     def __str__(self) -> str:
         """Prints detailed information about a character.
         """
-        print(f"Name: {self.name}")
-        print(f"HP: {self.hp} ({self.max_hp})")
-        print(f"Weapon: {self.weapon.name} - {self.attack_stat} ({self.attack_base})")
-        print(f"Armor: {self.armor.name} - {self.defense_stat} ({self.defense_base})")
-        print(f"Abilities: {self.character_abilities}")
+        s = (f"Name: {self.name}\n"
+        f"HP: {self.hp} ({self.max_hp})\n"
+        f"Weapon: {self.weapon.name} - {self.attack_stat} ({self.attack_base})\n"
+        f"Armor: {self.armor.name} - {self.defense_stat} ({self.defense_base})\n"
+        f"Abilities: {self.character_abilities}")
+        
+        return s
         
     def __lt__(self, other) -> bool:
         return self.agility < other.agility
@@ -166,16 +161,6 @@ class Enemy_Party(Party):
         
         #gotta give the enemy party a bit of a hype-up of course
         self.intro_message = intro_message
-
-def print_character(character):
-    """Prints detailed information about a character.
-    """
-    print(f"Name: {character}")
-    print(f"HP: {CHARACTER_DICT[character][0]}")
-    print(f"Weapon: {CHARACTER_DICT[character][1].name} - {CHARACTER_DICT[character][1].damage} DMG")
-    print(f"Armor: {CHARACTER_DICT[character][2]}")
-    print(f"Abilities: {CHARACTER_DICT[character][3]}")
-
     
 def print_characters(characters):
     """Prints basic information about a list or dict of characters.

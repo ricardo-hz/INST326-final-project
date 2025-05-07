@@ -136,7 +136,8 @@ def assemble_team(characters):
             elif choice[0] not in [character.name for character in characters]:
                 print("Character doesn't exist.")
             else:
-                print_character(choice[0])
+                requested = Character(choice[0], *CHARACTER_DICT[choice[0]])
+                print(requested)
                 print()
                 
         # One branch for adding
