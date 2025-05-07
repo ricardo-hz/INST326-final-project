@@ -1,7 +1,7 @@
 import equipment
 import random
 from equipment import *
-from ability_test import *
+#from ability_test import *
 
 CHARACTER_DICT = {
     "Char1" : [100, 1, WEAPONS[0], ARMOR[0], []],
@@ -68,6 +68,8 @@ class Character():
         else:
             raise TypeError(f"Not valid type for armor: {type(armor)}")
         
+        # The below lines should be uncommented when using abilities from
+        # ability_test.py
         #if isinstance(character_abilities, dict):
         self.abilities = character_abilities
         #else:

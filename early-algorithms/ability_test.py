@@ -61,15 +61,9 @@ class Ability:
             raise TypeError(f"Invalid type of object for cooldown:\
                 {type(cooldown)}")
         
-        
-        #want to know where an ability comes from incase the source goes away
-        #TODO need find a way to check this lmfao
-        self.abilitySource = ability_source
-        
         # amount of times ability will "hit"
         self.hits: int = hits 
-        
-        
+
         # duration of ability, if there is an ability that lasts multiple rounds
         # it will last until start of next turn
         # 0 is instananeous abilities (i.e damage)
