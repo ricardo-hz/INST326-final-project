@@ -36,7 +36,7 @@ class Character():
     """
     
     def __init__(self, name: str, hp: int, agility: int, weapon: et.Weapon, 
-                 armor: et.Armor, character_abilities: AbilityList):
+            armor: et.Armor, character_abilities: AbilityList):
         """Initializes a new character object.
         
         Args:

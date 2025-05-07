@@ -23,7 +23,7 @@ class Ability:
         rounds. by default, 0 (meaning an instantaneous hit)
         
     """
-    def __init__(self, name: str, category: str, potency: float, cooldown: int = 1, ability_source: et.Weapon | et.Armor = None, \
+    def __init__(self, name: str, category: str, potency: float, cooldown: int = 1, \
             hits: int = 1, round_length: int = 0):
         # name of ability
         if isinstance(name, str):

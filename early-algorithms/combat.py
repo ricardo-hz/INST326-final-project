@@ -24,7 +24,7 @@ def combat(Player_Team, Enemy_Team) -> bool:
         if active_combatant.conscious == True:
             if active_combatant.player_character == True:
                 while active_turn == True:
-                    print("Your turn as {active.combatant.name}. Chose action:")
+                    print(f"Your turn as {active_combatant.name}. Chose action:")
                     combat_action = input("1. Use Ability // 2. Combat Overview // 3. Party Overview").strip()
                     if combat_action == "1":
                         print("Actions stuff ohdear")
@@ -32,7 +32,8 @@ def combat(Player_Team, Enemy_Team) -> bool:
                         print(initative_tracker)
                         # active_turn still true, send up to the top!
                     elif combat_action == "3":
-                        pass
+                        party_info(Player_Team)
+                        # active_turn still true im blue ba ba be ba bo
                     else:
                         print("Invalid action.")
             else:
@@ -87,7 +88,8 @@ class Initative():
         additive_string = str()
         for c in self.combat_order:
             additive_string = f"{c}. {self.combat_order[c].name} {self.combat_order[c].current_hp}\
-            ({self.combat_order[c].maximum_hp}) //"
+            ({self.combat_order[c].maximum_hp}) HP //"
+            # maybe hide it for enemies idk 
             if self.combat_order[c].player_character == True:
                 player_view = player_view + additive_string
             else:
