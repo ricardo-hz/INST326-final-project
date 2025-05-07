@@ -19,7 +19,7 @@ def damage_calculation(attacker, attack, defender, attackModifier = 1, defenseMo
     
     #not much to say, def is just the product of armor, represented by defs
     #and defmod for modifiers as well
-    defenseAgainst = ceil(defender.armor.defense * defenseModifier)
+    defenseAgainst = ceil(defender.defense_stat * defenseModifier)
 
 
     # aaand here's the output damage, but we're not done yet!
@@ -40,26 +40,28 @@ def damage_calculation(attacker, attack, defender, attackModifier = 1, defenseMo
 def healing_calculation(healer, heal_ability, healing_target):
     return ceil(healer.attack_stat * heal_ability.potency)
     
-def ability_handler(user, ability_used, target) -> None:
-    # doesn't return anything. just does a lot of very funny things
+def ability_handler(user, ability_used, target) -> int:
+    #i need to return something or it gets all weird =/
     funny_number = 0
     if ability_used.category == "damage":
         funny_number = damage_calculation(user, ability_used, target)
         target.current_hp -= funny_number
-        print(f"{user.name} uses {ability_used.name} to deal {funny_number} damage!")
+        print(f"{user.name} uses {ability_used.name} to deal {funny_number} damage to {target.name}!")
         # note: should make it so you can't target creatures with no hp.
         # atm it's a demo and will just do More Damage Lol
         if target.current_hp <= 0:
-            target.consciousness = False
+            target.conscious = False
             print(f"{target.name} is knocked unconscious!")
     elif ability_used.category == "heal":
         funny_number = healing_calculation(user, ability_used, target)
         target.current_hp += funny_number
-        print(f"{user.name} uses {ability_used.name} to heal {funny_number} damage!")
+        print(f"{user.name} uses {ability_used.name} to heal {target.name} {funny_number} hitpoints!")
         # make it so you prolly can't heal people with <= 0 hp? idk lol
     else:
         raise ValueError(f"not a valid category: {ability_used.category}")
-    
+    return 1
+
+"""
 if __name__ == "__main__":
     wepTest = Weapon("Sword", 5)
     armTest = Armor("Chainmail", 5)
@@ -70,3 +72,4 @@ if __name__ == "__main__":
     #{p2.name}!") # test print function. needs work objectively
     print(f"{p1.name} uses {slash.name} with {p1.weapon.name} to do\
     {damage_calculation(p1, p1.abilities.get("Slash"), p2)} damage to {p2.name}!")
+"""

@@ -83,19 +83,23 @@ class Ability:
 class AbilityList():
     def __init__(self, initial_abilities: list):
         if isinstance(initial_abilities, list):
-            self.abilityList = dict()
-            self.abilityOrder = dict()
+            self.abilityList = {}
+            self.abilityOrder = {}
             self.amountOfAbilities = len(initial_abilities)
-            for i, a in enumerate(initial_abilities):
+            i = 1
+            for a in initial_abilities:
                 if isinstance(a, Ability):
+                    #print(i)
                     self.abilityList[a.name] = a
-                    self.abilityOrder[i+1] = [a.name]
+                    self.abilityOrder[i] = a.name
+                    i += 1
+                    #print(self.abilityList)
+                    #print(self.abilityOrder)
                 else:
                     raise TypeError(f"Invalid type of object in initalization of\
                         AbilityList at {i}: {type(a)}")
         else:
-            raise TypeError(f"Invalid type of object for initalization: \
-            {type(initialAbilities)}")
+            raise TypeError(f"Invalid type of object for initalization: {type(initial_abilities)}")
             
     def addTo(self, new_ability: Ability) -> None:
         if isinstance(new_ability, Ability):
@@ -114,6 +118,10 @@ class AbilityList():
         
     def __str__(self) -> str:
         listofabilityamongus = str()
-        for a in self.abilityOrder:
-            listofabilityamongus = listofabilityamongus + f"#{a}: {self.abilityList(self.abilityOrder(a))}\n"
+        i = 1
+        #print(self.abilityOrder.get(i, None))
+        while self.abilityOrder.get(i, None):
+            print(i)
+            listofabilityamongus = listofabilityamongus + f"#{i}: {self.abilityList.get(self.abilityOrder.get(i))}\n"
+            i = i + 1
         return listofabilityamongus

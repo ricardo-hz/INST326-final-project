@@ -6,7 +6,7 @@ from ability_test import *
 ENEMY_ATTACK_ABILITY = Ability("Attack", "damage", 1) # this is bad but
 # yknow
 
-class Enemy:
+class Enemy: # honestly this should totally just be a child class of character
     """Represents an enemy
     
     Attributes:
@@ -29,13 +29,13 @@ class Enemy:
         self.defense_stat = defs
         self.max_hp = hp
         self.current_hp = hp
-        self.agility = agility
+        self.agility_stat = agility
         self.e_type = e_type
         self.player_character = False # this is critically important i swear
         self.conscious = True
     
     def __lt__(self, other) -> bool:
-        return self.agility < other.agility
+        return self.agility_stat < other.agility_stat
     
     def enemy_logic(self, character_party):
         """How an enemy will attack
@@ -113,6 +113,8 @@ class Enemy_Party:
         self.enemies = enemies
         self.intro_message = intro_message
 
+    def __getitem__(self, index):
+        return self.enemies[index]
 # need to play around with the enemy's stats
 # also if time maybe create some abilities for the bosses/powerful normal enemies
 

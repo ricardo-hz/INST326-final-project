@@ -2,13 +2,7 @@ from equipment import *
 import random
 from ability_test import *
 from enemies import *
-
-CHARACTER_DICT = {
-    "Char1" : [100, 4, WEAPONS[0], "Generic Armor 1", AbilityList(ABILITIES["Strike"])],
-    "Char2" : [150, 3, WEAPONS[1], "Generic Armor 2", AbilityList(ABILITIES["Strike"])],
-    "Char3" : [200, 2, WEAPONS[2], "Generic Armor 3", AbilityList(ABILITIES["Strike"])],
-    "Char4" : [250, 1, WEAPONS[3], "Generic Armor 4", AbilityList(ABILITIES["Strike"])]
-}
+from character import *
 
 class Character:
     """Representation of a character.
@@ -20,7 +14,7 @@ class Character:
         max_hp (int): maximum health of character
         weapon (Weapon): weapon character wields
         armor (Armor): armor character wields
-        character_abilities (dict): abilities character has access to
+        character_abilities (AbilityList): abilities character has access to
         attack_base (int): base attack stat character has. based off of weapon
         attack_stat (int): attack stat used in calculations, incl. modifications
         defense_base (int): base defense stat character has, based off of armor
@@ -70,7 +64,7 @@ class Character:
         else:
             raise TypeError(f"Not valid type for armor: {type(armor)}")
         
-        if isinstance(character_abilities, dict):
+        if isinstance(character_abilities, AbilityList):
             self.character_abilities = character_abilities
         else:
             raise TypeError(f"Not valid type for character_abilities: \
@@ -119,20 +113,19 @@ class Character:
         """Prints detailed information about a character.
         """
         return f"Name: {self.name}\n" + \
-        f"HP: {self.current_hp} ({self.max_hp})\n" + \
+        f"HP: {self.current_hp} (Base: {self.max_hp})\n" + \
         f"Weapon: {self.weapon.name} - {self.attack_stat} (Base: {self.attack_base}) ATK\n" + \
         f"Armor: {self.armor.name} - {self.defense_stat} (Base: {self.defense_base}) DEF\n" + \
         f"Abilities: {self.character_abilities}\n"
         
-    def __lt__(self, other: "Character" | "Enemy") -> bool:
-        return self.agility < other.agility
+    def __lt__(self, other) -> bool:
+        return self.agility_stat < other.agility_stat
     
-    def __rt__(self ,other: "Character" | "Enemy") -> bool:
-        return self.agility_base > other.agility
+    def __rt__(self, other) -> bool:
+        return self.agility_stat > other.agility_stat
 
 # I know constants are traditionally placed at top, this
 # line won't work due to Character not being defined if it's placed there
-CHARACTER_LIST = [Character(key, *value) for key,value in CHARACTER_DICT.items()]
 
 class Party():
     def __init__(self, party_list: list):
@@ -150,26 +143,8 @@ class Player_Party(Party):
             p.player_character = True
         self.party_list = party_list
 
-# not using this -- implemented __str__ method 
-def print_character(character):
-    """Prints detailed information about a character.
-    """
-    print(f"Name: {character}")
-    print(f"HP: {CHARACTER_DICT[character][0]}")
-    print(f"Weapon: {CHARACTER_DICT[character][1].name} - {CHARACTER_DICT[character][1].damage} DMG")
-    print(f"Armor: {CHARACTER_DICT[character][2]}")
-    print(f"Abilities: {CHARACTER_DICT[character][3]}")
-
+    def __getitem__(self, index):
+        return self.party_list[index]
     
-def print_characters(characters):
-    """Prints basic information about a list or dict of characters.
-    
-    Args:
-        characters (list or dict) : The characters to be printed.
-    """
-    # Convert passed dicts to list of characters
-    if isinstance(characters, dict):
-        characters = CHARACTER_LIST
-        
-    for character in characters:
-        print(f"{character.name} | {character.hp}HP")
+    def __len__(self):
+        return len(self.party_list)

@@ -25,7 +25,7 @@ def character_equipment(name, weapons, armour, battle_outcome):
     """
     
     print(f"It is now {name}'s turn. The weapons that {name} " 
-            f"currently has are: {weapons} and their current armour "
+            f"currrently has are: {weapons} and their current armour "
             f"is: {armour}.")
     weapon_input = input(f"Please choose one weapon from the list given or let " 
                          f"the game pick at random. If random, input "
@@ -111,7 +111,7 @@ def assemble_team(characters):
     """Assembles a team using user prompts at a menu.
     
     Args:
-        characters (list of Characters) : The characters which a player can
+        characters (dict of Characters) : The characters which a player can
             choose from.
     
     Side effects:
@@ -126,29 +126,30 @@ def assemble_team(characters):
         choice = input("Enter the name of the character you would like on"
                 f" your team. You may only have "
                 f"one of each character. ").split("--")
+        choice = [c.strip() for c in choice]
         
-        choice[0] = choice[0].strip()
-        
+        if choice[0] == "waterbottle":
+            return [characters[c] for c in characters]
         # One branch for info
         if len(choice) == 2:
-            if choice[1] != 'v':
+            if choice[0] not in [characters[c].name for c in characters]:
+                print("Character doesn't exist")
+            elif choice[1] != 'v':
                 print("Invalid flag.")
-            elif choice[0] not in [character.name for character in characters]:
-                print("Character doesn't exist.")
             else:
-                print_character(choice[0])
-                print()
+                print(characters[choice[0]])
                 
         # One branch for adding
         elif len(choice) == 1:
             # First verify that what was entered is even a character
-            if choice[0] not in [character.name for character in characters]:
+            if choice[0] not in [characters[c].name for c in characters]:
                 print("Character doesn't exist")
             # Then check if the character is already on their team
             elif choice[0] in [character.name for character in team]:
                 print("Character already on team")
             else:
-                team.append(Character(choice[0], *CHARACTER_DICT[choice[0]]))
+                print(f"Welcome, {choice[0]}!")
+                team.append(characters[choice[0]])
         else:
             print("Too many arguments entered.")
     
