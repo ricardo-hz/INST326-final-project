@@ -99,6 +99,9 @@ class Enemy: # honestly this should totally just be a child class of character
                 selected_target = character_party[randint(0, len(character_party) - 1)]
                 return selected_target
         
+        if self.e_type == "Boss":
+            return
+        
 class Enemy_Party:
     """Represents an enemy party to fight
     
