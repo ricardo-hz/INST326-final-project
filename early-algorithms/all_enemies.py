@@ -1,5 +1,5 @@
 from enemies import Enemy, Enemy_Party
-import ability_test
+import ability_test as ab
 
 g1 = Enemy("Goblin Leader", 15, 20, 250, 50, "Strong Enemy")
 g2 = Enemy("Goblin Soldier A", 10, 15, 150, 30, "Normal Enemy")
@@ -72,8 +72,6 @@ necromancer_party = Enemy_Party("The Damned", [necromancer, death_knight])
 
 elf_king = Enemy("Elf King", 125, 65, 750, 100, "Boss")
 erlkonig_party = Enemy_Party("Erlkonig", [elf_king])
-
-
 
 ROUND_ONE_ENEMIES = [goblin_horde, wolf_pack]
 ROUND_TWO_ENEMIES = [cultists, bandit_group]
