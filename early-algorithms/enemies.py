@@ -1,11 +1,11 @@
 from random import randint
-import character as c
+from character import Character
 from ability_test import *
 
 ENEMY_ATTACK_ABILITY = Ability("Attack", "damage", 1) # this is bad but
 # yknow
 
-class Enemy(c.Character): # honestly this should totally just be a child class of character
+class Enemy(Character): # honestly this should totally just be a child class of character
     """Represents an enemy to fight
     
     Attributes:
@@ -19,11 +19,13 @@ class Enemy(c.Character): # honestly this should totally just be a child class o
             -Boss
             -Strong Enemy
             -Normal Enemy
-        player_character (bool): if enemy is a player character. SHOULD ALWAYS BE FALSE
+        player_character (bool): if enemy is a player character. 
+            SHOULD ALWAYS BE FALSE
         conscious (bool): whether or not enemy can act
     """
     def __init__(self, name, atk, defs, hp, agility, e_type):
-        super.__init__(name, hp, agility, weapon = None, armor = None, character_abilities = AbilityList())
+        super.__init__(name, hp, agility, weapon = None, armor = None, 
+                       character_abilities = AbilityList())
         self.attack_stat = atk
         self.defense_stat = defs
         self.e_type = e_type
