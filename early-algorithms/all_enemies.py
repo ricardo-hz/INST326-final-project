@@ -1,19 +1,33 @@
 from enemies import Enemy, Enemy_Party
-import ability_test as ab
+from ability_test import Ability, AbilityList
 
-g1 = Enemy("Goblin Leader", 15, 20, 250, 50, "Strong Enemy")
-g2 = Enemy("Goblin Soldier A", 10, 15, 150, 30, "Normal Enemy")
-g3 = Enemy("Goblin Soldier B", 10, 15, 150, 30, "Normal Enemy")
-g4 = Enemy("Goblin Soldier C", 10, 15, 150, 30, "Normal Enemy")
-g5 = Enemy("Goblin Soldier d", 10, 15, 150, 30, "Normal Enemy")
+basic_attack1 = Ability("Slash", "damage", 1)
+basic_attack2 = Ability("Bite", "damage", 1)
+basic_attack3 = Ability("Smash", "damage", 1)
+basic_attack4 = Ability("Blood Orb", "damage", 1)
+
+spear_throw = Ability("Spear Throw", "damage", 1.1, 3)
+bear_trap = Ability("Bear Trap", "debuff", 1, 5, 1, 3)
+
+g1 = Enemy("Goblin Leader", 15, 20, 250, 50, "Strong Enemy", 
+           AbilityList([basic_attack1, spear_throw, bear_trap]))
+g2 = Enemy("Goblin Soldier A", 10, 15, 150, 30, "Normal Enemy", 
+           AbilityList([basic_attack1]))
+g3 = Enemy("Goblin Soldier B", 10, 15, 150, 30, "Normal Enemy", 
+           AbilityList([basic_attack1]))
+g4 = Enemy("Goblin Soldier C", 10, 15, 150, 30, "Normal Enemy", 
+           AbilityList([basic_attack1]))
+g5 = Enemy("Goblin Soldier d", 10, 15, 150, 30, "Normal Enemy", 
+           AbilityList([basic_attack1]))
+
 goblins = [g1, g2, g3, g4, g5]
 goblin_horde = Enemy_Party("Goblin Horde", goblins)
 
-w1 = Enemy("Alpha Wolf", 25, 15, 200, 50, "Strong Enemy")
-w2 = Enemy("Wolf A", 10, 10, 150, 30, "Normal Enemy")
-w3 = Enemy("Wolf B", 10, 10, 150, 30, "Normal Enemy")
-w4 = Enemy("Wolf C", 10, 10, 150, 30, "Normal Enemy")
-w5 = Enemy("Wolf D", 10, 10, 150, 30, "Normal Enemy")
+w1 = Enemy("Alpha Wolf", 25, 15, 200, 50, "Strong Enemy", AbilityList(basic_attack2))
+w2 = Enemy("Wolf A", 10, 10, 150, 30, "Normal Enemy", AbilityList(basic_attack2))
+w3 = Enemy("Wolf B", 10, 10, 150, 30, "Normal Enemy", AbilityList(basic_attack2))
+w4 = Enemy("Wolf C", 10, 10, 150, 30, "Normal Enemy", AbilityList(basic_attack2))
+w5 = Enemy("Wolf D", 10, 10, 150, 30, "Normal Enemy", AbilityList(basic_attack2))
 wolves = [w1, w2, w3, w4, w5]
 wolf_pack = Enemy_Party("Wolf Pack", wolves)
 
