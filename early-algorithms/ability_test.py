@@ -13,14 +13,14 @@ class Ability:
         category (str): category of ability: either damage, heal, debuff, or buff
         potency (potency): potency of ability. multiplicative values 
         replacement (bool): whether or not ability replaces another. by default,
-        is False
+            is False
         cooldown (int): how many rounds an ability waits before used. by default,
-        is 1 (so can be used every turn)
+            is 1 (so can be used every turn)
         ability_source (None/Weapon/Armor): source ability comes from. by default,
-        is None (meaning it comes from Shop or is default)
+            is None (meaning it comes from Shop or is default)
         hits (int): amount of times ability will hit (or go off). by default, 1
         roundLength (int): how long ability will last, if it lasts for multiple
-        rounds. by default, 0 (meaning an instantaneous hit)
+            rounds. by default, 0 (meaning an instantaneous hit)
         
     """
     def __init__(self, name: str, category: str, potency: float, cooldown: int = 1, \
