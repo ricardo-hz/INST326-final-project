@@ -42,7 +42,7 @@ if __name__ == "__main__":
       opposition = Enemy_Party("Testing Squadron", [Enemy("Test Fighter I", 15, 20, 50, 15, "Normal Enemy"),
                                                 Enemy("Test Fighter II", 20, 10, 50, 5, "Normal Enemy"),
                                                 Enemy("Test Fighter III", 30, 10, 15, 1, "Normal Enemy"),
-                                                Enemy("Test Fighter IV", 10, 17, 30, 8, "Normal Enemy")])
+                                                Enemy("Test Fighter IV", 10, 17, 30, 8, "Normal Enemy")], "Rawr")
       # Generate an enemy team
       # Battle??? combat should be called here
       combat_result = combat(team, opposition)
