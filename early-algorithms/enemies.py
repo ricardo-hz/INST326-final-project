@@ -1,13 +1,12 @@
 from random import randint
-from character import *
-from damagecalc_abilbranch import *
+import character as c
 from ability_test import *
 
 ENEMY_ATTACK_ABILITY = Ability("Attack", "damage", 1) # this is bad but
 # yknow
 
-class Enemy: # honestly this should totally just be a child class of character
-    """Represents an enemy
+class Enemy(c.Character): # honestly this should totally just be a child class of character
+    """Represents an enemy to fight
     
     Attributes:
         name (str): name of enemy
@@ -24,12 +23,9 @@ class Enemy: # honestly this should totally just be a child class of character
         conscious (bool): whether or not enemy can act
     """
     def __init__(self, name, atk, defs, hp, agility, e_type):
-        self.name = name
+        super.__init__(name, hp, agility, weapon = None, armor = None, character_abilities = AbilityList())
         self.attack_stat = atk
         self.defense_stat = defs
-        self.max_hp = hp
-        self.current_hp = hp
-        self.agility_stat = agility
         self.e_type = e_type
         self.player_character = False # this is critically important i swear
         self.conscious = True
