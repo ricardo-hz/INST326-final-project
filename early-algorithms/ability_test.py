@@ -10,20 +10,22 @@ class Ability:
     
     Attributes:
         name (str): name of ability
-        category (str): category of ability: either damage, heal, debuff, or buff
+        category (str): category of ability: either damage, heal, debuff, or 
+            buff
         potency (potency): potency of ability. multiplicative values 
         replacement (bool): whether or not ability replaces another. by default,
         is False
-        cooldown (int): how many rounds an ability waits before used. by default,
-        is 1 (so can be used every turn)
-        ability_source (None/Weapon/Armor): source ability comes from. by default,
-        is None (meaning it comes from Shop or is default)
+        cooldown (int): how many rounds an ability waits before used. by 
+        default, is 1 (so can be used every turn)
+        ability_source (None/Weapon/Armor): source ability comes from. by 
+        default, is None (meaning it comes from Shop or is default)
         hits (int): amount of times ability will hit (or go off). by default, 1
         roundLength (int): how long ability will last, if it lasts for multiple
         rounds. by default, 0 (meaning an instantaneous hit)
         
     """
-    def __init__(self, name: str, category: str, potency: float, cooldown: int = 1, hits: int = 1, round_length: int = 0):
+    def __init__(self, name: str, category: str, potency: float, cooldown: 
+            int = 1, hits: int = 1, round_length: int = 0):
         # name of ability
         if isinstance(name, str):
             self.name: str = name 
@@ -75,7 +77,9 @@ class Ability:
             raise ValueError(f"Round length less than 0: {round_length}")
         
     def __str__(self) -> str:
-        return f"Ability Name: {self.name} | Category: {self.category} | Potency: {self.potency} | Cooldown: {self.cooldown} | Hits: {self.hits} | Round Length: {self.roundLength}"
+        return (f"Ability Name: {self.name} | Category: {self.category} | "
+                f"Potency: {self.potency} | Cooldown: {self.cooldown} | Hits: "
+                f"{self.hits} | Round Length: {self.roundLength}")
         
         
 class AbilityList():
@@ -89,8 +93,8 @@ class AbilityList():
                     self.abilityList[a.name] = a
                     self.abilityOrder[i+1] = [a.name]
                 else:
-                    raise TypeError(f"Invalid type of object in initalization of\
-                        AbilityList at {i}: {type(a)}")
+                    raise TypeError(f"Invalid type of object in initalization " 
+                                    f"of \ AbilityList at {i}: {type(a)}")
         else:
             raise TypeError(f"Invalid type of object for initalization: \
             {type(initialAbilities)}")
@@ -107,5 +111,6 @@ class AbilityList():
     def __str__(self) -> str:
         listofabilityamongus = str()
         for a in self.abilityOrder:
-            listofabilityamongus = listofabilityamongus + f"#{a}: {self.abilityList(self.abilityOrder(a))}"
+            listofabilityamongus = (listofabilityamongus + f"#{a}: "
+                                    f"{self.abilityList(self.abilityOrder(a))}")
         return listofabilityamongus

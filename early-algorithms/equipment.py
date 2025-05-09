@@ -10,7 +10,7 @@ class Weapon:
         hitMod (int): amount of additional hits this weapon adds to abilities.
         by default, 0
     """
-    def __init__(self, name: str, damage: int, ability_included: Ability = None, \
+    def __init__(self, name: str, damage: int, ability_included: Ability = None,
         hitMod: int = 0):
         # name of weapon, str
         if isinstance(name, str):
@@ -81,7 +81,8 @@ ARMOR = [Armor("Generic Armor 1", 20, []),
 # Abilities dictionary with all possible abilities?
 # Name : dmg, heal, cooldown
 ABILITIES = {
-    "ABILITY NOT FOUND" : [3.14, 3.14, 9999], # Special ability reserved for debugging
+    "ABILITY NOT FOUND" : [3.14, 3.14, 9999], # Special ability reserved for 
+                                                #debugging
     "SUPER SMASH" : [10, 0, 0]
 }
 

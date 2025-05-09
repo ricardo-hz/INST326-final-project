@@ -74,7 +74,8 @@ class Enemy:
                         return selected_target
             
             if selected_target == None:
-                selected_target = character_party[randint(0, len(character_party) - 1)]
+                selected_target = character_party[
+                    randint(0, len(character_party) - 1)]
                 return selected_target
             
         if self.e_type == "Strong Enemy":
@@ -92,7 +93,8 @@ class Enemy:
                         return selected_target
             
             if selected_target == None:
-                selected_target = character_party[randint(0, len(character_party) - 1)]
+                selected_target = character_party[
+                    randint(0, len(character_party) - 1)]
                 return selected_target
         
 class Enemy_Party:
@@ -101,8 +103,8 @@ class Enemy_Party:
     Attributes:
         name (str): the name of the party
         enemies (list of Enemy): the enemies to be in the party
-        intro_message (str, default: "Har Har"): What the enemies say upon starting
-            battle
+        intro_message (str, default: "Har Har"): What the enemies say upon 
+        starting battle
     """
     def __init__(self, name, enemies, intro_message = "Har Har"):
         self.name = name
@@ -113,7 +115,8 @@ class Enemy_Party:
         return self.enemies[index]
 
 # need to play around with the enemy's stats
-# also if time maybe create some abilities for the bosses/powerful normal enemies
+# also if time maybe create some abilities for the bosses/powerful normal 
+# enemies
 
 g1 = Enemy("Goblin Leader", 15, 20, 250, 50, "Strong Enemy")
 g2 = Enemy("Goblin Soldier A", 10, 15, 150, 30, "Normal Enemy")

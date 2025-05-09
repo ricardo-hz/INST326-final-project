@@ -8,10 +8,14 @@ from ability_list_pleasegodhelpme import *
 from enemies import *
 
 CHARACTER_DICT = {
-    "Char1" : [100, 4, WEAPONS[0], "Generic Armor 1", AbilityList(ABILITY_DICT["Strike"])],
-    "Char2" : [150, 3, WEAPONS[1], "Generic Armor 2", AbilityList(ABILITY_DICT["Strike"])],
-    "Char3" : [200, 2, WEAPONS[2], "Generic Armor 3", AbilityList(ABILITY_DICT["Strike"])],
-    "Char4" : [250, 1, WEAPONS[3], "Generic Armor 4", AbilityList(ABILITY_DICT["Strike"])]
+    "Char1" : [100, 4, WEAPONS[0], "Generic Armor 1", 
+               AbilityList(ABILITY_DICT["Strike"])],
+    "Char2" : [150, 3, WEAPONS[1], "Generic Armor 2", 
+               AbilityList(ABILITY_DICT["Strike"])],
+    "Char3" : [200, 2, WEAPONS[2], "Generic Armor 3", 
+               AbilityList(ABILITY_DICT["Strike"])],
+    "Char4" : [250, 1, WEAPONS[3], "Generic Armor 4", 
+               AbilityList(ABILITY_DICT["Strike"])]
 }
 
 class Character():
@@ -28,10 +32,12 @@ class Character():
         attack_base (int): base attack stat character has. based off of weapon
         attack_stat (int): attack stat used in calculations, incl. modifications
         defense_base (int): base defense stat character has, based off of armor
-        defense_stat (int): defense stat used in calculations, incl. modifications
+        defense_stat (int): defense stat used in calculations, incl. 
+            modifications
         agility_base (int): base agility stat character has
         agility_stat (int): agility stat used in party order
-        player_character (bool): whether or not character is controlled by player.
+        player_character (bool): whether or not character is controlled by 
+            player.
         false unless chosen in character select
         conscious (bool): whether or not character can act
     
@@ -143,7 +149,8 @@ class Character():
 
 # I know constants are traditionally placed at top, this
 # line won't work due to Character not being defined if it's placed there
-CHARACTER_LIST = [Character(key, *value) for key,value in CHARACTER_DICT.items()]
+CHARACTER_LIST = [Character(key, *value) for key,value in 
+                  CHARACTER_DICT.items()]
 
 class Party():
     def __init__(self, party_list: list):
@@ -152,7 +159,8 @@ class Party():
     def __str__(self) -> str:
         listofcharacteramongus = str()
         for c in self.party_list:
-            listofcharacteramongus = listofcharacteramongus + f"Name: {c.name} | HP: {c.current_hp} ({c.max_hp})"
+            listofcharacteramongus = listofcharacteramongus + f"Name: {c.name} "
+            f"| HP: {c.current_hp} ({c.max_hp})"
         return listofcharacteramongus
     
     def __getitem__(self, index) -> Character:
@@ -165,7 +173,8 @@ class Player_Party(Party):
         self.party_list = party_list
             
 class Enemy_Party(Party):
-    def __init__(self, party_list: list, enemy_behaviors: dict = None, intro_message: str = None):
+    def __init__(self, party_list: list, enemy_behaviors: dict = None, 
+                 intro_message: str = None):
         # i should really really really be banned from programming for this
         self.party_list = party_list
         
@@ -183,7 +192,8 @@ def print_character(character):
     """
     print(f"Name: {character}")
     print(f"HP: {CHARACTER_DICT[character][0]}")
-    print(f"Weapon: {CHARACTER_DICT[character][1].name} - {CHARACTER_DICT[character][1].damage} DMG")
+    print(f"Weapon: {CHARACTER_DICT[character][1].name} - "
+          f"{CHARACTER_DICT[character][1].damage} DMG")
     print(f"Armor: {CHARACTER_DICT[character][2]}")
     print(f"Abilities: {CHARACTER_DICT[character][3]}")
 

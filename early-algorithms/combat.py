@@ -17,15 +17,18 @@ def combat(Player_Team, Enemy_Team) -> bool:
     for c in initative_tracker.combat_order:
         print(f"{c}. {initative_tracker.combat_order(c).name}{" (YOU)" if c.player_character == True else ""}")
     while combat_in_progress:
-        # phoenix make a setting to determine how to display party list whether it bye alpahbeticla or whatever
-        initative_order = (initative_order + 1) % (initative_tracker.fight_size + 1)
+        # phoenix make a setting to determine how to display party list whether 
+        # it bye alpahbeticla or whatever
+        initative_order = (initative_order + 1) % (initative_tracker.fight_size 
+                                                   + 1)
         active_combatant = initative_tracker.combat_order[initative_order]
         active_turn = True
         if active_combatant.conscious == True:
             if active_combatant.player_character == True:
                 while active_turn == True:
                     print("Your turn as {active.combatant.name}. Chose action:")
-                    combat_action = input("1. Use Ability // 2. Combat Overview // 3. Party Overview").strip()
+                    combat_action = input("1. Use Ability // 2. Combat Overview"
+                                           "// 3. Party Overview").strip()
                     if combat_action == "1":
                         print("Actions stuff ohdear")
                     elif combat_action == "2":
@@ -50,7 +53,8 @@ def party_info(party, id = -1):
     """
     i = 0 # Index in party list that will be iterated over
     for character in party:
-        print(f"{i}. {character.name} | {character.current_hp} ({character.max_hp}) HP")
+        print(f"{i}. {character.name} | {character.current_hp} "
+              f"({character.max_hp}) HP")
         i += 1
 
     while True:
