@@ -134,6 +134,22 @@ class Character:
         """
         self.character_abilities.set_cooldown(ability)
         
+    def set_buff(self, ability: Ability):
+        """Sets buff to increase the attack_stat of an ability
+        
+        Args:
+            ability (Ability): the ability that is being increased by the buff
+        """
+        self.attack_stat = self.attack_base * (self.set_buff(ability)/100)
+        
+    def set_debuff(self, ability: Ability):
+        """Sets debuff to decrease the attack_stat of an ability
+        
+        Args:
+            ability (Ability): the ability that is being decreased by the buff
+        """
+        self.attack_stat = self.attack_base / (self.set_debuff(ability)/100)
+        
     def __str__(self) -> str:
         """Prints detailed information about a character.
         """
