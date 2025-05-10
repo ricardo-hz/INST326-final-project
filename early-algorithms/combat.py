@@ -1,4 +1,4 @@
-from character import *
+from character_class import *
 from enemies import *
 from ability_test import *
 from damagecalc_abilbranch import *
@@ -24,14 +24,20 @@ def combat(Player_Team, Enemy_Team) -> bool:
         print(f"{c}. {ch.name}{" (YOU)" if ch.player_character == True else ""}")
     while combat_in_progress:
         # phoenix make a setting to determine how to display party list whether it bye alpahbeticla or whatever
+        # no i'm not doing that. i'm having fights with myself in the comments
         initative_order = initative_order % (initative_tracker.fight_size)
         active_combatant = initative_tracker.combat_order[initative_order + 1]
+        # start of turn shenanigans
+        
         initative_order += 1
         active_turn = True
+        active_combatant.character_abilities.adjust_cooldowns()
+        
         #print(active_combatant.conscious)
         if active_combatant.conscious == True:
             if active_combatant.player_character == True:
                 while active_turn == True:
+                    # start of turn procedures
                     print(f"Your turn as {active_combatant.name}. Chose action:")
                     combat_action = input("1. Use Ability // 2. Combat Overview // 3. Party Overview // {Choice: ").strip()
                     if combat_action == "1":
@@ -42,30 +48,30 @@ def combat(Player_Team, Enemy_Team) -> bool:
                                 combat_action = int(combat_action)
                             except:
                                 pass
-                            # phoenix this is ridiculous please create a mapping between abilities and stuff next time OH MY GOD
-                            chosen_ability = active_combatant.character_abilities.abilityList.get(active_combatant.character_abilities.abilityOrder.get(combat_action, None), None)
+                            chosen_ability = active_combatant.character_abilities.order_to_ability(combat_action)
                             
                             if chosen_ability is not None:
-                                print(initative_tracker)
-                                
-                                while combat_action != -1:
-                                    combat_action = input("Choose target. -1 to go back. // {Choice: ").strip()
-                                    try:
-                                        combat_action = int(combat_action)
-                                    except:
-                                        pass
-                                    chosen_target = initative_tracker.combat_order.get(combat_action, None)
-                                    if chosen_target is not None:
-                                        ability_handler(active_combatant, chosen_ability, chosen_target)
-                                        active_turn = False
-                                        combat_action = -1
-                                    elif (chosen_target is None) and (combat_action == -1):
-                                        pass #combat action -1
-                                    else:
-                                        print("Invalid target.")
-                                        combat_action = 0 # so it doesn't fall
-                                        # through 
-                                        
+                                if active_combatant.character_abilities.ability_available(combat_action):   
+                                    print(initative_tracker)
+                                    while combat_action != -1:
+                                        combat_action = input("Choose target. -1 to go back. // {Choice: ").strip()
+                                        try:
+                                            combat_action = int(combat_action)
+                                        except:
+                                            pass
+                                        chosen_target = initative_tracker.combat_order.get(combat_action, None)
+                                        if chosen_target is not None:
+                                            ability_handler(active_combatant, chosen_ability, chosen_target)
+                                            active_turn = False
+                                            combat_action = -1
+                                        elif (chosen_target is None) and (combat_action == -1):
+                                            pass #combat action -1
+                                        else:
+                                            print("Invalid target.")
+                                            combat_action = 0 # so it doesn't fall
+                                            # through 
+                                else:
+                                    print(f"{chosen_ability.name} is on cooldown!")
                                 chosen_ability = None
                                 
                             elif (chosen_ability is None and combat_action == -1):

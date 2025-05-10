@@ -1,5 +1,5 @@
 from random import randint
-from character import Character
+from character_class import Character
 from ability_test import *
 
 ENEMY_ATTACK_ABILITY = Ability("Attack", "damage", 1) # this is bad but
@@ -23,11 +23,14 @@ class Enemy(Character): # honestly this should totally just be a child class of 
             SHOULD ALWAYS BE FALSE
         conscious (bool): whether or not enemy can act
     """
-    def __init__(self, name, atk, defs, hp, agility, e_type):
-        super.__init__(name, hp, agility, weapon = None, armor = None, 
-                       character_abilities = AbilityList())
-        self.attack_stat = atk
-        self.defense_stat = defs
+    def __init__(self, name, atk, defs, hp, agility, e_type, character_abilities: AbilityList):
+        super().__init__(name, hp, agility, None, None, character_abilities)
+        self.attack_base = atk
+        self.attack_stat = self.attack_base
+        
+        self.defense_base = defs
+        self.defense_stat
+        
         self.e_type = e_type
         self.player_character = False # this is critically important i swear
         self.conscious = True

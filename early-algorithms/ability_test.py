@@ -1,5 +1,4 @@
 import warnings
-from equipment import *
 
 CATEGORIES_OF_ABILITIES = {"damage", "heal", "debuff", "buff"}
 # all lowercase, actually. please look forward to it.
@@ -85,6 +84,7 @@ class AbilityList():
         if isinstance(initial_abilities, list):
             self.abilityList = {}
             self.abilityOrder = {}
+            self.cooldowns = list()
             self.amountOfAbilities = len(initial_abilities)
             i = 1
             for a in initial_abilities:
@@ -92,6 +92,7 @@ class AbilityList():
                     #print(i)
                     self.abilityList[a.name] = a
                     self.abilityOrder[i] = a.name
+                    self.cooldowns.append(a.cooldown)
                     i += 1
                     #print(self.abilityList)
                     #print(self.abilityOrder)
@@ -115,6 +116,26 @@ class AbilityList():
         for a in self.abilityList:
             hhhh = hhhh + f"{a} //"
         return hhhh
+    
+    def adjust_cooldowns(self, adjustment_amount = 1) -> None:
+        # anyone want music recommendations
+        # check out the new sleep token album it's really good
+        for c in self.cooldowns:
+            c = max(c - adjustment_amount, 0)
+    
+    def order_to_ability(self, order_index) -> Ability | None:
+        # immortalizing this genuinely awful piece of code here ebcause it's funny
+        # chosen_ability = active_combatant.character_abilities.abilityList.get(active_combatant.character_abilities.abilityOrder.get(combat_action, None), None)
+        return self.abilityList.get(self.abilityOrder.get(order_index, None), None)
+
+        # abilityOrder index -> name, abilityList name -> ability
+        # abilityList * abilityOrder index -> name -> ability 
+        
+    def ability_available(self, order_index) -> Ability | None:
+        if self.cooldowns[order_index - 1] == 0:
+            return True
+        else:
+            return False
         
     def __str__(self) -> str:
         listofabilityamongus = str()

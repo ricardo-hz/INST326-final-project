@@ -1,5 +1,5 @@
 import random
-from character import *
+from character_class import *
 
 MAX_TEAM_SIZE = 4
 

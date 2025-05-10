@@ -1,8 +1,6 @@
 from equipment import *
 import random
 from ability_test import *
-from enemies import *
-from character import *
 
 class Character:
     """Representation of a character.
@@ -54,13 +52,25 @@ class Character:
         else:
             raise TypeError(f"Not valid type for hp: {type(hp)}")
         
-        if isinstance(weapon, Weapon) or weapon is None:
+        if isinstance(weapon, Weapon):
             self.weapon = weapon
+            self.attack_base: int = self.weapon.damage
+            self.attack_stat: int = self.attack_base
+        elif weapon is None:
+            self.weapon = None
+            self.attack_base: int = 0
+            self.attack_stat: int = 0
         else:
             raise TypeError(f"Not valid type for weapon: {type(weapon)}")
         
-        if isinstance(armor, Armor) or armor is None:
+        if isinstance(armor, Armor):
             self.armor = armor
+            self.defense_base: int = self.armor.defense
+            self.defense_stat: int = self.defense_base
+        elif armor is None:
+            self.armor = None
+            self.defense_base: int = 0
+            self.defense_stat: int = 0
         else:
             raise TypeError(f"Not valid type for armor: {type(armor)}")
         
@@ -70,14 +80,10 @@ class Character:
             raise TypeError(f"Not valid type for character_abilities: \
             {type(character_abilities)}")
         
-        self.attack_base: int = self.weapon.damage
-        self.attack_stat: int = self.attack_base
-        self.defense_base: int = self.armor.defense
-        self.defense_stat: int = self.defense_base
         self.agility_base: int = agility
         self.agility_stat: int = self.agility_base
         
-        self.character_abilities = character_abilities
+        self.character_abilities: AbilityList = character_abilities
         self.player_character = False
         self.conscious = True
         

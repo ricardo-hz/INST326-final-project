@@ -1,6 +1,6 @@
 import gameplay as g
 import combat as c # feel free to organize this better this is a mess
-import character as ct
+import character_class as ct
 import enemies as en
 import random as r
 

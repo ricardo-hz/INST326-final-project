@@ -1,5 +1,5 @@
 from equipment import *
-from character import CHARACTER_LIST
+from character_class import CHARACTER_LIST
 from gameplay import assemble_team
 def shop(team):
     print("Welcome to the shop!")

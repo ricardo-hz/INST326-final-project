@@ -21,7 +21,7 @@ heal = Ability("Rejuvanate", "heal", 1, 4, 1)
 curse = Ability("Curse", "debuff", 1.1, 2, 1, 3)
 
 # Bandit Leader specific abilities
-speed_up = Ability("Swiftness", "buff", 1, 3, 1, 4)
+speed_up = Ability("Swiftness", "buff", 1, 3, 1, 4,)
 dagger_throw = Ability("Dagger Throw", "damage", 1.2, 3, 2)
 
 # Harpy Elder Sister specific abilities

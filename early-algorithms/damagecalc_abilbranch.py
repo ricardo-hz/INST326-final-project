@@ -1,6 +1,6 @@
 from math import ceil
 from random import uniform
-from character import *
+from character_class import *
 from ability_test import *
 
 def damage_calculation(attacker, attack, defender, attackModifier = 1, defenseModifier = 1, specialSauce = 1.5, \

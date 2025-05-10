@@ -1,4 +1,4 @@
-from character import *
+from character_class import *
 # Modules used from character:
 # - print_characters()
 # - CHARACTERS dictionary
@@ -8,6 +8,7 @@ from gameplay import *
 from combat import *
 # please can we not import things like this it makes it really hard to track
 # - ...using combat()
+from all_enemies import *
 
 CHARACTER_DICT = {
     "Char1" : Character("Char1", 100, 30, WEAPONS["Weapon 1"], ARMOR["Armor 1"], AbilityList([ABILITIES["Strike"], ABILITIES["Mend Injury"]])),
@@ -39,10 +40,8 @@ if __name__ == "__main__":
       team = Player_Party(assemble_team(CHARACTER_DICT))
       print(team)
 
-      opposition = Enemy_Party("Testing Squadron", [Enemy("Test Fighter I", 15, 20, 50, 15, "Normal Enemy"),
-                                                Enemy("Test Fighter II", 20, 10, 50, 5, "Normal Enemy"),
-                                                Enemy("Test Fighter III", 30, 10, 15, 1, "Normal Enemy"),
-                                                Enemy("Test Fighter IV", 10, 17, 30, 8, "Normal Enemy")], "Rawr")
+      opposition = Enemy_Party("Goblin Horde", goblins)
+      
       # Generate an enemy team
       # Battle??? combat should be called here
       combat_result = combat(team, opposition)
