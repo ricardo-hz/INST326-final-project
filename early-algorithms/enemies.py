@@ -25,20 +25,18 @@ class Enemy(Character): # honestly this should totally just be a child class of 
     """
     def __init__(self, name, atk, defs, hp, agility, e_type, character_abilities: AbilityList):
         super().__init__(name, hp, agility, None, None, character_abilities)
-        self.attack_base = atk
-        self.attack_stat = self.attack_base
+        self.attack_base: int = atk
+        self.attack_stat: int = self.attack_base
         
-        self.defense_base = defs
-        self.defense_stat
+        self.defense_base: int = defs
+        self.defense_stat: int = self.defense_base
         
-        self.e_type = e_type
-        self.player_character = False # this is critically important i swear
-        self.conscious = True
+        self.e_type: str = e_type
     
     def __lt__(self, other) -> bool:
         return self.agility_stat < other.agility_stat
     
-    def enemy_logic(self, character_party):
+    def enemy_logic(self, character_party) -> Character:
         """How an enemy will attack
         
         Args:
@@ -148,7 +146,7 @@ class Enemy_Party:
         self.enemies = enemies
         self.intro_message = intro_message
 
-    def __getitem__(self, index):
+    def __getitem__(self, index) -> Enemy:
         return self.enemies[index]
 # need to play around with the enemy's stats
 # also if time maybe create some abilities for the bosses/powerful normal enemies

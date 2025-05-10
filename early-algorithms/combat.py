@@ -160,7 +160,7 @@ class Initative():
         self.players_active = True
         self.enemies_active = True
         
-    def __str__(self):
+    def __str__(self) -> str:
         player_view = "YOUR SIDE:  // "
         enemy_view = "ENEMY SIDE: // "
         

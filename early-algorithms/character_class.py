@@ -53,7 +53,7 @@ class Character:
             raise TypeError(f"Not valid type for hp: {type(hp)}")
         
         if isinstance(weapon, Weapon):
-            self.weapon = weapon
+            self.weapon: Weapon = weapon
             self.attack_base: int = self.weapon.damage
             self.attack_stat: int = self.attack_base
         elif weapon is None:
@@ -64,7 +64,7 @@ class Character:
             raise TypeError(f"Not valid type for weapon: {type(weapon)}")
         
         if isinstance(armor, Armor):
-            self.armor = armor
+            self.armor: Armor = armor
             self.defense_base: int = self.armor.defense
             self.defense_stat: int = self.defense_base
         elif armor is None:
@@ -84,20 +84,24 @@ class Character:
         self.agility_stat: int = self.agility_base
         
         self.character_abilities: AbilityList = character_abilities
-        self.player_character = False
-        self.conscious = True
-        
-    def attack(self, other_character):
-        other_character.hp -= 20
+        self.player_character: bool = False
+        self.conscious: bool = True
     
     def swap_weapon(self, new_weapon) -> None:
-        raise NotImplementedError("help")
+        self.weapon: Weapon = new_weapon
+        self.attack_base: int = self.weapon.damage
+        self.attack_stat: int = self.attack_base
     
+    def swap_armor(self, new_armor) -> None:
+        self.armor: Armor = new_armor
+        self.defense_base: int = self.armor.defense
+        self.defense_stat: int = self.defense_base
+        
     def damageSelf(self, damage: int) -> None:
         self.hp -= damage
         
     
-    def add_ability(self, ability):
+    def add_ability(self, ability: Ability) -> None:
         """Adds an ability object to a character's abilities list.
         
         Args:
@@ -105,15 +109,7 @@ class Character:
                 pertaining to it's use should be present in the ABILITIES
                 dictionary of equipment.py.
         """
-        if ability.name.upper() not in self.abilities:
-            self.abilities.append(Ability(ability.name.upper()))
-    
-    
-    def add_weapon(self, weapon):
-        raise NotImplementedError;  
-    
-    def remove_weapon(self, weapon):
-        raise NotImplementedError;  
+        self.character_abilities.addTo(Ability)
     
     def __str__(self) -> str:
         """Prints detailed information about a character.
@@ -149,8 +145,8 @@ class Player_Party(Party):
             p.player_character = True
         self.party_list = party_list
 
-    def __getitem__(self, index):
+    def __getitem__(self, index) -> Character:
         return self.party_list[index]
     
-    def __len__(self):
+    def __len__(self) -> int:
         return len(self.party_list)
