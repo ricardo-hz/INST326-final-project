@@ -14,6 +14,7 @@ class Character:
         armor (Armor): armor character wields
         character_abilities (AbilityList): abilities character has access to
         attack_base (int): base attack stat character has. based off of weapon
+        Should not be modified unless getting new weapon
         attack_stat (int): attack stat used in calculations, incl. modifications
         defense_base (int): base defense stat character has, based off of armor
         defense_stat (int): defense stat used in calculations, incl. modifications
@@ -39,7 +40,8 @@ class Character:
                 Empty list if ommitted. 
         
         Side effects:
-            Initalizes character object
+            Initalizes character object, setting a whole bunch of attributes
+            seen in above docstring
         """
         if isinstance(name, str):
             self.name = name
@@ -88,16 +90,30 @@ class Character:
         self.conscious: bool = True
     
     def swap_weapon(self, new_weapon) -> None:
+        """Swaps one weapon for a new one, modifying attack accordingly.
+
+        Args:
+            new_weapon (Weapon): New weapon to replace old weapon with.
+            
+        Side effects:
+            updates attack_base and attack_stat
+        """
         self.weapon: Weapon = new_weapon
         self.attack_base: int = self.weapon.damage
         self.attack_stat: int = self.attack_base
     
     def swap_armor(self, new_armor) -> None:
+        """Swaps one armor out for a new one, modifying defense accordingly
+
+        Args:
+            new_armor (Armor): New armor to replace old armor with.
+        """
         self.armor: Armor = new_armor
         self.defense_base: int = self.armor.defense
         self.defense_stat: int = self.defense_base
         
     def damageSelf(self, damage: int) -> None:
+        """I don't know why this is here. Damages own character by a certain amount"""
         self.hp -= damage
         
     
@@ -105,12 +121,19 @@ class Character:
         """Adds an ability object to a character's abilities list.
         
         Args:
-            ability (Ability) : The ability to add. This ability and information
-                pertaining to it's use should be present in the ABILITIES
-                dictionary of equipment.py.
+            ability (Ability) : The ability to add.
         """
         self.character_abilities.addTo(Ability)
     
+    def set_cooldown(self, ability: Ability) -> None:
+        """Sets cooldown of an ability. Calls upon character's character_abilities,
+        which actually does the work in AbilityList.set_cooldown()
+
+        Args:
+            ability (Ability): ability to adjust cooldown of
+        """
+        self.character_abilities.set_cooldown(ability)
+        
     def __str__(self) -> str:
         """Prints detailed information about a character.
         """

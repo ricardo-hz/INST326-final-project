@@ -40,8 +40,9 @@ def damage_calculation(attacker, attack, defender, attackModifier = 1, defenseMo
 def healing_calculation(healer, heal_ability, healing_target):
     return ceil(healer.attack_stat * heal_ability.potency)
     
-def ability_handler(user, ability_used, target) -> int:
+def ability_handler(user: Character, ability_used: Ability, target: Character) -> int:
     #i need to return something or it gets all weird =/
+    #i don't need to actually, it just helps for purposes
     funny_number = 0
     if ability_used.category == "damage":
         funny_number = damage_calculation(user, ability_used, target)
@@ -59,6 +60,9 @@ def ability_handler(user, ability_used, target) -> int:
         # make it so you prolly can't heal people with <= 0 hp? idk lol
     else:
         raise ValueError(f"not a valid category: {ability_used.category}")
+    
+    user.set_cooldown(ability_used)
+    
     return 1
 
 """

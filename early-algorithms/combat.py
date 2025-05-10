@@ -175,7 +175,7 @@ class Initative():
                 
         return f"{player_view}\n{enemy_view}"
     
-    def check_consciousness(self):
+    def check_consciousness(self) -> None:
         p_act = False
         e_act = False
         for c in self.combat_order:
