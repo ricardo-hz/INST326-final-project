@@ -62,49 +62,6 @@ def character_equipment(name, weapons, armour, battle_outcome):
                 f"and your armour is: {armour}.")
         
 
-def ComputerTurn(human_party, monster_party):
-    """Decides how the monsters in the enemy party will attack our player's
-        party own characters: Written by Nathan Castelo.
-        
-    Args:
-        human_party (list of Characters): The characters in the Player's party
-        monster_party (list of Characters): The characters in the Computer's 
-            party
-        
-    Side effects:
-        Reduces the HP of a targeted character
-        Prints out the result of an attack
-        Prints out if a player's character has died if their HP is reduced
-        to 0 or less
-    """
-    human_party_max_hp = [character.max_hp for character in human_party]
-    selected_target = None
-    for monster in monster_party:
-        for character in human_party:
-            # A character will always be targeted if they are below an HP
-            # threshhold which is less than or equal to 10% of their HP
-            if character.hp <= character.hp * 0.10:
-                selected_target = character
-            if character.max_hp == max(human_party_max_hp):
-                probability = random.randint(1, 100)
-                if probability <= 65:
-                    selected_target = character
-            elif character.max_hp == min(human_party_max_hp):
-                probability = random.randint(1,100)
-                if probability <= 25:
-                    selected_target = character
-            else:
-                selected_target = character
-                
-        monster.attack(selected_target)
-        print(f"{monster.name} has attacked {selected_target.name}! "
-              f"{selected_target.name} now has "
-              f"{selected_target.hp} remaining HP!")
-        if selected_target.hp <= 0:
-            print(f"{selected_target.name} has died!")
-            human_party.remove(selected_target)
-    print(f"Party HP: {human_party}")
-
 
 # Ricardo's function
 def assemble_team(characters):
