@@ -61,8 +61,13 @@ def character_equipment(name, weapons, armour, battle_outcome):
         print(f"A battle was not played. Your weapons are: {weapons} "
                 f"and your armour is: {armour}.")
         
-
-
+def title_screen():
+    while True:
+        print(f"=== Welcome to the Tournament of Water Bottle ===\n")
+        print()
+        print(f"1. Play Game\n"
+              f"2. How-to-Play\n"
+              f"3. Lore")
 # Ricardo's function
 def assemble_team(characters):
     """Assembles a team using user prompts at a menu.

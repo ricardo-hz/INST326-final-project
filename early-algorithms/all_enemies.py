@@ -72,26 +72,26 @@ goblins = [g1, g2, g3, g4, g5]
 goblin_horde = Enemy_Party("Goblin Horde", goblins)
 
 w1 = Enemy("Alpha Wolf", 25, 15, 200, 50, "Strong Enemy", 
-           AbilityList(basic_attack2, claw_strike, howl))
+           AbilityList([basic_attack2, claw_strike, howl]))
 w2 = Enemy("Wolf A", 10, 10, 150, 30, "Normal Enemy", 
-           AbilityList(basic_attack2))
+           AbilityList([basic_attack2]))
 w3 = Enemy("Wolf B", 10, 10, 150, 30, "Normal Enemy", 
-           AbilityList(basic_attack2))
+           AbilityList([basic_attack2]))
 w4 = Enemy("Wolf C", 10, 10, 150, 30, "Normal Enemy", 
-           AbilityList(basic_attack2))
+           AbilityList([basic_attack2]))
 w5 = Enemy("Wolf D", 10, 10, 150, 30, "Normal Enemy", 
-           AbilityList(basic_attack2))
+           AbilityList([basic_attack2]))
 wolves = [w1, w2, w3, w4, w5]
 wolf_pack = Enemy_Party("Wolf Pack", wolves)
 
 c1 = Enemy("Cultist Priest", 35, 25, 250, 50, "Strong Enemy", 
-           AbilityList(basic_attack4, curse, heal))
+           AbilityList([basic_attack4, curse, heal]))
 c2 = Enemy("Cultist Follower A", 25, 20, 200, 30, "Normal Enemy", 
-           AbilityList(basic_attack4))
+           AbilityList([basic_attack4]))
 c3 = Enemy("Cultist Follower B", 25, 20, 200, 30, "Normal Enemy", 
-           AbilityList(basic_attack4))
+           AbilityList([basic_attack4]))
 c4 = Enemy("Cultist Follower C", 25, 20, 200, 30, "Normal Enemy", 
-           AbilityList(basic_attack4))
+           AbilityList([basic_attack4]))
 cultists = [c1, c2, c3, c4]
 cult = Enemy_Party("Cult of the Forgotten", cultists)
 
@@ -120,13 +120,13 @@ e2 = Enemy("Blue Cyclops", 60, 40, 250, 30, "Strong Enemy",
 cyclops_duo = Enemy_Party("Pair of Cyclops", [e1,e2])
 
 v1 = Enemy("Vampire Lord", 65, 40, 400, 50, "Strong Enemy", 
-           AbilityList(basic_attack2, drain, hypnosis))
+           AbilityList([basic_attack2, drain, hypnosis]))
 v2 = Enemy("Vampire Thrall A", 55, 30, 300, 50, "Normal Enemy", 
-           AbilityList(basic_attack2))
+           AbilityList([basic_attack2]))
 v3 = Enemy("Vampire Thrall B", 55, 30, 300, 50, "Normal Enemy", 
-           AbilityList(basic_attack2))
+           AbilityList([basic_attack2]))
 v4 = Enemy("Vampire Thrall C", 55, 30, 300, 50, "Normal Enemy", 
-           AbilityList(basic_attack2))
+           AbilityList([basic_attack2]))
 vampire_sect = Enemy_Party("Cult of the Bloody Moon", [v1,v2,v3,v4])
 
 d1 = Enemy("Draugr Berserker", 75, 35, 450, 35, "Strong Enemy", 
@@ -161,9 +161,9 @@ minotaur = Enemy("Minotaur", 150, 80, 1200, 70, "Boss",
 minotaur_party = Enemy_Party("The Minotaur", [minotaur])
 
 necromancer = Enemy("Necromancer", 200, 40, 650, 25, "Boss", 
-                    AbilityList(basic_attack4, bone_spear, death_embrace))
+                    AbilityList([basic_attack4, bone_spear, death_embrace]))
 death_knight = Enemy("Death Knight", 75, 60, 800, 45, "Boss", 
-                     AbilityList(basic_attack1, great_slash))
+                     AbilityList([basic_attack1, great_slash]))
 necromancer_party = Enemy_Party("The Damned", [necromancer, death_knight])
 
 elf_king = Enemy("Elf King", 125, 65, 950, 100, "Boss", 
