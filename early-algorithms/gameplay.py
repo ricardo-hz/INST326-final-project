@@ -1,7 +1,7 @@
 import random
 from character_class import *
 
-MAX_TEAM_SIZE = 4
+MAX_TEAM_SIZE = 3
 
 
 #Aviva's function

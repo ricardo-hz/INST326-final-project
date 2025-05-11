@@ -1,7 +1,7 @@
 import gameplay as g
 import combat as c # feel free to organize this better this is a mess
 import character_class as ct
-import enemies as en
+import all_enemies as en
 import random as r
 
 ROUNDS_BEFORE_FINALE = 5
