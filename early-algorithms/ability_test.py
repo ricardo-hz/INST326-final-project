@@ -42,10 +42,6 @@ class Ability:
         # (.33 for 33% and so on)
         if isinstance(potency, float) or isinstance(potency, int):
             self.potency: float = potency
-            if self.category == "debuff":
-                self.potency: float = 1 - self.potency
-            elif self.category == "buff":
-                self.potency: float = 1 + self.potency
             if self.potency < 0:
                 warnings.warn(f"Potency on {self.name} with category \
                     {self.category} is less than 0: {self.potency}")
