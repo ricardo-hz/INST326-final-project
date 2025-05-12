@@ -8,7 +8,7 @@ ENEMY_ATTACK_ABILITY = Ability("EnemyAttack", "damage", 1)
 ENEMY_WEAPON = Weapon("EnemyWeapon", 0)
 ENEMY_ARMOR = Armor("EnemyArmor", 0)
 
-class Enemy(Character): # honestly this should totally just be a child class of character
+class Enemy(Character): 
     """Represents an enemy to fight
     
     Attributes:
@@ -51,17 +51,10 @@ class Enemy(Character): # honestly this should totally just be a child class of 
         """
         
         selected_target = None
-        defs_list = []
-        atk_list = []
-        hp_list = []
-        for char in character_party:
-                defs_list.append(char.defense_stat)
-                atk_list.append(char.attack_stat)
-                hp_list.append(char.max_hp)
                 
-        strongest_defense = max(defs_list)
-        weakest_defense = min(defs_list)
-        strongest_attack = max(atk_list)
+        strongest_defense = max([char.defense_stat for char in character_party])
+        weakest_defense = min([char.defense_stat for char in character_party])
+        strongest_attack = max([char.attack_stat for char in character_party])
         
         for char in character_party:
             if char.current_hp <= char.max_hp * .10:
