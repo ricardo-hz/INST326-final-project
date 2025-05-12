@@ -1,5 +1,6 @@
 # INST326-final-project
-Welcome to the Tournament of Water Bottle. Encounter monsters and progress your squadron as you engage in a deadly series of battles for humanity's soul.
+Welcome to the Tournament of Water Bottle. Encounter monsters and progress your 
+squadron as you engage in a deadly series of battles for humanity's soul.
 
 This game was created by Nathan Castelo, Ricardo Hernandez, Aviva Solovey, and 
 Phoenix Thompson as part of University of Maryland's INST326 Object Oriented
@@ -14,10 +15,13 @@ Programming with Python course.
 - Unzip release into a folder of your choice.
 - Copy path name of folder contents were unzipped into
     - Windows: 
-        - Right click on file bar (next to search bar), click "Copy address as text"
+        - Right click on file bar (next to search bar), click "Copy address as
+             text"
     - Mac: 
-        - Finder -> View -> Show Path Bar, right click on folder at bottom of window then "Copy '<foldername>' as Pathname"
-- Open up terminal/console/command prompt (on most OS with a search bar, this can be done by typing 'Terminal')
+        - Finder -> View -> Show Path Bar, right click on folder at bottom of 
+            window then "Copy '<foldername>' as Pathname"
+- Open up terminal/console/command prompt (on most OS with a search bar, this
+     can be done by typing 'Terminal')
 - Navigate to path name in terminal.
     - For most OS, type `cd ` then paste the path name saved, then hit enter.
 - Run `main.py`
@@ -28,3 +32,14 @@ Programming with Python course.
 
 For assignment due 2025-04-18:
     - All algorithms implemented for this assignment can be found in gameplay.py
+
+## Annotated Bibliography:
+- Markdown: Tables. Codecademy. (n.d.). 
+    https://www.codecademy.com/resources/docs/markdown/tables 
+        - Used to learn how to create a table in a markdown file.
+
+## Attribution:
+| Method/Function   | Primary Author | Techniques Demonstrated          |
+| ---------------   | ---------------|-------------------------         |
+|character_equipment| Aviva Solovey  | f-strings containing expressions |
+|set_buff           | Aviva Solovey  | composition of two custom classes|
