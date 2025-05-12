@@ -7,7 +7,17 @@ Phoenix Thompson as part of University of Maryland's INST326 Object Oriented
 Programming with Python course. 
 
 ## How To Play:
-    - Instructions coming soon
+    - Step 1: Choose your character!
+        - You will be given a choice of 7 different characters with various abilities and stats 
+            (the Protagonist is the one you should select b/c it makes the game quicker)
+        - You choose the character based on their given number and put that into the console, 
+            they will then be added to the party with a max of three characters in a party
+    - Step 2: Enter Combat!
+        - You will first be given a turn order on which characters or enemies will go first
+        - If it's your character's turn you will have the option to choose an ability to attack an enemy, the overall combat overview (status of all parties), 
+            or your party overview (can see abilities/stats of each Character in your party)
+        - Enemies will attack your Characters based on their given logic.
+        - Turn order should repeat until either side dies, meaning that their whole party is completely wiped out
 
 ## How To Start the Game:
 - Download latest version of Python 3 from [python.org](https://www.python.org/)
