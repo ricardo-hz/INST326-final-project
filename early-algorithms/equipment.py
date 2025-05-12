@@ -68,10 +68,38 @@ class Armor:
          self.ability_included: Ability = ability_included
          
 WEAPONS = {
-        "Weapon 1": Weapon("Generic Weapon 1", 20),
-        "Weapon 2": Weapon("Generic Weapon 2", 25),
-        "Weapon 3": Weapon("Generic Weapon 3", 15),
-        "Weapon 4": Weapon("Generic Weapon 4", 35),
+        "Knight": [Weapon("basic sword", 10, None, 0), 
+                   Weapon("silver sword", 15, None, 0),
+                   Weapon("oathkeeper sword", 20, None, 1),
+                   Weapon("lionfans sword", 25, None, 2),
+                   Weapon("knight kins sword", 30, None, 2)
+                   ],
+        "Warrior": [Weapon("steel sword", 15, None, 0),
+                    Weapon("iron axe", 25, None, 0),
+                    Weapon("warhammer", 30, None, 1),
+                    Weapon("heavy spear", 35, None, 1),
+                    Weapon("great axe", 40, None, 2)
+                    ],
+        "Wizard": [Weapon("magic staff", 5, None, 1),
+                   Weapon("enchanted wand", 15, None, 0),
+                   Weapon("spellbook", 25, None, 0),
+                   Weapon("crystal orb", 30, None, 1),
+                   Weapon("runed dagger", 35, None, 2)
+                   ],
+        "Cleric": [Weapon("mace", 15, None, 0),
+                   Weapon("flail", 20, None, 1),
+                   Weapon("quarterstaff", 30, None, 1),
+                   Weapon("sacred tome", 35, None, 1),
+                   Weapon("lightbringer hammer", 40, None, 2)
+                   ],
+        "Magician": [Weapon("arcane staff", 15, None, 0),
+                     Weapon("spell wand", 20, None, 1),
+                     Weapon("grimoire", 30, None, 1),
+                     Weapon("enchanted ring", 35, None, 2),
+                     Weapon("crystal focus", 40, None, 2)
+                     ],
+        "Protagonist": [Weapon("Generic Weapon 6", 35)
+                        ]
 }
 
 ARMOR = {
