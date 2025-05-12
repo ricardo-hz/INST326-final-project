@@ -275,6 +275,6 @@ class AbilityList():
         #print(self.abilityOrder.get(i, None))
         while self.abilityOrder.get(i, None):
             listofabilityamongus = (listofabilityamongus + 
-                f"#{i}: {self.abilityList.get(self.abilityOrder.get(i))}/n")
+                f"#{i}: {self.abilityList.get(self.abilityOrder.get(i))}\n")
             i = i + 1
         return listofabilityamongus
