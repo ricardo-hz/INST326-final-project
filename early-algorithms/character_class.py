@@ -13,23 +13,30 @@ class Character:
         weapon (Weapon): weapon character wields
         armor (Armor): armor character wields
         character_abilities (AbilityList): abilities character has access to
+        
         attack_base (int): base attack stat character has. based off of weapon
         Should not be modified unless getting new weapon
         attack_stat (int): attack stat used in calculations, incl. modifications
         attack_mods (list of float): attack multipliers being applied to character
         attack_mods_duration (list of int): how long attack multipliers are being applied to character
+        
         defense_base (int): base defense stat character has, based off of armor
         defense_stat (int): defense stat used in calculations, incl. modifications
+        
         agility_base (int): base agility stat character has
         agility_stat (int): agility stat used in party order
+        
         player_character (bool): whether or not character is controlled by player.
         false unless chosen in character select
         conscious (bool): whether or not character can act
+        
         selection_message (str): message character says when selected
         finale_message (str): message character says before final boss
+        
         progression (int): how far character's are along in terms of rounds
         health_progression (list of int): how much health each character should 
         get between rounds (incl 0.)
+        
         armor_type (str): type of armor character uses (cloth, leather, metal)
         
     """
@@ -106,7 +113,7 @@ class Character:
             new_weapon (Weapon): New weapon to replace old weapon with.
             
         Side effects:
-            updates attack_base and attack_stat
+            updates self's weapon, attack_base, and attack_stat
         """
         self.weapon: Weapon = new_weapon
         self.attack_base: int = self.weapon.damage
@@ -117,21 +124,22 @@ class Character:
 
         Args:
             new_armor (Armor): New armor to replace old armor with.
+            
+        Side effects:
+            updates self's armor, defense_base, and defense_stat
         """
         self.armor: Armor = new_armor
         self.defense_base: int = self.armor.defense
         self.defense_stat: int = self.defense_base
         
-    def damageSelf(self, damage: int) -> None:
-        """I don't know why this is here. Damages own character by a certain amount"""
-        self.hp -= damage
-        
-    
     def add_ability(self, ability: Ability) -> None:
         """Adds an ability object to a character's abilities list.
         
         Args:
             ability (Ability) : The ability to add.
+            
+        Side effects:
+            adds new ability to character's ability list
         """
         self.character_abilities.addTo(Ability)
     
@@ -141,6 +149,9 @@ class Character:
 
         Args:
             ability (Ability): ability to adjust cooldown of
+            
+        Side effects:
+            adjusts cooldown of ability to be at it's maximum
         """
         self.character_abilities.set_cooldown(ability)
         
@@ -149,6 +160,9 @@ class Character:
         
         Args:
             ability (Ability): the ability that is increasing attack_stat
+            
+        Side effects:
+            adds attack_stat modifications to character
         """
         self.attack_mods.append(ability.potency)
         self.attack_mods_duration.append(ability.roundLength)
@@ -158,11 +172,19 @@ class Character:
         
         Args:
             ability (Ability): the ability that is decreasing attack_stat
+            
+        Side effects:
+            adds attack_stat modifications to character
         """
         self.attack_mods.append(1 / ability.potency)
         self.attack_mods_duration.append(ability.roundLength)
         
     def set_attack_stat(self) -> None:
+        """Sets attack_stat to be all modifiers applied to it
+        
+        Side effects:
+            modifies attack_stat
+        """
         i = 0
         self.attack_stat = self.attack_base
         # len self.attack_mods should equal self.attack_mods_duration. PELASEE
@@ -170,6 +192,14 @@ class Character:
             self.attack_stat *= self.attack_mods[i]
         
     def reduce_attack_mods(self) -> None:
+        """Reduces attack mods' round duration, removing all who have expired
+        durations
+        
+        Side effects:
+            adjusts attack_mods_duration by 1, kicks out all that are at 0 
+            (and have as such expired)
+            
+        """
         i = 0
         while i < len(self.attack_mods_duration):
             self.attack_mods_duration[i] -= 1
@@ -179,14 +209,33 @@ class Character:
                 i -= 1 
         
     def start_turn(self) -> None:
-        self.character_abilities.adjust_cooldowns
+        """Does start of turn adjustments for character -- attack mods and cooldowns
+        
+        Side effects:
+            Calls character_abilities adjust_cooldowns() (modifies cooldowns),
+            reduce_attack_mods (reduces attack mods duration, kicks out some),
+            sets attack_stat based on mods
+        """
+        self.character_abilities.adjust_cooldowns()
         self.reduce_attack_mods()
         self.set_attack_stat()
             
     def heal_full(self) -> None:
+        """Heals character to full
+        
+        Side effects:
+            Sets hp to full
+        """
         self.hp = self.max_hp
         
     def progress_hp(self) -> None:
+        """Progresses character's health by set amount (starts at 1), then
+        heals to full
+        
+        Side effects:
+            modifies character's max_hp, health_progression, heals character to 
+            full
+        """
         self.max_hp += self.progress_hp[self.health_progression]
         self.health_progression += 1
         self.heal_full()
@@ -201,9 +250,25 @@ class Character:
         f"Abilities: {self.character_abilities}\n"
         
     def __lt__(self, other) -> bool:
+        """Compares character to other based on agility
+
+        Args:
+            other (Character): character to be compared by
+
+        Returns:
+            bool: whatever character has more agility
+        """
         return self.agility_stat < other.agility_stat
     
     def __rt__(self, other) -> bool:
+        """Compares other character to self based on agility
+
+        Args:
+            other (Character): character to be compared by
+
+        Returns:
+            bool: whatever character has more agility
+        """
         return self.agility_stat > other.agility_stat
 
 # I know constants are traditionally placed at top, this
