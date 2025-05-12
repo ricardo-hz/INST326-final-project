@@ -23,11 +23,16 @@ class Character:
         player_character (bool): whether or not character is controlled by player.
         false unless chosen in character select
         conscious (bool): whether or not character can act
-    
+        selection_message (str): message character says when selected
+        progression (int): how far character's are along in terms of rounds
+        health_progression (list of int): how much health each character should 
+        get between rounds (incl 0.)
+        armor_type (str): type of armor character uses (cloth, leather, metal)
     """
     
     def __init__(self, name: str, hp: int, agility: int, weapon: Weapon, 
-            armor: Armor, character_abilities: AbilityList):
+            armor: Armor, character_abilities: AbilityList, selection_message: str = None,
+            health_progression: list = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], armor_type: str = ""):
         """Initializes a new character object.
         
         Args:
@@ -38,6 +43,8 @@ class Character:
             armor (Armor) : The character's starting armor.
             abilities (AbilityList) : The character's starting abilities.
                 Empty list if ommitted. 
+            health_progression (list of int): How much health character
+            should get after a round. list of all 0s if ommitted
         
         Side effects:
             Initalizes character object, setting a whole bunch of attributes
@@ -60,8 +67,8 @@ class Character:
             self.attack_stat: int = self.attack_base
         elif weapon is None:
             self.weapon = None
-            self.attack_base: int = 0
-            self.attack_stat: int = 0
+            self.attack_base: int = 1
+            self.attack_stat: int = 1
         else:
             raise TypeError(f"Not valid type for weapon: {type(weapon)}")
         
@@ -71,8 +78,8 @@ class Character:
             self.defense_stat: int = self.defense_base
         elif armor is None:
             self.armor = None
-            self.defense_base: int = 0
-            self.defense_stat: int = 0
+            self.defense_base: int = 1
+            self.defense_stat: int = 1
         else:
             raise TypeError(f"Not valid type for armor: {type(armor)}")
         
@@ -88,6 +95,9 @@ class Character:
         self.character_abilities: AbilityList = character_abilities
         self.player_character: bool = False
         self.conscious: bool = True
+        self.selection_message: str = selection_message
+        self.health_progression: list = health_progression
+        self.armor_type: str = armor_type
     
     def swap_weapon(self, new_weapon) -> None:
         """Swaps one weapon for a new one, modifying attack accordingly.
@@ -111,6 +121,7 @@ class Character:
         self.armor: Armor = new_armor
         self.defense_base: int = self.armor.defense
         self.defense_stat: int = self.defense_base
+        
         
     def damageSelf(self, damage: int) -> None:
         """I don't know why this is here. Damages own character by a certain amount"""

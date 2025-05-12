@@ -1,9 +1,12 @@
 from random import randint
 from character_class import Character
 from ability_test import *
+from equipment import *
 
-ENEMY_ATTACK_ABILITY = Ability("Attack", "damage", 1) # this is bad but
-# yknow
+# need these just as placeholders
+ENEMY_ATTACK_ABILITY = Ability("EnemyAttack", "damage", 1)
+ENEMY_WEAPON = Weapon("EnemyWeapon", 0)
+ENEMY_ARMOR = Armor("EnemyArmor", 0)
 
 class Enemy(Character): # honestly this should totally just be a child class of character
     """Represents an enemy to fight
@@ -24,7 +27,7 @@ class Enemy(Character): # honestly this should totally just be a child class of 
         conscious (bool): whether or not enemy can act
     """
     def __init__(self, name, atk, defs, hp, agility, e_type, character_abilities: AbilityList):
-        super().__init__(name, hp, agility, None, None, character_abilities)
+        super().__init__(name, hp, agility, ENEMY_WEAPON, ENEMY_ARMOR, character_abilities)
         self.attack_base: int = atk
         self.attack_stat: int = self.attack_base
         

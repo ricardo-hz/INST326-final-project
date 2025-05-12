@@ -118,7 +118,7 @@ def assemble_team(characters):
     """Assembles a team using user prompts at a menu.
     
     Args:
-        characters (dict of Characters) : The characters which a player can
+        characters (list of Characters) : The characters which a player can
             choose from.
     
     Side effects:
@@ -127,19 +127,31 @@ def assemble_team(characters):
     Returns:
         The player's team as a list of Character objects.
     """
-    party_info()
     team = []
+    i=1
+    for character in characters:
+        print(f"{i}. {character.name} | {character.current_hp} ({character.max_hp}) HP")
+        i += 1
+
     while len(team) != MAX_TEAM_SIZE:
-        choice = input("Enter the name of the character you would like on"
+        choice = input("Enter the number of the character you would like on"
                 f" your team. You may only have "
-                f"one of each character. ").split("--")
+                f"one of each character. Type --v after a number to learn more"
+                f"about a character. ").split("--")
         choice = [c.strip() for c in choice]
         
+        numeric_choice = choice[0]
+        try:
+            numeric_choice = int(choice[0])
+        except:
+            pass
+        print(numeric_choice)
+        print(type(numeric_choice))
         if choice[0] == "waterbottle":
             return [characters[c] for c in characters]
         # One branch for info
         if len(choice) == 2:
-            if choice[0] not in [characters[c].name for c in characters]:
+            if numeric_choice not in range(1, len(team) + 1):
                 print("Character doesn't exist")
             elif choice[1] != 'v':
                 print("Invalid flag.")
@@ -149,16 +161,17 @@ def assemble_team(characters):
         # One branch for adding
         elif len(choice) == 1:
             # First verify that what was entered is even a character
-            if choice[0] not in [characters[c].name for c in characters]:
+            if numeric_choice not in range(1, len(team) + 1):
                 print("Character doesn't exist")
             # Then check if the character is already on their team
             elif choice[0] in [character.name for character in team]:
                 print("Character already on team")
             else:
-                print(f"Welcome, {choice[0]}!")
-                team.append(characters[choice[0]])
+                chosen_char = characters[choice[0]]
+                print(f"{chosen_char.selection_message}")
+                team.append(chosen_char)
         else:
-            print("Too many arguments entered.")
+            print("Invalid argument.")
     
     return team
 

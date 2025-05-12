@@ -3,7 +3,7 @@ from random import uniform
 from character_class import *
 from ability_test import *
 
-def damage_calculation(attacker, attack, defender, attackModifier = 1, defenseModifier = 1, specialSauce = 1.5, \
+def damage_calculation(attacker, attack, defender, attackModifier = 1.4, defenseModifier = 1.2, \
     minimumDamage = 1, minVar = 0.95, maxVar = 1.05):
     # you want there to be some damage, so preferring attack over damage with 
     # a 'constant' modifier by default makes sense
@@ -15,7 +15,7 @@ def damage_calculation(attacker, attack, defender, attackModifier = 1, defenseMo
     # atkmod included just for the sole purpose of variability. not sure what
     # kind of variability, but it's nice to have i think
     # of course, ceiling function because integers are cooler and look better
-    outgoingDamage = ceil(specialSauce * attacker.attack_stat * attack.potency * attackModifier)
+    outgoingDamage = ceil(attacker.attack_stat * attack.potency * attackModifier)
     
     #not much to say, def is just the product of armor, represented by defs
     #and defmod for modifiers as well
