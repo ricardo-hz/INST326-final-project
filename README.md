@@ -1,7 +1,7 @@
 # INST326-final-project
 Welcome to the Tournament of Water Bottle. Encounter monsters and progress your squadron as you engage in a deadly series of battles for humanity's soul.
 
-This game was created by Nathan Castillo, Ricardo Hernandez, Aviva Solovey, and 
+This game was created by Nathan Castelo, Ricardo Hernandez, Aviva Solovey, and 
 Phoenix Thompson as part of University of Maryland's INST326 Object Oriented
 Programming with Python course. 
 
