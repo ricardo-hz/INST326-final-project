@@ -23,7 +23,7 @@ stab = Ability("Stab", "damage", 1)
 pocket_sand = Ability("Pocket Sand", "debuff", 1.3, 4, 1, 3)
 triple_stab = Ability("Triple Stab", "damage", 1.25, 3, 3)
 thief_abilities = AbilityList([stab, pocket_sand, triple_stab])
-thief = Character("Gemini the Thief", 250, 80, WEAPONS["Thief"][0], None,
+thief = Character("Gemini the Thief", 250, 99, WEAPONS["Thief"][0], None,
                   thief_abilities)
 
 # Archer Abilities/Stuff

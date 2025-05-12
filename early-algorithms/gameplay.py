@@ -1,5 +1,6 @@
 import random
 from character_class import *
+from combat import party_info
 
 MAX_TEAM_SIZE = 3
 
@@ -126,7 +127,7 @@ def assemble_team(characters):
     Returns:
         The player's team as a list of Character objects.
     """
-    
+    party_info()
     team = []
     while len(team) != MAX_TEAM_SIZE:
         choice = input("Enter the name of the character you would like on"
