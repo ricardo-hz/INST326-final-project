@@ -156,5 +156,3 @@ class Enemy_Party:
 
     def __getitem__(self, index) -> Enemy:
         return self.enemies[index]
-# need to play around with the enemy's stats
-# also if time maybe create some abilities for the bosses/powerful normal enemies

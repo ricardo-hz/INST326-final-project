@@ -47,7 +47,7 @@ arrow_shot = Ability("Arrow Shot", "damage", 1)
 double_shot = Ability("Double Shot", "damage", 1.25, cooldown = 1, hits = 2)
 sniper_focus = Ability("Sniper's Focus", "damage", 2.5, cooldown = 4)
 archer_abilities = AbilityList([arrow_shot, double_shot, sniper_focus])
-archer = Character("Sagitarrius the Archer", 11, 15, WEAPONS["Sagitarrius the "
+archer = Character("Sagitarrius the Archer", 11, 15, WEAPONS["Sagitarrius the"
                                                             " Archer"][0], 
                    ARMOR["Leather"][0],
                    archer_abilities, selection_message= "Decisions...",
@@ -88,7 +88,7 @@ throw = Ability("Water Bottle Throw!", "damage", 50, 1)
 drink = Ability("QUENCH THY THIRST!", "heal", 20, 1)
 protagonist_abilities = AbilityList([smack, throw, drink])
 the_protagonist = Character("The Protagonist", 50000, 0, 
-                            WEAPONS["The Protagonist"][0], None, 
+                            WEAPONS["The Protagonist"][0], ARMOR["Metal"][0], 
                             protagonist_abilities, selection_message = 
                             "Too easy.", finale_message = "Trivial.")
 
