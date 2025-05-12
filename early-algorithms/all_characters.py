@@ -71,8 +71,8 @@ mage = Character("Pisces the Mage", 10, 12, WEAPONS["Pisces the Mage"][0],
 # Paladin Abilities/Stuff
 bludgeon = Ability("Bludgeon", "damage", 1.15)
 lichtgott_favor = Ability("Lichtgott's Favor", "heal", 1.2, cooldown = 1)
-hammer_throw = Ability("Sword Toss", "damage", 1.25, cooldown = 3)
-paladin_abilites = AbilityList([bludgeon, lichtgott_favor, hammer_throw])
+sword_throw = Ability("Sword Toss", "damage", 1.25, cooldown = 3)
+paladin_abilites = AbilityList([bludgeon, lichtgott_favor, sword_throw])
 paladin = Character("Libra the Paladin", 16, 3, WEAPONS["Libra the Paladin"][0],
                     ARMOR["Metal"][0], paladin_abilites, selection_message= 
                     "Triumphant futures! A safe shield! Behind me!",
