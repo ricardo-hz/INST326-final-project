@@ -62,7 +62,6 @@ def ability_handler(user: Character, ability_used: Ability, target: Character) -
         raise ValueError(f"not a valid category: {ability_used.category}")
     
     user.set_cooldown(ability_used)
-    
     return 1
 
 """
