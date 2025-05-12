@@ -182,10 +182,10 @@ class Initative():
         for c in self.combat_order:
             c_a = self.combat_order[c]
             if c_a.player_character == True:
-                if c_a.conscious == True:
+                if c_a.check.conscious():
                     p_act = True
             else:
-                if c_a.conscious == True:
+                if c_a.check.conscious() == True:
                     e_act = True
         self.players_active = p_act
         self.enemies_active = e_act

@@ -240,6 +240,24 @@ class Character:
         self.health_progression += 1
         self.heal_full()
         
+    def check_consciousness(self) -> bool:
+        """Checks if character is conscious (has more than 0 hp), assigns
+        self.conscious
+
+        Returns:
+            bool: conscious status of character
+            
+        Side effects:
+            modifies self.conscious based on character consciousness state
+        """
+        if self.hp <= 0:
+            self.conscious = False
+            return False
+        if self.hp > 0:
+            self.conscious = True
+            return True
+        
+        
     def __str__(self) -> str:
         """Prints detailed information about a character.
         """
