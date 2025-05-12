@@ -102,9 +102,12 @@ def title_screen():
             print()
         elif choice == "3":
             print("=== LORE BEHIND THE GAME ===\n")
-            print("Humanity is on the brink of extinction because of the 'Water Bottle Wars'...")
-            print("A tournament is created by the gods as a last chance effort for humanity to survive...")
-            print("Three heroes must rise up to take the challenge of protecting humanity...")
+            print("Humanity is on the brink of extinction because of the "
+                  "'Water Bottle Wars'...")
+            print("A tournament is created by the gods as a last chance effort "
+                  "for humanity to survive...")
+            print("Three heroes must rise up to take the challenge of "
+                  "protecting humanity...")
             print("Will they fail or will they triumph over evil forces...")
             print()
             input("Press enter or any key to continue...")
@@ -130,7 +133,8 @@ def assemble_team(characters):
     team = []
     i=1
     for character in characters:
-        print(f"{i}. {character.name} | {character.current_hp} ({character.max_hp}) HP")
+        print(f"{i}. {character.name} | {character.current_hp} "
+              f"({character.max_hp}) HP")
         i += 1
 
     numbers_chosen = []

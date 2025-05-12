@@ -9,21 +9,22 @@ class Ability:
     
     Attributes:
         name (str): name of ability
-        category (str): category of ability: either damage, heal, debuff, or buff
+        category (str): category of ability: either damage, heal, debuff, or 
+            buff
         potency (potency): potency of ability. multiplicative values 
         replacement (bool): whether or not ability replaces another. by default,
             is False
-        cooldown (int): how many rounds an ability waits before used. by default,
-            is 1 (so can be used every turn)
-        ability_source (None/Weapon/Armor): source ability comes from. by default,
-            is None (meaning it comes from Shop or is default)
+        cooldown (int): how many rounds an ability waits before used. by 
+            default, is 1 (so can be used every turn)
+        ability_source (None/Weapon/Armor): source ability comes from. by 
+            default, is None (meaning it comes from Shop or is default)
         hits (int): amount of times ability will hit (or go off). by default, 1
         roundLength (int): how long ability will last, if it lasts for multiple
             rounds. by default, 0 (meaning an instantaneous hit)
         
     """
-    def __init__(self, name: str, category: str, potency: float, cooldown: int = 1, \
-            hits: int = 1, round_length: int = 0):
+    def __init__(self, name: str, category: str, potency: float, 
+                 cooldown: int = 1, hits: int = 1, round_length: int = 0):
         # name of ability
         if isinstance(name, str):
             self.name: str = name 
@@ -77,7 +78,9 @@ class Ability:
         Returns:
             str: Detailed information on an ability
         """
-        return f"Ability Name: {self.name} | Category: {self.category} | Potency: {self.potency} | Cooldown: {self.cooldown} | Hits: {self.hits} | Round Length: {self.roundLength}"
+        return (f"Ability Name: {self.name} | Category: {self.category} | "
+                f"Potency: {self.potency} | Cooldown: {self.cooldown} | "
+                f"Hits: {self.hits} | Round Length: {self.roundLength}")
         
         
 class AbilityList():
@@ -86,11 +89,13 @@ class AbilityList():
     cooldown.
     
     Attributes:
-        abilityList (dict of str: Ability): a dictionary of abilities, ability name -> ability.
-        abilityOrder (dict of int: str):  a dictionary of order abilities are acquired (and
-        listed thereafter). index of ability -> ability name. Index starts at 1.
-        cooldowns (list of int): cooldown on abilities, linked up with ability order
-        (index for this starts at 1 -- 0 index is a placeholder.)
+        abilityList (dict of str: Ability): a dictionary of abilities, ability 
+            name -> ability.
+        abilityOrder (dict of int: str):  a dictionary of order abilities are 
+            acquired (and listed thereafter). index of ability -> ability name. 
+            Index starts at 1.
+        cooldowns (list of int): cooldown on abilities, linked up with ability 
+            order(index for this starts at 1 -- 0 index is a placeholder.)
         self.amountOfAbilities (int): the amount of abilities a character has.
 
     """
@@ -107,8 +112,8 @@ class AbilityList():
             returns typeerror
             
         Side effects:
-            Initalizes abilityList, abilityOrder, cooldowns, and amountofAbilities
-            attributes.
+            Initalizes abilityList, abilityOrder, cooldowns, and 
+            amountofAbilities attributes.
         """
         if isinstance(initial_abilities, list):
             self.abilityList = {}
@@ -129,7 +134,8 @@ class AbilityList():
                     raise TypeError(f"Invalid type of object in initalization of\
                         AbilityList at {i}: {type(a)}")
         else:
-            raise TypeError(f"Invalid type of object for initalization: {type(initial_abilities)}")
+            raise TypeError(f"Invalid type of object for initalization: "
+                            f"{type(initial_abilities)}")
             
     def addTo(self, new_ability: Ability) -> None:
         """Adds ability to character's list of abilities they can use.
@@ -146,11 +152,12 @@ class AbilityList():
             self.abilityOrder[self.amountOfAbilities] = new_ability.name
             self.cooldowns.append
         else:
-            raise TypeError(f"Invalid type of object for AbilityList.addTo()\
-            : {type(newAbility)}")
+            raise TypeError(f"Invalid type of object for AbilityList.addTo()"
+            f": {type(newAbility)}")
             
     def simplified_view(self) -> str:
-        """Simplified view of ability list, containing just all abilities in a line.
+        """Simplified view of ability list, containing just all abilities in a 
+            line.
 
         Returns:
             str: names of all abilities neatly
@@ -175,7 +182,8 @@ class AbilityList():
         for i in self.abilityOrder: 
             if self.abilityOrder[i] == ability_input.name:
                 return i
-        raise ValueError(f"Ability not found in abilityOrder: {ability_input}, {ability_input.name}")    
+        raise ValueError(f"Ability not found in abilityOrder: {ability_input}, "
+                         f"{ability_input.name}")    
         
     def set_cooldown(self, ability_to_set: int | Ability) -> None:
         """Sets running cooldown of ability in self.cooldowns back to ability's
@@ -183,14 +191,16 @@ class AbilityList():
 
         Args:
             ability_to_set (int | Ability): ability to set cooldown of.
-            can be integer (representing it's order in Orderlist), or the ability itself.
+                can be integer (representing it's order in Orderlist), or the 
+                ability itself.
             
         Side effects:
             Changes representation of ability's cooldown in self.cooldown back to
             ability's cooldown.
         """
         if isinstance(ability_to_set, int):
-            self.cooldowns[ability_to_set] = self.index_to_ability(ability_to_set).cooldown
+            self.cooldowns[ability_to_set] = (self.index_to_ability
+                                              (ability_to_set).cooldown)
         elif isinstance(ability_to_set, Ability):
             index = self.ability_to_index(ability_to_set)
             self.set_cooldown(index)
@@ -200,7 +210,8 @@ class AbilityList():
         this is 1. Used at start of a character's turn.
 
         Args:
-            adjustment_amount (int, optional): Amount to adjust cooldowns by. Defaults to 1.
+            adjustment_amount (int, optional): Amount to adjust cooldowns by. 
+                Defaults to 1.
             
         Side effects:
             adjusts each value in self.cooldowns by adjustment amount, min 0 
@@ -222,7 +233,8 @@ class AbilityList():
         """
         # immortalizing this genuinely awful piece of code here ebcause it's funny
         # chosen_ability = active_combatant.character_abilities.abilityList.get(active_combatant.character_abilities.abilityOrder.get(combat_action, None), None)
-        return self.abilityList.get(self.abilityOrder.get(order_index, None), None)
+        return self.abilityList.get(self.abilityOrder.get(order_index, None), 
+                                    None)
 
         # abilityOrder index -> name, abilityList name -> ability
         # abilityList * abilityOrder index -> name -> ability 
@@ -262,6 +274,7 @@ class AbilityList():
         i = 1
         #print(self.abilityOrder.get(i, None))
         while self.abilityOrder.get(i, None):
-            listofabilityamongus = listofabilityamongus + f"#{i}: {self.abilityList.get(self.abilityOrder.get(i))}\n"
+            listofabilityamongus = (listofabilityamongus + 
+                f"#{i}: {self.abilityList.get(self.abilityOrder.get(i))}/n")
             i = i + 1
         return listofabilityamongus

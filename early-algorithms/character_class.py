@@ -17,17 +17,20 @@ class Character:
         attack_base (int): base attack stat character has. based off of weapon
         Should not be modified unless getting new weapon
         attack_stat (int): attack stat used in calculations, incl. modifications
-        attack_mods (list of float): attack multipliers being applied to character
-        attack_mods_duration (list of int): how long attack multipliers are being applied to character
+        attack_mods (list of float): attack multipliers being applied to 
+            character
+        attack_mods_duration (list of int): how long attack multipliers are 
+            being applied to character
         
         defense_base (int): base defense stat character has, based off of armor
-        defense_stat (int): defense stat used in calculations, incl. modifications
+        defense_stat (int): defense stat used in calculations, incl. 
+            modifications
         
         agility_base (int): base agility stat character has
         agility_stat (int): agility stat used in party order
         
-        player_character (bool): whether or not character is controlled by player.
-        false unless chosen in character select
+        player_character (bool): whether or not character is controlled by 
+            player. false unless chosen in character select
         conscious (bool): whether or not character can act
         
         selection_message (str): message character says when selected
@@ -42,9 +45,10 @@ class Character:
     """
     
     def __init__(self, name: str, hp: int, agility: int, weapon: Weapon, 
-            armor: Armor, character_abilities: AbilityList, selection_message: str = None,
-            finale_message: str = None,
-            health_progression: list = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], armor_type: str = ""):
+            armor: Armor, character_abilities: AbilityList, selection_message: 
+                str = None, finale_message: str = None,
+            health_progression: list = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+            armor_type: str = ""):
         """Initializes a new character object.
         
         Args:
@@ -144,8 +148,9 @@ class Character:
         self.character_abilities.addTo(Ability)
     
     def set_cooldown(self, ability: Ability) -> None:
-        """Sets cooldown of an ability. Calls upon character's character_abilities,
-        which actually does the work in AbilityList.set_cooldown()
+        """Sets cooldown of an ability. Calls upon character's 
+        character_abilities, which actually does the work in 
+        AbilityList.set_cooldown()
 
         Args:
             ability (Ability): ability to adjust cooldown of
@@ -209,7 +214,8 @@ class Character:
                 i -= 1 
         
     def start_turn(self) -> None:
-        """Does start of turn adjustments for character -- attack mods and cooldowns
+        """Does start of turn adjustments for character -- attack mods and 
+        cooldowns
         
         Side effects:
             Calls character_abilities adjust_cooldowns() (modifies cooldowns),
@@ -281,7 +287,8 @@ class Party():
     def __str__(self) -> str:
         listofcharacteramongus = str()
         for c in self.party_list:
-            listofcharacteramongus = listofcharacteramongus + f"Name: {c.name} | HP: {c.current_hp} ({c.max_hp})\n"
+            listofcharacteramongus = listofcharacteramongus + f"Name: {c.name}"
+            f"| HP: {c.current_hp} ({c.max_hp})\n"
         return listofcharacteramongus
         
 class Player_Party(Party):

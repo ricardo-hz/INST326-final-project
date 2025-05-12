@@ -16,8 +16,10 @@ def shop(team):
         
         shop_choice = ''
         while shop_choice not in ["WEAPONS", "ARMOR", "ABILITIES", "NONE"]:
-            shop_choice = input(f"Please select which shop you would like to view. "
-                                f"Enter NONE to skip the shop for this character. ")
+            shop_choice = input(f"Please select which shop you would like to "
+                                f"view. "
+                                f"Enter NONE to skip the shop for this "
+                                f"character. ")
             match(shop_choice):
                 case("WEAPONS"):
                     for weapon in WEAPONS:

@@ -168,7 +168,8 @@ death_knight = Enemy("Death Knight", 72, 32, 800, 4, "Boss",
 necromancer_party = Enemy_Party("The Damned", [necromancer, death_knight])
 
 elf_king = Enemy("Elf King", 85, 36, 700, 50, "Boss", 
-                 AbilityList([basic_attack5, grand_puncture, elf_waltz, blume_shot]))
+                 AbilityList([basic_attack5, grand_puncture, elf_waltz, 
+                              blume_shot]))
 erlkonig_party = Enemy_Party("Erlkonig", [elf_king])
 
 ROUND_ONE_ENEMIES = [goblin_horde, wolf_pack]

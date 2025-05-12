@@ -26,8 +26,10 @@ class Enemy(Character): # honestly this should totally just be a child class of 
             SHOULD ALWAYS BE FALSE
         conscious (bool): whether or not enemy can act
     """
-    def __init__(self, name, atk, defs, hp, agility, e_type, character_abilities: AbilityList):
-        super().__init__(name, hp, agility, ENEMY_WEAPON, ENEMY_ARMOR, character_abilities)
+    def __init__(self, name, atk, defs, hp, agility, e_type, 
+                 character_abilities: AbilityList):
+        super().__init__(name, hp, agility, ENEMY_WEAPON, ENEMY_ARMOR, 
+                         character_abilities)
         self.attack_base: int = atk
         self.attack_stat: int = self.attack_base
         
@@ -80,7 +82,9 @@ class Enemy(Character): # honestly this should totally just be a child class of 
                         return selected_target
             
             if selected_target == None:
-                selected_target = character_party[randint(0, len(character_party) - 1)]
+                selected_target = character_party[randint(0, 
+                                                          len(character_party) 
+                                                          - 1)]
                 return selected_target
             
         if self.e_type == "Strong Enemy":
@@ -98,7 +102,9 @@ class Enemy(Character): # honestly this should totally just be a child class of 
                         return selected_target
             
             if selected_target == None:
-                selected_target = character_party[randint(0, len(character_party) - 1)]
+                selected_target = character_party[randint(0, 
+                                                          len(character_party) 
+                                                          - 1)]
                 return selected_target
         
         if self.e_type == "Boss":
@@ -116,7 +122,10 @@ class Enemy(Character): # honestly this should totally just be a child class of 
                             return selected_target
                 
                 if selected_target == None:
-                    selected_target = character_party[randint(0, len(character_party) - 1)]
+                    selected_target = character_party[randint(0, 
+                                                              len
+                                                              (character_party) 
+                                                              - 1)]
                     return selected_target
             else:
                 for char in character_party:
@@ -131,7 +140,10 @@ class Enemy(Character): # honestly this should totally just be a child class of 
                             selected_target = char
                             return selected_target
                 if selected_target == None:
-                    selected_target = character_party[randint(0, len(character_party) - 1)]
+                    selected_target = character_party[randint(0, 
+                                                              len
+                                                              (character_party) 
+                                                              - 1)]
                     return selected_target
                             
 

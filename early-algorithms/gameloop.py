@@ -23,11 +23,13 @@ def gameloop(rounds: int, team_size: int):
     # Extremely rough idea for how the gameplay will go and loop
     # we have some fancy info, some fancy text, then it's time to 
     # assemble the team.
-    player_team: ct.Player_Party = ct.Player_Party(g.assemble_team(ac.ALL_CHARACTERS))
+    player_team: ct.Player_Party = ct.Player_Party(g.assemble_team(
+        ac.ALL_CHARACTERS))
     
     # we've assembled the team, and it's time to begin the main game loop!
     # i dunno have many rounds, but in either case,
-    while (round_counter >= 1) and (round_counter <= rounds) and (alive == True):
+    while ((round_counter >= 1) and (round_counter <= rounds) and
+           (alive == True)):
         # start combat
         # there's going to be be a lot of logic here that would be called to
         # a combat function
