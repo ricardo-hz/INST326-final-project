@@ -45,9 +45,12 @@ def ability_handler(user: Character, ability_used: Ability, target: Character) -
     #i don't need to actually, it just helps for purposes
     funny_number = 0
     if ability_used.category == "damage":
-        funny_number = damage_calculation(user, ability_used, target)
-        target.current_hp -= funny_number
-        print(f"{user.name} uses {ability_used.name} to deal {funny_number} damage to {target.name}!")
+        i = 1
+        while i <= user.weapon.hitmod + ability_used.hits:
+            funny_number = damage_calculation(user, ability_used, target)
+            target.current_hp -= funny_number
+            print(f"{user.name} uses {ability_used.name} to deal {funny_number} damage to {target.name}!")
+            i += 1
         # note: should make it so you can't target creatures with no hp.
         # atm it's a demo and will just do More Damage Lol
         if target.current_hp <= 0:
@@ -55,7 +58,7 @@ def ability_handler(user: Character, ability_used: Ability, target: Character) -
             print(f"{target.name} is knocked unconscious!")
     elif ability_used.category == "heal":
         funny_number = healing_calculation(user, ability_used, target)
-        target.current_hp += funny_number
+        target.current_hp = min(target.current_hp + funny_number, target.max_hp)
         print(f"{user.name} uses {ability_used.name} to heal {target.name} {funny_number} hitpoints!")
         # make it so you prolly can't heal people with <= 0 hp? idk lol
     else:

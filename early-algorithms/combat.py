@@ -31,7 +31,8 @@ def combat(Player_Team, Enemy_Team) -> bool:
         
         initative_order += 1
         active_turn = True
-        active_combatant.character_abilities.adjust_cooldowns()
+        active_combatant.start_turn()
+        
         
         #print(active_combatant.conscious)
         if active_combatant.conscious == True:

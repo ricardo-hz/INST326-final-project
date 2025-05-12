@@ -16,6 +16,8 @@ class Character:
         attack_base (int): base attack stat character has. based off of weapon
         Should not be modified unless getting new weapon
         attack_stat (int): attack stat used in calculations, incl. modifications
+        attack_mods (list of float): attack multipliers being applied to character
+        attack_mods_duration (list of int): how long attack multipliers are being applied to character
         defense_base (int): base defense stat character has, based off of armor
         defense_stat (int): defense stat used in calculations, incl. modifications
         agility_base (int): base agility stat character has
@@ -29,6 +31,7 @@ class Character:
         health_progression (list of int): how much health each character should 
         get between rounds (incl 0.)
         armor_type (str): type of armor character uses (cloth, leather, metal)
+        
     """
     
     def __init__(self, name: str, hp: int, agility: int, weapon: Weapon, 
@@ -67,10 +70,8 @@ class Character:
             self.weapon: Weapon = weapon
             self.attack_base: int = self.weapon.damage
             self.attack_stat: int = self.attack_base
-        elif weapon is None:
-            self.weapon = None
-            self.attack_base: int = 1
-            self.attack_stat: int = 1
+            self.attack_mods: list = list()
+            self.attack_mods_duration: list = list()
         else:
             raise TypeError(f"Not valid type for weapon: {type(weapon)}")
         
@@ -78,10 +79,6 @@ class Character:
             self.armor: Armor = armor
             self.defense_base: int = self.armor.defense
             self.defense_stat: int = self.defense_base
-        elif armor is None:
-            self.armor = None
-            self.defense_base: int = 1
-            self.defense_stat: int = 1
         else:
             raise TypeError(f"Not valid type for armor: {type(armor)}")
         
@@ -125,7 +122,6 @@ class Character:
         self.defense_base: int = self.armor.defense
         self.defense_stat: int = self.defense_base
         
-        
     def damageSelf(self, damage: int) -> None:
         """I don't know why this is here. Damages own character by a certain amount"""
         self.hp -= damage
@@ -149,22 +145,44 @@ class Character:
         self.character_abilities.set_cooldown(ability)
         
     def set_buff(self, ability: Ability):
-        """Sets buff to increase the attack_stat of an ability
+        """Sets buffs to affect attack_stat of character
         
         Args:
-            ability (Ability): the ability that is being increased by the buff
+            ability (Ability): the ability that is increasing attack_stat
         """
-        self.attack_stat = self.attack_base * (self.set_buff(ability)/100)
+        self.attack_mods.append(ability.potency)
+        self.attack_mods_duration.append(ability.roundLength)
         
     def set_debuff(self, ability: Ability):
-        """Sets debuff to decrease the attack_stat of an ability
+        """Sets debuffs to affect attack_stat of character
         
         Args:
-            ability (Ability): the ability that is being decreased by the buff
+            ability (Ability): the ability that is decreasing attack_stat
         """
-        self.attack_stat = self.attack_base / (self.set_debuff(ability)/100)
+        self.attack_mods.append(1 / ability.potency)
+        self.attack_mods_duration.append(ability.roundLength)
         
+    def set_attack_stat(self) -> None:
+        i = 0
+        self.attack_stat = self.attack_base
+        # len self.attack_mods should equal self.attack_mods_duration. PELASEE
+        while i < len(self.attack_mods):
+            self.attack_stat *= self.attack_mods[i]
         
+    def reduce_attack_mods(self) -> None:
+        i = 0
+        while i < len(self.attack_mods_duration):
+            self.attack_mods_duration[i] -= 1
+            if self.attack_mods_duration == 0:
+                self.attack_mods_duration.pop(i)
+                self.attack_mods.pop(i)
+                i -= 1 
+        
+    def start_turn(self) -> None:
+        self.character_abilities.adjust_cooldowns
+        self.reduce_attack_mods()
+        self.set_attack_stat()
+            
     def heal_full(self) -> None:
         self.hp = self.max_hp
         
