@@ -113,7 +113,7 @@ class AbilityList():
         if isinstance(initial_abilities, list):
             self.abilityList = {}
             self.abilityOrder = {}
-            self.cooldowns = ["This should not be accessed."]
+            self.cooldowns = [0]
             self.amountOfAbilities = len(initial_abilities)
             i = 1
             for a in initial_abilities:

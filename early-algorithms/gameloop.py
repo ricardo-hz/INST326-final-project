@@ -1,8 +1,9 @@
 import gameplay as g
-import combat as c # feel free to organize this better this is a mess
+import combat as cme
 import character_class as ct
 import all_enemies as en
 import random as r
+import all_characters as ac
 
 ROUNDS_BEFORE_FINALE = 5
 OPPOSING_TEAMS = {
@@ -16,26 +17,28 @@ OPPOSING_TEAMS = {
 # contains potential enemy teams in reach round -- can absolutely be done in a\
 # better way
 
-def gameloop():
+def gameloop(rounds: int, team_size: int):
     round_counter: int = 1
     alive: bool = True
     # Extremely rough idea for how the gameplay will go and loop
     # we have some fancy info, some fancy text, then it's time to 
     # assemble the team.
-    player_team: ct.Player_Party = g.assemble_team()
+    player_team: ct.Player_Party = ct.Player_Party(g.assemble_team(ac.ALL_CHARACTERS))
     
     # we've assembled the team, and it's time to begin the main game loop!
     # i dunno have many rounds, but in either case,
-    while round_counter in range(1, ROUNDS_BEFORE_FINALE + 1) and alive == True:
+    while (round_counter >= 1) and (round_counter <= rounds) and (alive == True):
         # start combat
         # there's going to be be a lot of logic here that would be called to
         # a combat function
-        alive = c.combat(player_team, OPPOSING_TEAMS[round_counter]
-                         [r.randint(0, len(OPPOSING_TEAMS[round_counter] - 1))])
+        alive = cme.combat(player_team, OPPOSING_TEAMS[round_counter]
+                         [r.randint(0, len(OPPOSING_TEAMS[round_counter]) - 1)])
 
         # also before shop, maybe hints as to what the next enemy team is 
         # should be mentioned before players make decisions? i dunno 
         if alive == True:
+            for p in player_team:
+                p.progress_hp
             # shopping time!
             g.character_equipment()
             # have to find a way to modify character items -- you can't do 
@@ -50,13 +53,15 @@ def gameloop():
             # able to like, i dunno, call methods to modify attributes like a 
             # list ??? i'm annoyed 
             
-        else: # it's a boolean. what can it be besides True. None????
-            # i dunno if losing an encounter should end the run entirely,
-            # or just not give rewards for that round
-            # should be discussed!
-            # if it doesn't give rewards but allows for continuing, then remove
-            # alive == True from the top. please
-            pass
+    # party died lol
+    if alive == False:
+        print("get owned lol")
+    
+    if round_counter > rounds:
+        for c in player_team:
+            print(f"{c.name}: {c.finale_message}")
+            alive = c.combat(player_team, OPPOSING_TEAMS[round_counter]
+                         [r.randint(0, len(OPPOSING_TEAMS[round_counter])-1)])
     
     # all the normal rounds of combat are over, it's time for the Finale!
     # i dunno. it'd be a custom variant of combat.py, i think

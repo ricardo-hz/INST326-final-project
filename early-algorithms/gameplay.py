@@ -133,6 +133,7 @@ def assemble_team(characters):
         print(f"{i}. {character.name} | {character.current_hp} ({character.max_hp}) HP")
         i += 1
 
+    numbers_chosen = []
     while len(team) != MAX_TEAM_SIZE:
         choice = input("Enter the number of the character you would like on"
                 f" your team. You may only have "
@@ -145,31 +146,32 @@ def assemble_team(characters):
             numeric_choice = int(choice[0])
         except:
             pass
-        print(numeric_choice)
-        print(type(numeric_choice))
         if choice[0] == "waterbottle":
             return [characters[c] for c in characters]
         # One branch for info
         if len(choice) == 2:
-            if numeric_choice not in range(1, len(team) + 1):
+            if (numeric_choice < 1) and (numeric_choice >= len(team)):
                 print("Character doesn't exist")
             elif choice[1] != 'v':
                 print("Invalid flag.")
             else:
-                print(characters[choice[0]])
+                print(characters[numeric_choice - 1])
                 
         # One branch for adding
         elif len(choice) == 1:
+            print(f"{numbers_chosen}")
             # First verify that what was entered is even a character
-            if numeric_choice not in range(1, len(team) + 1):
+            if (numeric_choice < 1) and (numeric_choice >= len(team)):
                 print("Character doesn't exist")
             # Then check if the character is already on their team
-            elif choice[0] in [character.name for character in team]:
+            elif numeric_choice in numbers_chosen:
                 print("Character already on team")
             else:
-                chosen_char = characters[choice[0]]
-                print(f"{chosen_char.selection_message}")
+                chosen_char = characters[numeric_choice - 1]
+                print(f"{chosen_char.name}: {chosen_char.selection_message}")
                 team.append(chosen_char)
+                numbers_chosen.append(numeric_choice)
+
         else:
             print("Invalid argument.")
     

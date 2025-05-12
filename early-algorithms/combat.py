@@ -48,7 +48,7 @@ def combat(Player_Team, Enemy_Team) -> bool:
                                 combat_action = int(combat_action)
                             except:
                                 pass
-                            chosen_ability = active_combatant.character_abilities.order_to_ability(combat_action)
+                            chosen_ability = active_combatant.character_abilities.index_to_ability(combat_action)
                             
                             if chosen_ability is not None:
                                 if active_combatant.character_abilities.ability_available(combat_action):   

@@ -24,6 +24,7 @@ class Character:
         false unless chosen in character select
         conscious (bool): whether or not character can act
         selection_message (str): message character says when selected
+        finale_message (str): message character says before final boss
         progression (int): how far character's are along in terms of rounds
         health_progression (list of int): how much health each character should 
         get between rounds (incl 0.)
@@ -32,6 +33,7 @@ class Character:
     
     def __init__(self, name: str, hp: int, agility: int, weapon: Weapon, 
             armor: Armor, character_abilities: AbilityList, selection_message: str = None,
+            finale_message: str = None,
             health_progression: list = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], armor_type: str = ""):
         """Initializes a new character object.
         
@@ -97,6 +99,7 @@ class Character:
         self.conscious: bool = True
         self.selection_message: str = selection_message
         self.health_progression: list = health_progression
+        self.progression: int = 1
         self.armor_type: str = armor_type
     
     def swap_weapon(self, new_weapon) -> None:
@@ -160,6 +163,15 @@ class Character:
             ability (Ability): the ability that is being decreased by the buff
         """
         self.attack_stat = self.attack_base / (self.set_debuff(ability)/100)
+        
+        
+    def heal_full(self) -> None:
+        self.hp = self.max_hp
+        
+    def progress_hp(self) -> None:
+        self.max_hp += self.progress_hp[self.health_progression]
+        self.health_progression += 1
+        self.heal_full()
         
     def __str__(self) -> str:
         """Prints detailed information about a character.
