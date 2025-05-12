@@ -57,7 +57,7 @@ def gameloop(rounds: int, team_size: int):
             
     # party died lol
     if alive == False:
-        print("get owned lol")
+        print(f"You have failed. Humanity has fallen...")
     
     if round_counter > rounds:
         for c in player_team:
