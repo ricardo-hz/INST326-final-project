@@ -57,8 +57,7 @@ def ability_handler(user: Character, ability_used: Ability,
             i += 1
         # note: should make it so you can't target creatures with no hp.
         # atm it's a demo and will just do More Damage Lol
-        if target.current_hp <= 0:
-            target.conscious = False
+        if target.check_consciousness() == False:
             print(f"{target.name} is knocked unconscious!")
     elif ability_used.category == "heal":
         funny_number = healing_calculation(user, ability_used, target)
@@ -66,6 +65,10 @@ def ability_handler(user: Character, ability_used: Ability,
         print(f"{user.name} uses {ability_used.name} to heal {target.name} "
               f"{funny_number} hitpoints!")
         # make it so you prolly can't heal people with <= 0 hp? idk lol
+    elif ability_used.category == "buff":
+        target.set_buff(ability_used)
+    elif ability_used.category == "debuff":
+        target.set_debuff(ability_used)
     else:
         raise ValueError(f"not a valid category: {ability_used.category}")
     
