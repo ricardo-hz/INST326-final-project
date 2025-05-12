@@ -28,6 +28,17 @@ class Enemy(Character):
     """
     def __init__(self, name, atk, defs, hp, agility, e_type, 
                  character_abilities: AbilityList):
+        """Initializes an Enemy object
+        
+        Args:
+            name (str): name of an Enemy
+            atk (int): the base attack stat of an enemy
+            defs (int): the base defense stat of an enemy
+            hp (int): the base health points of an enemy
+            agility (int): the agility of an enemy, decides turn order
+            e_type (str): the enemy type of an Enemy, deals with enemy_logic
+            character_abilities (AbilityList): the Abilities an enemy could use 
+        """
         super().__init__(name, hp, agility, ENEMY_WEAPON, ENEMY_ARMOR, 
                          character_abilities)
         self.attack_base: int = atk
