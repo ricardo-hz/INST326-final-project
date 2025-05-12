@@ -120,21 +120,21 @@ e2 = Enemy("Blue Cyclops", 26, 9, 160, 0, "Strong Enemy",
            AbilityList([basic_attack3, double_smack]))
 cyclops_duo = Enemy_Party("Pair of Cyclops", [e1,e2])
 
-v1 = Enemy("Vampire Lord", 45, 15, 260, 50, "Strong Enemy", 
+v1 = Enemy("Vampire Lord", 45, 15, 260, 10, "Strong Enemy", 
            AbilityList([basic_attack2, drain, hypnosis]))
-v2 = Enemy("Vampire Thrall A", 40, 18, 150, 50, "Normal Enemy", 
+v2 = Enemy("Vampire Thrall A", 40, 18, 150, 8, "Normal Enemy", 
            AbilityList([basic_attack2]))
-v3 = Enemy("Vampire Thrall B", 40, 18, 150, 50, "Normal Enemy", 
+v3 = Enemy("Vampire Thrall B", 40, 18, 150, 8, "Normal Enemy", 
            AbilityList([basic_attack2]))
-v4 = Enemy("Vampire Thrall C", 40, 18, 150, 50, "Normal Enemy", 
+v4 = Enemy("Vampire Thrall C", 40, 18, 150, 8, "Normal Enemy", 
            AbilityList([basic_attack2]))
 vampire_sect = Enemy_Party("Cult of the Bloody Moon", [v1,v2,v3,v4])
 
-d1 = Enemy("Draugr Berserker", 52, 0, 300, 0, "Strong Enemy", 
+d1 = Enemy("Draugr Berserker", 52, 0, 300, 10, "Strong Enemy", 
            AbilityList([basic_attack1, rage, great_slash]))
-d2 = Enemy("Draugr Warrior A", 36, 35, 200, 30, "Normal Enemy", 
+d2 = Enemy("Draugr Warrior A", 36, 35, 200, 9, "Normal Enemy", 
            AbilityList([basic_attack1]))
-d3 = Enemy("Draugr Warrior B", 36, 35, 200, 30, "Normal Enemy", 
+d3 = Enemy("Draugr Warrior B", 36, 35, 200, 9, "Normal Enemy", 
            AbilityList([basic_attack1]))
 draugr_berserkers = Enemy_Party("Ancient Draugrs", [d1,d2,d3])
 
@@ -156,7 +156,7 @@ s3 = Enemy("Wood Elf Soldier B", 66, 30, 240, 8, "Normal Enemy",
 elves = [s1, s2, s3]
 elf_militia = Enemy_Party("Holz Elf Militia", elves)
 
-minotaur = Enemy("Minotaur", 100, 18, 1500, 20, "Boss", 
+minotaur = Enemy("Minotaur", 100, 18, 1000, 20, "Boss", 
                  AbilityList([basic_attack3, mighty_roar, 
                               great_smash, brute_charge]))
 minotaur_party = Enemy_Party("The Minotaur", [minotaur])
