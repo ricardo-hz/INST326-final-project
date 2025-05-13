@@ -65,7 +65,7 @@ g3 = Enemy("Goblin Soldier B", 5, 2, 20, 12, "Normal Enemy",
            AbilityList([basic_attack1]))
 g4 = Enemy("Goblin Soldier C", 4, 2, 20, 8, "Normal Enemy", 
            AbilityList([basic_attack1]))
-g5 = Enemy("Goblin Soldier d", 4, 2, 20, 4, "Normal Enemy", 
+g5 = Enemy("Goblin Soldier D", 4, 2, 20, 4, "Normal Enemy", 
            AbilityList([basic_attack1]))
 
 goblins = [g1, g2, g3, g4, g5]
