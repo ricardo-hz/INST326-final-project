@@ -49,6 +49,7 @@ def gameloop(rounds: int, team_size: int):
             if round_counter == 4:
                 for p in player_team:
                     p.character_abilities.addTo(ac.EXTRA_ABILITIES[p.name][-1])
+            round_counter += 1
             
     # party died lol
     if alive == False:
