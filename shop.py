@@ -42,12 +42,12 @@ def shop(character):
     print(f"Current Armor: {character.armor} | Next Armor {get_next_armor(character)}")
     
     shop_choice = ""
-    while shop_choice not in ["WEAPONS", "ARMOR", "NONE"]:
+    while shop_choice not in ["WEAPON", "ARMOR", "NONE"]:
         print(f"To upgrade to the next available weapon, type 'WEAPON' .")
         print(f"To upgrade to the next available piece of armor, type 'ARMOR' .")
         print(f"Exit the shop by typing 'NONE' .")
         shop_choice = input().strip()
-        if shop_choice not in ["WEAPONS", "ARMOR", "NONE"]:
+        if shop_choice not in ["WEAPON", "ARMOR", "NONE"]:
             print(f"{shop_choice} is not a valid entry.")
     
     match(shop_choice):
@@ -60,7 +60,8 @@ def shop(character):
         
         
         
-        
+k = copy.deepcopy(ac.knight)
+shop(k)
         
 
 """
