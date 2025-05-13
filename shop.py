@@ -57,14 +57,6 @@ def shop(character):
             character.swap_armor(get_next_armor(character))
         case("NONE"):
             pass
-        
-        
-        
-k = copy.deepcopy(ac.knight)
-print(f"BEFORE {k.weapon.name} | {k.armor.name}")
-shop(k)
-print(f"AFTER {k.weapon.name} | {k.armor.name}")
-        
 
 """
 # This code gets the next available weapon for knight
