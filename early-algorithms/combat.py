@@ -110,10 +110,8 @@ def combat(Player_Team, Enemy_Team) -> bool:
                 # end of turn checks for victory and such
             else:
                 print(f"Opponent's turn as {active_combatant.name}")
-                ability_handler(active_combatant, active_combatant.character_abilities.index_to_ability(1), \
+                ability_handler(active_combatant, ENEMY_ATTACK_ABILITY, \
                     active_combatant.enemy_logic(Player_Team))
-                # there's nothing about the enemy logic that returns an ability
-                # so i have no option here lmao 
         else:
             print(f"{active_combatant.name} is unable to act!")
         # end of turn checks very exciting
@@ -129,7 +127,6 @@ def combat(Player_Team, Enemy_Team) -> bool:
             combat_in_progress = False
             
     # heal everyone to full
-    initative_tracker.heal_all()
     return combat_result
 
 def party_info(party, id = -1):
@@ -170,16 +167,13 @@ class Initative():
         party_enemy: Enemy_Party):
         self.psuedo_order = list()
         for c in party_player:
-            c.adjust_cooldowns(adjustment_amount= 99 )
             self.psuedo_order.append(c)
         for c in party_enemy:
-            c.adjust_cooldowns(adjustment_amount= 99)
             self.psuedo_order.append(c)
         self.psuedo_order.sort(reverse = True)
         
         self.combat_order: dict = dict()
         starting_order = 1
-        # frankly, this is silly
         for c in self.psuedo_order:
             self.combat_order[starting_order] = c
             starting_order += 1
@@ -204,20 +198,16 @@ class Initative():
                 
         return f"{player_view}\n{enemy_view}"
     
-    def heal_all(self) -> None:
-        for c in self.combat_order:
-            self.combat_order[c].heal_full()
-    
     def check_consciousness(self) -> None:
         p_act = False
         e_act = False
         for c in self.combat_order:
-            c_a: Character = self.combat_order[c]
+            c_a = self.combat_order[c]
             if c_a.player_character == True:
-                if c_a.check_consciousness():
+                if c_a.check.conscious():
                     p_act = True
             else:
-                if c_a.check_consciousness() == True:
+                if c_a.check.conscious() == True:
                     e_act = True
         self.players_active = p_act
         self.enemies_active = e_act
