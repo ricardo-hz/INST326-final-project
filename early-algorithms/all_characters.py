@@ -134,3 +134,54 @@ ALL_CHARACTERS = [
     paladin,
     the_protagonist
 ]
+
+def RESET_CHARACTERS():
+    knight = Character("Leo the Knight", 14, 5, WEAPONS["Leo the Knight"][0], 
+                   ARMOR["Metal"][0], knight_abilities, selection_message= 
+                   "Hah! Let's teach some new foes some old tricks!",
+                   finale_message = "Just like the ones before! No sweat.",
+                   health_progression = [0, 8, 12, 34, 70, 90], armor_type = 
+                   "metal")
+    
+    priest = Character("Aquarius the Priest", 10, 6, WEAPONS["Aquarius the Priest"]
+                   [0], ARMOR["Leather"][0], 
+                   priest_abilities, selection_message="Lichgott save us...!",
+                   finale_message = "We can't lose... I will not let it happen!",
+                   health_progression = [0, 8, 12, 30, 50, 75], armor_type = 
+                   "leather")
+    
+    thief = Character("Gemini the Thief", 12, 99, WEAPONS["Gemini the Thief"][0], 
+                  ARMOR["Leather"][0],thief_abilities, selection_message= 
+                  "Ran out of options? Heh, I'll come along anyways.",
+                  finale_message = "Well, definitely can't back out now, hmmh?",
+                  health_progression = [0, 8, 12, 30, 65, 73], armor_type = 
+                  "leather")
+    
+    archer = Character("Sagitarrius the Archer", 11, 15, WEAPONS["Sagitarrius the"
+                                                            " Archer"][0], 
+                   ARMOR["Leather"][0],
+                   archer_abilities, selection_message= "Decisions...",
+                   finale_message = "Proceed.",
+                   health_progression = [0, 7, 12, 32, 50, 83], armor_type = 
+                   "leather")
+    
+    mage = Character("Pisces the Mage", 10, 12, WEAPONS["Pisces the Mage"][0], 
+                 ARMOR["Cloth"][0], mage_abilities, selection_message = 
+                 "Meticiulous planning is imperative for success. "
+                 "The opposition will crumble under exquisite power!",
+                 finale_message = "Splendid. We shall claim a triumph oncemore.",
+                 health_progression = [0, 6, 10, 28, 46, 65], armor_type = 
+                 "leather")
+    
+    paladin = Character("Libra the Paladin", 16, 3, WEAPONS["Libra the Paladin"][0],
+                    ARMOR["Metal"][0], paladin_abilites, selection_message= 
+                    "Triumphant futures! A safe shield! Behind me!",
+                    finale_message = "The end approaches! Approach with "
+                    "victory on the mind!",
+                    health_progression = [0, 8, 16, 40, 90, 100], armor_type =
+                    "metal")
+    
+    the_protagonist = Character("The Protagonist", 50000, 0, 
+                            WEAPONS["The Protagonist"][0], ARMOR["Metal"][0], 
+                            protagonist_abilities, selection_message = 
+                            "Too easy.", finale_message = "Trivial.")

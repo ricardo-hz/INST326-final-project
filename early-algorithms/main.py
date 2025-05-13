@@ -16,4 +16,3 @@ if __name__ == "__main__":
         gameloop(rounds, team_size)
         # then once the entire game is finished, it'll take us back to the title
         # screen loop
-        break

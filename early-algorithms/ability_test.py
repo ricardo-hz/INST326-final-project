@@ -219,8 +219,14 @@ class AbilityList():
         """
         # anyone want music recommendations
         # check out the new sleep token album it's really good
-        for c in self.cooldowns:
-            c = max(c - adjustment_amount, 0)
+        i = 0
+        while i in range(0, len(self.cooldowns)):
+            self.cooldowns[i] = self.cooldowns[i] - adjustment_amount
+            if self.cooldowns[i] < 0:
+                self.cooldowns[i] = 0
+            i += 1
+            #print(c)
+        print(self.cooldowns)
     
     def index_to_ability(self, order_index) -> Ability | None:
         """Given an order of ability, turn out it's ability.
@@ -249,7 +255,9 @@ class AbilityList():
         Returns:
             bool: whether or not ability is available (cooldown is 0)
         """
-        if self.cooldowns[order_index] == 0:
+        print(self.cooldowns)
+        print(self.cooldowns[order_index])
+        if self.cooldowns[order_index] <= 0:
             return True
         else:
             return False

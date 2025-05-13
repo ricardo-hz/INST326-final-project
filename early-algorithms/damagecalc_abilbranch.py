@@ -49,7 +49,7 @@ def ability_handler(user: Character, ability_used: Ability,
     funny_number = 0
     if ability_used.category == "damage":
         i = 1
-        while i <= user.weapon.hitmod + ability_used.hits:
+        while i <= user.weapon.hitMod + ability_used.hits:
             funny_number = damage_calculation(user, ability_used, target)
             target.current_hp -= funny_number
             print(f"{user.name} uses {ability_used.name} to deal "

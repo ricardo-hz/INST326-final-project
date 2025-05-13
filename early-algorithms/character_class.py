@@ -212,6 +212,19 @@ class Character:
                 self.attack_mods_duration.pop(i)
                 self.attack_mods.pop(i)
                 i -= 1 
+                
+    def adjust_cooldowns(self, adjustment_amount = 1) -> None:
+        """Calls the adjust_cooldown method of character_abilities
+        
+         Args:
+            adjustment_amount (int, optional): Amount to adjust cooldowns by. 
+                Defaults to 1.
+                
+        Side effects:
+            Adjusts cooldowns, as character_abilities
+        """
+        self.character_abilities.adjust_cooldowns(adjustment_amount)
+    
         
     def start_turn(self) -> None:
         """Does start of turn adjustments for character -- attack mods and 
@@ -222,7 +235,7 @@ class Character:
             reduce_attack_mods (reduces attack mods duration, kicks out some),
             sets attack_stat based on mods
         """
-        self.character_abilities.adjust_cooldowns()
+        self.character_abilities.adjust_cooldowns(adjustment_amount = 1)
         self.reduce_attack_mods()
         self.set_attack_stat()
             
@@ -232,7 +245,8 @@ class Character:
         Side effects:
             Sets hp to full
         """
-        self.hp = self.max_hp
+        self.current_hp = self.max_hp
+        self.conscious = True
         
     def progress_hp(self) -> None:
         """Progresses character's health by set amount (starts at 1), then
@@ -256,10 +270,10 @@ class Character:
         Side effects:
             modifies self.conscious based on character consciousness state
         """
-        if self.hp <= 0:
+        if self.current_hp <= 0:
             self.conscious = False
             return False
-        if self.hp > 0:
+        if self.current_hp > 0:
             self.conscious = True
             return True
         

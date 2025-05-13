@@ -63,3 +63,4 @@ def gameloop(rounds: int, team_size: int):
     # all the normal rounds of combat are over, it's time for the Finale!
     # i dunno. it'd be a custom variant of combat.py, i think
     
+    input("Thanks for playing! Press any key to continue...")

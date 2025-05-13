@@ -40,7 +40,7 @@ class Weapon:
          # abilMod is list of two strings containing name of orig ability, name
          # of enhanced ability with weapon
          
-         hitMod: int = hitMod
+         self.hitMod: int = hitMod
         
 class Armor:
      """Representation of armor.
