@@ -1,18 +1,19 @@
 from equipment import *
-from character_class import CHARACTER_LIST
-from all_characters import *
+import character_class as cc
+from all_characters import ac
 from gameplay import assemble_team
+
 def shop(team):
+    # Team should be of type Player_Party from character_class
     print("Welcome to the shop!")
-    print(f"The shop allows you to upgrade your team's existing armor/weapons "
-          f"and purchase new abilities.")
+    print(f"The shop allows you to upgrade your team's existing armor and"
+          f" weapons.")
     print(f"Note for each visit to the shop, you may only acquire one item "
             f"for each character.")
     for character in team:
         print(f"Current character: {character.name}")
         print("WEAPONS")
         print("ARMOR")
-        print("ABILITIES")
         
         shop_choice = ''
         while shop_choice not in ["WEAPONS", "ARMOR", "ABILITIES", "NONE"]:
@@ -40,5 +41,5 @@ def shop(team):
                 case(default):
                     print(f"{default} is not a valid entry.")
 
-team = assemble_team(CHARACTER_LIST)
+team = assemble_team(ac.ALL_CHARACTERS)
 shop(team)
