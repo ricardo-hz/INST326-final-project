@@ -64,7 +64,7 @@ def character_equipment(name, weapons, armour, battle_outcome):
 
 def information(filename):
     """Reads in text file of lore/instructional information (declutters code)
-        and prints it out
+        and prints it out. By Nathan Castelo
     
     Args:
         filename (str): the file of the according text file
@@ -77,7 +77,7 @@ def information(filename):
 
 def title_screen():
     """Title screen for the game, user selects which 'screen' to see
-    
+        By Nathan Castelo
     Side effects:
         Prints to screen of gameplay information or lore
     """

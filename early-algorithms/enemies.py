@@ -53,7 +53,7 @@ class Enemy(Character):
         return self.agility_stat < other.agility_stat
     
     def enemy_logic(self, character_party) -> Character:
-        """How an enemy will attack
+        """How an enemy will attack. By Nathan Castelo
         
         Args:
             character_party: the list of Character objects in a player's party
