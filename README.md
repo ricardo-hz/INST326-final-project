@@ -14,7 +14,8 @@ Programming with Python course.
             they will then be added to the party with a max of three characters in a party
     - Step 2: Enter Combat!
         - You will first be given a turn order on which characters or enemies will go first
-        - If it's your character's turn you will have the option to choose an ability to attack an enemy, the overall combat overview (status of all parties), 
+        - If it's your character's turn you will have the option to choose an ability to attack an enemy, 
+            the overall combat overview (status of all parties), 
             or your party overview (can see abilities/stats of each Character in your party)
         - Enemies will attack your Characters based on their given logic.
         - Turn order should repeat until either side dies, meaning that their whole party is completely wiped out
