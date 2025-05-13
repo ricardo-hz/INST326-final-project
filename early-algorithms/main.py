@@ -1,7 +1,6 @@
-from gameloop import *
-from combat import *
-from gameplay import *
-from all_characters import *
+from gameloop import gameloop
+from gameplay import title_screen
+
 
 if __name__ == "__main__":
 
