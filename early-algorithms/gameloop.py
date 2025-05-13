@@ -43,17 +43,12 @@ def gameloop(rounds: int, team_size: int):
                 p.progress_hp
             # shopping time!
             g.character_equipment()
-            # have to find a way to modify character items -- you can't do 
-            # it between files, and it would be preferred to have functions 
-            # split between files. could turn an array or Dict of stuff that
-            # needs to be updated? i dunno lmao
-            # am i allowed to swear in the comments
-            # cause UGHH i don't think character_equipment can change 
-            # the object's attributes if it's in another file, or i'm missing
-            # something horribly. i'm not sure, like, if we initalize Team in
-            # here and have character objects in another, surely we should be
-            # able to like, i dunno, call methods to modify attributes like a 
-            # list ??? i'm annoyed 
+            if round_counter == 2:
+                for p in player_team:
+                    p.character_abilities.addTo(ac.EXTRA_ABILITIES[p.name][0])
+            if round_counter == 4:
+                for p in player_team:
+                    p.character_abilities.addTo(ac.EXTRA_ABILITIES[p.name][-1])
             
     # party died lol
     if alive == False:
