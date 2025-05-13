@@ -214,10 +214,10 @@ class Initative():
         for c in self.combat_order:
             c_a: Character = self.combat_order[c]
             if c_a.player_character == True:
-                if c_a.check.consciousness():
+                if c_a.check_consciousness():
                     p_act = True
             else:
-                if c_a.check.consciousness() == True:
+                if c_a.check_consciousness() == True:
                     e_act = True
         self.players_active = p_act
         self.enemies_active = e_act
