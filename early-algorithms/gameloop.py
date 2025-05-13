@@ -52,7 +52,14 @@ def gameloop(rounds: int, team_size: int):
             print(f"{c.name}: {c.finale_message}")
             alive = c.combat(player_team, OPPOSING_TEAMS[round_counter]
                          [r.randint(0, len(OPPOSING_TEAMS[round_counter])-1)])
-    
+        if alive == True:
+            print(f"Humanity is saved! Civilization can be rebuilt thanks "
+                  f"to our three heroes. "
+                  f"Lichtgott will continue to give their blessings...")
+        else:
+            print(f"Despite their journey, the three heroes have fallen. "
+                  f"Lichtgott becomes forgotten as the forces of evil "
+                  f"triumph...")
     # all the normal rounds of combat are over, it's time for the Finale!
     # i dunno. it'd be a custom variant of combat.py, i think
     
