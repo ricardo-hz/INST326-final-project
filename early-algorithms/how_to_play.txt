@@ -1,0 +1,12 @@
+=== HOW TO PLAY THIS GAME ===
+
+The game is your classic turn-based RPG.
+
+1. Select up to three characters from a pool to form your party.
+2. Enter combat! A turn-order shows who acts next. On your turn,
+   choose abilities and targets. Enemies attack as well. The fight
+   continues until one side is defeated.
+3. Between combats, visit a shop to upgrade each character's weapons or armor.
+4. Repeat combat and shop phases until the 6th fight — the boss battle.
+
+Will humanity survive the tournament?

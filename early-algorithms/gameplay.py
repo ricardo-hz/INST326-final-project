@@ -61,7 +61,20 @@ def character_equipment(name, weapons, armour, battle_outcome):
     else:
         print(f"A battle was not played. Your weapons are: {weapons} "
                 f"and your armour is: {armour}.")
-        
+
+def information(filename):
+    """Reads in text file of lore/instructional information (declutters code)
+        and prints it out
+    
+    Args:
+        filename (str): the file of the according text file
+    """
+    try:
+        with open(filename, 'r', encoding = "utf-8") as f:
+            print(f.read())
+    except FileNotFoundError:
+        print(f"Error: {filename} not found!")
+
 def title_screen():
     """Title screen for the game, user selects which 'screen' to see
     
@@ -69,48 +82,25 @@ def title_screen():
         Prints to screen of gameplay information or lore
     """
     while True:
-        print(f"=== Welcome to the Tournament of Water Bottle ===\n")
+        print("=== Welcome to the Tournament of Water Bottle ===")
         print()
-        print(f"1. Play Game\n"
-              f"2. How-to-Play\n"
-              f"3. Lore\n")
+        print("1. Play Game")
+        print("2. How-to-Play")
+        print("3. Lore")
         
         choice = input(f"Enter the corresponding number depending on "
-                       f"which section to enter: ")
+                       f"which section to enter: ").strip()
         print()
         
         if choice == "1":
             break
         elif choice == "2":
-            print("=== HOW-TO-PLAY THIS GAME ===\n")
-            print(f"The game is your classic turn-based RPG game\n")
-            print(f"1. Select your team from a given pool of characters"
-                  f" to be in your party, max of three characters\n"
-                  f"2. Enter combat! A turn-order will be shown to see which"
-                  f" which characters or enemies will go first. If it's a"
-                  f" character turn, you will be given the option to choose"
-                  f" what abilities your character will target. Enemies will"
-                  f" attack your characters and turns will repeat until either"
-                  f" team falls in combat.\n"
-                  f"3. Between combats you will be able to enter a 'shop' where"
-                  f" Each character's weapon or armor will be upgraded!\n"
-                  f"4. Steps 2 and 3 will repeat until the 6th combat, where"
-                  f" you will face a boss in combat and will see if humanity"
-                  f" will fall or triumph against the monsters of the tournament")
+            information("how_to_play.txt")
             print()
             input("Press enter or any key to continue...")
             print()
         elif choice == "3":
-            print("=== LORE BEHIND THE GAME ===\n")
-            print("Humanity is on the brink of extinction because of the "
-                  "'Water Bottle Wars'...")
-            print("A tournament is created by the gods as a last chance effort "
-                  "for humanity to survive...")
-            print("Three heroes must rise up to take the challenge of "
-                  "protecting humanity...")
-            print("Will they fail or will they triumph over evil forces...")
-            print()
-            input("Press enter or any key to continue...")
+            information("lore.txt")
             print()
         else:
             print("Invalid Input!")
