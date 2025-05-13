@@ -15,10 +15,13 @@ Programming with Python course.
     - Step 2: Enter Combat!
         - You will first be given a turn order on which characters or enemies will go first
         - If it's your character's turn you will have the option to choose an ability to attack an enemy, 
-            the overall combat overview (status of all parties), 
+            the overall combat overview (status of all parties and turn order), 
             or your party overview (can see abilities/stats of each Character in your party)
         - Enemies will attack your Characters based on their given logic.
-        - Turn order should repeat until either side dies, meaning that their whole party is completely wiped out
+        - Turn order should repeat until either side dies, 
+            meaning that their whole party is completely wiped out
+        - The text will show how much damage a Character/Enemy has done to the target and
+            if the target has fainted/died.
 
 ## How To Start the Game:
 - Download latest version of Python 3 from [python.org](https://www.python.org/)

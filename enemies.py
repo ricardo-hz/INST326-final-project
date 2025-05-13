@@ -68,7 +68,8 @@ class Enemy(Character):
         strongest_attack = max([char.attack_stat for char in character_party])
         
         for char in character_party:
-            if char.current_hp <= char.max_hp * .10:
+            # Should target a character if they are low hp
+            if (char.current_hp <= char.max_hp * .10) and (char.current_hp > 0):
                 selected_target = char
                 return selected_target
             
