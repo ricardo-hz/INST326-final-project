@@ -5,7 +5,6 @@ import all_enemies as en
 import random as r
 import all_characters as ac
 
-ROUNDS_BEFORE_FINALE = 5
 OPPOSING_TEAMS = {
     1: en.ROUND_ONE_ENEMIES,
     2: en.ROUND_TWO_ENEMIES,
