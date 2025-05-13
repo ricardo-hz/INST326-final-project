@@ -69,7 +69,7 @@ g5 = Enemy("Goblin Soldier D", 4, 2, 20, 4, "Normal Enemy",
            AbilityList([basic_attack1]))
 
 goblins = [g1, g2, g3, g4, g5]
-goblin_horde = Enemy_Party("Goblin Horde", goblins)
+goblin_horde = Enemy_Party("Goblin Horde", goblins, "My Precious...")
 
 w1 = Enemy("Alpha Wolf", 5, 2, 30, 18, "Strong Enemy", 
            AbilityList([basic_attack2, claw_strike, howl]))
@@ -82,7 +82,7 @@ w4 = Enemy("Wolf C", 4, 2, 12, 8, "Normal Enemy",
 w5 = Enemy("Wolf D", 4, 2, 12, 6, "Normal Enemy", 
            AbilityList([basic_attack2]))
 wolves = [w1, w2, w3, w4, w5]
-wolf_pack = Enemy_Party("Wolf Pack", wolves)
+wolf_pack = Enemy_Party("Wolf Pack", wolves, "BARK BARK BARK!")
 
 c1 = Enemy("Cultist Priest", 12, 4, 30, 20, "Strong Enemy", 
            AbilityList([basic_attack4, curse, heal]))
@@ -93,7 +93,7 @@ c3 = Enemy("Cultist Follower B", 9, 5, 35, 12, "Normal Enemy",
 c4 = Enemy("Cultist Follower C", 9, 5, 35, 3, "Normal Enemy", 
            AbilityList([basic_attack4]))
 cultists = [c1, c2, c3, c4]
-cult = Enemy_Party("Cult of the Forgotten", cultists)
+cult = Enemy_Party("Cult of the Forgotten", cultists, "For the Forgotten One!")
 
 b1 = Enemy("Bandit Leader", 11, 5, 40, 20, "Strong Enemy",  
            AbilityList([basic_attack1, speed_up, dagger_throw]))
@@ -104,7 +104,8 @@ b3 = Enemy("Bandit Lackey B", 9, 5, 32, 10, "Normal Enemy",
 b4 = Enemy("Bandit Lackey C", 9, 5, 32, 8, "Normal Enemy", 
            AbilityList([basic_attack1]))
 bandits = [b1, b2, b3, b4]
-bandit_group = Enemy_Party("Sunset Mountain Bandits", bandits)
+bandit_group = Enemy_Party("Sunset Mountain Bandits", bandits, 
+                           "Give us all your loot!")
 
 h1 = Enemy("Harpy Elder Sister", 20, 9, 125, 12, "Strong Enemy", 
            AbilityList([basic_attack1, screech, sing]))
@@ -112,13 +113,13 @@ h2 = Enemy("Harpy Sister A", 18, 9, 100, 16, "Normal Enemy",
            AbilityList([basic_attack1]))
 h3 = Enemy("Harpy Sister B", 18, 9, 110, 10, "Normal Enemy", 
            AbilityList([basic_attack1]))
-harpy_trio = Enemy_Party("Winds of Harpies", [h1,h2,h3])
+harpy_trio = Enemy_Party("Winds of Harpies", [h1,h2,h3], "Ugh humans...")
 
 e1 = Enemy("Red Cyclops", 24, 9, 160, 1, "Strong Enemy", 
            AbilityList([basic_attack3, double_smack]))
 e2 = Enemy("Blue Cyclops", 26, 9, 160, 0, "Strong Enemy", 
            AbilityList([basic_attack3, double_smack]))
-cyclops_duo = Enemy_Party("Pair of Cyclops", [e1,e2])
+cyclops_duo = Enemy_Party("Pair of Cyclops", [e1,e2], "Puny humans!!!")
 
 v1 = Enemy("Vampire Lord", 45, 15, 260, 10, "Strong Enemy", 
            AbilityList([basic_attack2, drain, hypnosis]))
@@ -128,7 +129,8 @@ v3 = Enemy("Vampire Thrall B", 40, 18, 150, 8, "Normal Enemy",
            AbilityList([basic_attack2]))
 v4 = Enemy("Vampire Thrall C", 40, 18, 150, 8, "Normal Enemy", 
            AbilityList([basic_attack2]))
-vampire_sect = Enemy_Party("Cult of the Bloody Moon", [v1,v2,v3,v4])
+vampire_sect = Enemy_Party("Cult of the Bloody Moon", [v1,v2,v3,v4], 
+                           "We thirst for blood...")
 
 d1 = Enemy("Draugr Berserker", 52, 0, 300, 10, "Strong Enemy", 
            AbilityList([basic_attack1, rage, great_slash]))
@@ -136,7 +138,8 @@ d2 = Enemy("Draugr Warrior A", 36, 35, 200, 9, "Normal Enemy",
            AbilityList([basic_attack1]))
 d3 = Enemy("Draugr Warrior B", 36, 35, 200, 9, "Normal Enemy", 
            AbilityList([basic_attack1]))
-draugr_berserkers = Enemy_Party("Ancient Draugrs", [d1,d2,d3])
+draugr_berserkers = Enemy_Party("Ancient Draugrs", [d1,d2,d3], 
+                                "*rattling noises*")
 
 o1 = Enemy("Orc Chieftain", 65, 24, 400, 14, "Strong Enemy", 
            AbilityList([basic_attack3, rage, great_smash]))
@@ -145,7 +148,8 @@ o2 = Enemy("Orc Warrior A", 50, 26, 260, 16, "Normal Enemy",
 o3 = Enemy("Orc Warrior B", 52, 26, 260, 12, "Normal Enemy", 
            AbilityList([basic_attack3]))
 orcs = [o1, o2, o3]
-orc_tribe = Enemy_Party("Orsinium Orc Tribe", orcs)
+orc_tribe = Enemy_Party("Orsinium Orc Tribe", orcs, 
+                        "Fight to the death! We live for battle!")
 
 s1 = Enemy("Wood Elf General", 66, 24, 340, 15, "Strong Enemy", 
            AbilityList([basic_attack5, sniper_shot, spirit_hex]))
@@ -154,23 +158,26 @@ s2 = Enemy("Wood Elf Soldier A", 66, 30, 240, 14, "Normal Enemy",
 s3 = Enemy("Wood Elf Soldier B", 66, 30, 240, 8, "Normal Enemy", 
            AbilityList([basic_attack5]))
 elves = [s1, s2, s3]
-elf_militia = Enemy_Party("Holz Elf Militia", elves)
+elf_militia = Enemy_Party("Holz Elf Militia", elves, "Humans never change...")
 
 minotaur = Enemy("Minotaur", 100, 18, 1000, 20, "Boss", 
                  AbilityList([basic_attack3, mighty_roar, 
                               great_smash, brute_charge]))
-minotaur_party = Enemy_Party("The Minotaur", [minotaur])
+minotaur_party = Enemy_Party("The Minotaur", [minotaur], 
+                             "It seems you are lost. Prepare to die!")
 
 necromancer = Enemy("Necromancer", 80, 30, 600, 10, "Boss", 
                     AbilityList([basic_attack4, bone_spear, death_embrace]))
 death_knight = Enemy("Death Knight", 72, 32, 800, 4, "Boss", 
                      AbilityList([basic_attack1, great_slash]))
-necromancer_party = Enemy_Party("The Damned", [necromancer, death_knight])
+necromancer_party = Enemy_Party("The Damned", [necromancer, death_knight], 
+                                "Death claims all...")
 
 elf_king = Enemy("Elf King", 85, 36, 700, 50, "Boss", 
                  AbilityList([basic_attack5, grand_puncture, elf_waltz, 
                               blume_shot]))
-erlkonig_party = Enemy_Party("Erlkonig", [elf_king])
+erlkonig_party = Enemy_Party("Erlkonig", [elf_king], 
+                             "Humans are interesting...")
 
 ROUND_ONE_ENEMIES = [goblin_horde, wolf_pack]
 ROUND_TWO_ENEMIES = [cultists, bandit_group]
