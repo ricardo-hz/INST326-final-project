@@ -115,7 +115,6 @@ def title_screen():
         else:
             print("Invalid Input!")
             
-
 # Ricardo's function
 def assemble_team(characters):
     """Assembles a team using user prompts at a menu.
