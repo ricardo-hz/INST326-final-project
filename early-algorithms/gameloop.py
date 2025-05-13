@@ -20,14 +20,9 @@ OPPOSING_TEAMS = {
 def gameloop(rounds: int, team_size: int):
     round_counter: int = 1
     alive: bool = True
-    # Extremely rough idea for how the gameplay will go and loop
-    # we have some fancy info, some fancy text, then it's time to 
-    # assemble the team.
     player_team: ct.Player_Party = ct.Player_Party(g.assemble_team(
         ac.ALL_CHARACTERS))
     
-    # we've assembled the team, and it's time to begin the main game loop!
-    # i dunno have many rounds, but in either case,
     while ((round_counter >= 1) and (round_counter <= rounds) and
            (alive == True)):
         # start combat
@@ -36,8 +31,6 @@ def gameloop(rounds: int, team_size: int):
         alive = cme.combat(player_team, OPPOSING_TEAMS[round_counter]
                          [r.randint(0, len(OPPOSING_TEAMS[round_counter]) - 1)])
 
-        # also before shop, maybe hints as to what the next enemy team is 
-        # should be mentioned before players make decisions? i dunno 
         if alive == True:
             for p in player_team:
                 p.progress_hp
