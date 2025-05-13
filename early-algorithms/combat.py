@@ -12,7 +12,7 @@ def combat(Player_Team, Enemy_Team) -> bool:
     # b/c we're not really concerned with how the player ended up other than
     # "did they win" or "did they die lmao"
     combat_in_progress = True
-    initative_tracker: Initative = Initative(Player_Team, Enemy_Team)
+    initative_tracker = Initative(Player_Team, Enemy_Team)
     initative_order = 0 #im seeing the appeal of arrays starting at 1 now tbh
     combat_action = 1
     active_turn = True
@@ -110,8 +110,10 @@ def combat(Player_Team, Enemy_Team) -> bool:
                 # end of turn checks for victory and such
             else:
                 print(f"Opponent's turn as {active_combatant.name}")
-                ability_handler(active_combatant, ENEMY_ATTACK_ABILITY, \
+                ability_handler(active_combatant, active_combatant.character_abilities.index_to_ability(1), \
                     active_combatant.enemy_logic(Player_Team))
+                 # there's nothing about the enemy logic that returns an ability
+                 # so i have no option here lmao 
         else:
             print(f"{active_combatant.name} is unable to act!")
         # end of turn checks very exciting
@@ -127,6 +129,7 @@ def combat(Player_Team, Enemy_Team) -> bool:
             combat_in_progress = False
             
     # heal everyone to full
+    initative_tracker.heal_all()
     return combat_result
 
 def party_info(party, id = -1):
@@ -167,14 +170,17 @@ class Initative():
         party_enemy: Enemy_Party):
         self.psuedo_order = list()
         for c in party_player:
+            c.adjust_cooldowns(adjustment_amount= 99 )
             self.psuedo_order.append(c)
         for c in party_enemy:
+            c.adjust_cooldowns(adjustment_amount= 99)
             self.psuedo_order.append(c)
         self.psuedo_order.sort(reverse = True)
         
         self.combat_order: dict = dict()
         starting_order = 1
         for c in self.psuedo_order:
+            
             self.combat_order[starting_order] = c
             starting_order += 1
         self.fight_size = len(self.combat_order)
@@ -198,16 +204,20 @@ class Initative():
                 
         return f"{player_view}\n{enemy_view}"
     
+    def heal_all(self) -> None:
+        for c in self.combat_order:
+            self.combat_order[c].heal_full()
+            
     def check_consciousness(self) -> None:
         p_act = False
         e_act = False
         for c in self.combat_order:
-            c_a = self.combat_order[c]
+            c_a: Character = self.combat_order[c]
             if c_a.player_character == True:
-                if c_a.check.conscious():
+                if c_a.check.consciousness():
                     p_act = True
             else:
-                if c_a.check.conscious() == True:
+                if c_a.check.consciousness() == True:
                     e_act = True
         self.players_active = p_act
         self.enemies_active = e_act
