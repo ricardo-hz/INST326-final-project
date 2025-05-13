@@ -105,6 +105,7 @@ def title_screen():
         else:
             print("Invalid Input!")
             
+
 # Ricardo's function
 def assemble_team(characters):
     """Assembles a team using user prompts at a menu.
@@ -122,8 +123,7 @@ def assemble_team(characters):
     team = []
     i=1
     for character in characters:
-        print(f"{i}. {character.name} | {character.current_hp} "
-              f"({character.max_hp}) HP")
+        print(f"{i}. {character.name} | {character.current_hp} ({character.max_hp}) HP")
         i += 1
 
     numbers_chosen = []
@@ -143,7 +143,7 @@ def assemble_team(characters):
             return [characters[c] for c in characters]
         # One branch for info
         if len(choice) == 2:
-            if (numeric_choice < 1) and (numeric_choice >= len(team)):
+            if numeric_choice not in range(1, len(characters) + 1):
                 print("Character doesn't exist")
             elif choice[1] != 'v':
                 print("Invalid flag.")
@@ -154,7 +154,7 @@ def assemble_team(characters):
         elif len(choice) == 1:
             print(f"{numbers_chosen}")
             # First verify that what was entered is even a character
-            if (numeric_choice < 1) and (numeric_choice >= len(team)):
+            if numeric_choice not in range(1, len(characters) + 1):
                 print("Character doesn't exist")
             # Then check if the character is already on their team
             elif numeric_choice in numbers_chosen:
