@@ -5,8 +5,7 @@ from damagecalc_abilbranch import *
 
 def combat(Player_Team, Enemy_Team) -> bool:
     combat_result = True
-    if Enemy_Team.intro_message is not None:
-        print(Enemy_Team.intro_message)
+    print(Enemy_Team.intro_message)
     # ultimately, we're going to return a boolean with like, did the player
     # make it out alive or not
     # b/c we're not really concerned with how the player ended up other than
