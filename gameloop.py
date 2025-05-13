@@ -4,6 +4,7 @@ import character_class as ct
 import all_enemies as en
 import random as r
 import all_characters as ac
+import shop as s
 
 OPPOSING_TEAMS = {
     1: en.ROUND_ONE_ENEMIES,
@@ -33,8 +34,9 @@ def gameloop(rounds: int, team_size: int):
         if alive == True:
             for p in player_team:
                 p.progress_hp
-            # shopping time!
-            g.character_equipment()
+                # shopping time!
+                s.shop(p)
+            #g.character_equipment()
             if round_counter == 2:
                 for p in player_team:
                     p.character_abilities.addTo(ac.EXTRA_ABILITIES[p.name][0])
