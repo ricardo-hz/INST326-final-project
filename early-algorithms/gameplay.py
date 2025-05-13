@@ -102,6 +102,8 @@ def title_screen():
         elif choice == "3":
             information("lore.txt")
             print()
+            input("Press enter or any key to continue...")
+            print()
         else:
             print("Invalid Input!")
             
