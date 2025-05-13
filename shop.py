@@ -61,7 +61,9 @@ def shop(character):
         
         
 k = copy.deepcopy(ac.knight)
+print(f"BEFORE {k.weapon.name} | {k.armor.name}")
 shop(k)
+print(f"AFTER {k.weapon.name} | {k.armor.name}")
         
 
 """
