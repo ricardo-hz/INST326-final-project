@@ -6,6 +6,11 @@ from gameplay import assemble_team
 import copy
 
 def get_next_weapon(character):
+    """Gets the next available weapon for a character from the WEAPONS dict.
+    
+    Args:
+        character (Character) : The character object to check the weapons of.
+    """
     index = 0
     for v in ae.WEAPONS[character.name]:
         if character.weapon.name == v.name:
@@ -13,6 +18,11 @@ def get_next_weapon(character):
         index += 1
 # Source: https://stackoverflow.com/questions/69642889/how-to-use-multiple-cases-in-match-switch-in-other-languages-cases-in-python-3
 def get_next_armor(character):
+    """Gets the next available armor for a character from the ARMOR dict.
+    
+    Args:
+        character (Character) : The character object to check the armor of.
+    """
     index = 0
     match(character.name):
         case("Pisces The Mage"):
@@ -22,7 +32,7 @@ def get_next_armor(character):
         case("Leo the Knight" | "Libra the Paladin"):
             armor_designation = "Metal"
         case _:
-            raise NotImplementedError # TODO: Protagonist has no armor
+            return NotImplementedError # TODO: Protagonist has no armor
         
     for v in ae.ARMOR[armor_designation]:
         if character.armor.name == v.name:
@@ -31,16 +41,19 @@ def get_next_armor(character):
 
 def shop(character):
     """Gives a player the opportunity to upgrade weapons and armor.
+    
+    Args:
+        Character (character) : The character which the shop is relevant for.
+        
+    Side effects:
+        May update attributes of character.
     """
+    # Introductory messages
     print(f"Welcome to the shop, {character.name}!")
-    #print(f"The shop allows you to upgrade your team's existing armor and"
-          #f" weapons.")
-    #print(f"Note for each visit to the shop, you may only acquire one item "
-            #f"for each character.")
-    #for character in team:
     print(f"Current Weapon: {character.weapon} | Next Weapon: {get_next_weapon(character)}")
     print(f"Current Armor: {character.armor} | Next Armor {get_next_armor(character)}")
     
+    # Get choice
     shop_choice = ""
     while shop_choice not in ["WEAPON", "ARMOR", "NONE"]:
         print(f"To upgrade to the next available weapon, type 'WEAPON' .")
@@ -50,6 +63,7 @@ def shop(character):
         if shop_choice not in ["WEAPON", "ARMOR", "NONE"]:
             print(f"{shop_choice} is not a valid entry.")
     
+    # Upgrade equipment according to choice
     match(shop_choice):
         case("WEAPON"):
             character.swap_weapon(get_next_weapon(character))
@@ -57,32 +71,3 @@ def shop(character):
             character.swap_armor(get_next_armor(character))
         case("NONE"):
             pass
-
-"""
-# This code gets the next available weapon for knight
-k = copy.deepcopy(ac.knight)
-
-print(f"New weapon: {k.weapon.name}")
-print("-------")
-print(get_next_weapon(k))
-print("-------")
-print()
-print("-------")
-print(get_next_armor(k))
-print("-------")
-"""
-"""
-m = copy.deepcopy(ac.mage)
-
-i = 0
-for v in ae.ARMOR["Cloth"]:
-    if m.armor.name == v.name:
-        print(m.armor.name)
-        print(ae.ARMOR["Cloth"][i + 1].name)
-    i += 1
-# This code gets the next available armor for mage
-        
-        
-team = assemble_team(ac.ALL_CHARACTERS)
-shop(team)
-"""
