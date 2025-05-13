@@ -1,6 +1,6 @@
 from gameloop import gameloop
 from gameplay import title_screen
-
+from all_characters import RESET_CHARACTERS
 
 if __name__ == "__main__":
 
@@ -16,3 +16,4 @@ if __name__ == "__main__":
         gameloop(rounds, team_size)
         # then once the entire game is finished, it'll take us back to the title
         # screen loop
+        RESET_CHARACTERS()
