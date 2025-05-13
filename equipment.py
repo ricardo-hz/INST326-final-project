@@ -1,15 +1,5 @@
 from ability_test import *
 
-# Abilities dictionary with all possible abilities?
-# Name : dmg, heal, cooldown
-ABILITIES = {
-    "ABILITY NOT FOUND" : [3.14, 3.14, 9999], # Special ability reserved for debugging
-    "SUPER SMASH" : [10, 0, 0],
-    "Strike": Ability("Strike", "Damage", 1),
-    "Mend Injury": Ability("Mend Injury", "Heal", 1.5),
-    "Water Bottle": Ability("Water Bottle", "Damage", 20)
-}
-
 class Weapon:
     """Representation of a Weapon.
     

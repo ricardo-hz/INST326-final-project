@@ -1,9 +1,6 @@
 from equipment import *
-import character_class as cc
-import all_characters as ac
 import all_equipment as ae
-from gameplay import assemble_team
-import copy
+
 
 def get_next_weapon(character):
     """Gets the next available weapon for a character from the WEAPONS dict.
@@ -27,7 +24,8 @@ def get_next_armor(character):
     match(character.name):
         case("Pisces The Mage"):
             armor_designation = "Cloth"
-        case("Aquarius the Priest" | "Sagitarrius the Archer" | "Gemini the Thief"):
+        case("Aquarius the Priest" | "Sagitarrius the Archer" | 
+                "Gemini the Thief"):
             armor_designation = "Leather"
         case("Leo the Knight" | "Libra the Paladin"):
             armor_designation = "Metal"
@@ -50,14 +48,18 @@ def shop(character):
     """
     # Introductory messages
     print(f"Welcome to the shop, {character.name}!")
-    print(f"Current Weapon: {character.weapon} | Next Weapon: {get_next_weapon(character)}")
-    print(f"Current Armor: {character.armor} | Next Armor {get_next_armor(character)}")
+    print(f"Current Weapon: {character.weapon} |"
+            f"Next Weapon: {get_next_weapon(character)}")
+    
+    print(f"Current Armor: {character.armor} |"
+            f"Next Armor {get_next_armor(character)}")
     
     # Get choice
     shop_choice = ""
     while shop_choice not in ["WEAPON", "ARMOR", "NONE"]:
         print(f"To upgrade to the next available weapon, type 'WEAPON' .")
-        print(f"To upgrade to the next available piece of armor, type 'ARMOR' .")
+        print(f"To upgrade to the next available piece of armor, "
+                f"type 'ARMOR' .")
         print(f"Exit the shop by typing 'NONE' .")
         shop_choice = input().strip()
         if shop_choice not in ["WEAPON", "ARMOR", "NONE"]:

@@ -36,7 +36,8 @@ def gameloop(rounds: int, team_size: int):
                 p.progress_hp
                 # shopping time!
                 s.shop(p)
-            #g.character_equipment()
+            #g.character_equipment() this was causing bug before, replaced by
+                #s.shop(p)
             if round_counter == 2:
                 for p in player_team:
                     p.character_abilities.addTo(ac.EXTRA_ABILITIES[p.name][0])
