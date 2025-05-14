@@ -93,7 +93,8 @@ c3 = Enemy("Cultist Follower B", 9, 5, 35, 12, "Normal Enemy",
 c4 = Enemy("Cultist Follower C", 9, 5, 35, 3, "Normal Enemy", 
            AbilityList([basic_attack4]))
 cultists = [c1, c2, c3, c4]
-cult = Enemy_Party("Cult of the Forgotten", cultists, "For the Forgotten One!")
+cult = Enemy_Party("Cult of the Forgotten", cultists, 
+                   intro_message = "For the Forgotten One!")
 
 b1 = Enemy("Bandit Leader", 11, 5, 40, 20, "Strong Enemy",  
            AbilityList([dagger_throw, swift_slash, basic_attack1]))
@@ -105,7 +106,7 @@ b4 = Enemy("Bandit Lackey C", 9, 5, 32, 8, "Normal Enemy",
            AbilityList([basic_attack1]))
 bandits = [b1, b2, b3, b4]
 bandit_group = Enemy_Party("Sunset Mountain Bandits", bandits, 
-                           "Give us all your loot!")
+                           intro_message = "Give us all your loot!")
 
 h1 = Enemy("Harpy Elder Sister", 20, 9, 125, 12, "Strong Enemy", 
            AbilityList([screech, sing, basic_attack3]))
