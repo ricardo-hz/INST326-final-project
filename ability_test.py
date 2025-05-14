@@ -1,4 +1,4 @@
-import warnings
+
 
 CATEGORIES_OF_ABILITIES = {"damage", "heal", "debuff", "buff"}
 # all lowercase, actually. please look forward to it.
@@ -43,9 +43,6 @@ class Ability:
         # (.33 for 33% and so on)
         if isinstance(potency, float) or isinstance(potency, int):
             self.potency: float = potency
-            if self.potency < 0:
-                warnings.warn(f"Potency on {self.name} with category \
-                    {self.category} is less than 0: {self.potency}")
         else:
             raise TypeError(f"Invalid type of object for potency: \
                 {type(potency)}")
