@@ -6,6 +6,24 @@ from ability_test import *
 def damage_calculation(attacker, attack, defender, attackModifier = 1.4, 
                        defenseModifier = 1.2, 
                        minimumDamage = 1, minVar = 0.95, maxVar = 1.05):
+    """Damage calculation
+
+    Args:
+        attacker (Character): who's attacking
+        attack (Ability): ability being used to attack
+        defender (Character): who is being attack
+        attackModifier (float, optional): Attack modifier. Defaults to 1.4.
+        defenseModifier (float, optional): Defense modifier. Defaults to 1.2.
+        minimumDamage (int, optional): Minimum damage an
+        attack can do . Defaults to 1.
+        minVar (float, optional): Minimum bound for damage variance. Irrelevant. 
+        Defaults to 0.95.
+        maxVar (float, optional): Maximum bound for damage variance. Irrelevant 
+        Defaults to 1.05.
+
+    Returns:
+        int: Amount of damage to be done to defender
+    """
     # you want there to be some damage, so preferring attack over damage with 
     # a 'constant' modifier by default makes sense
     
@@ -40,10 +58,33 @@ def damage_calculation(attacker, attack, defender, attackModifier = 1.4,
     # flexible dmgcalc function and it's more relevant in use than anything else
     
 def healing_calculation(healer, heal_ability, healing_target):
+    """Heals
+
+    Args:
+        healer (Character): person doing the healing
+        heal_ability (Ability): healing ability
+        healing_target (Character): person being healed
+
+    Returns:
+        int: healing to be done
+    """
     return ceil(healer.attack_stat * heal_ability.potency)
     
 def ability_handler(user: Character, ability_used: Ability, 
                     target: Character) -> int:
+    """Handles how abilities are used
+    
+    Args:
+        user (Character): the one using an ability
+        ability_used (Ability): the ability being used
+        target (Character): the one being affected
+        
+    Side effects:
+        Modifies target health, prints to console, decides conscious
+    
+    Returns:
+        int. This was supposed to be used for something but isn't. oh well
+    """
     #i need to return something or it gets all weird =/
     #i don't need to actually, it just helps for purposes
     funny_number = 0

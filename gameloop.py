@@ -18,6 +18,15 @@ OPPOSING_TEAMS = {
 # better way
 
 def gameloop(rounds: int, team_size: int):
+    """Loop in which the game takes place very exciting yesyes
+
+    Args:
+        rounds (int): how many rounds of combat there are before the finale
+        team_size (int): how big the team should be
+        
+    Side effects:
+        Prints out the entire game
+    """
     round_counter: int = 1
     alive: bool = True
     player_team: ct.Player_Party = ct.Player_Party(g.assemble_team(

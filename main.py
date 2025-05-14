@@ -3,7 +3,10 @@ from gameplay import title_screen
 from all_characters import RESET_CHARACTERS
 
 if __name__ == "__main__":
-
+    """Main function! Plays title screen, then gameloop, then resets characters
+    after each run so stats don't get all weird
+    
+    """
     rounds = 5
     team_size = 3
 

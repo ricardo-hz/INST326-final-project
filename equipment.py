@@ -33,6 +33,8 @@ class Weapon:
         self.hitMod: int = hitMod
         
     def __str__(self):
+        """Prints out string repesentation of weapon
+        """
         return(f"name: {self.name} | dmg: {self.damage}")
         
 class Armor:
@@ -61,5 +63,6 @@ class Armor:
         self.ability_included: Ability = ability_included
          
     def __str__(self):
+        """Prints out string representation of armor"""
         return(f"name: {self.name} | def: {self.defense}")
          
