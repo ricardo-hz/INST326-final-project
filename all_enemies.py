@@ -168,9 +168,9 @@ minotaur_party = Enemy_Party("The Minotaur", [minotaur],
                              "It seems you are lost. Prepare to die!")
 
 necromancer = Enemy("Necromancer", 80, 30, 600, 10, "Boss", 
-                    AbilityList([bone_spear, death_embrace, basic_attack4]))
+                    AbilityList([bone_spear, fire, death_embrace, basic_attack4]))
 death_knight = Enemy("Death Knight", 72, 32, 800, 4, "Boss", 
-                     AbilityList([great_slash, basic_attack1]))
+                     AbilityList([double_smack, fire, great_slash, basic_attack1]))
 necromancer_party = Enemy_Party("The Damned", [necromancer, death_knight], 
                                 "Death claims all...")
 
