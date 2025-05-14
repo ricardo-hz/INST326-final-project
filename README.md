@@ -181,7 +181,15 @@ For assignment due 2025-04-18:
         character in our game would have a unique set of abilities so that each 
         run was randomized. This didn’t end up being the case, but the 
         inspiration is there.
-- “w3schools.com” w3schools Online Web Tutorials, Refnes Data, 
+- "stackoverflow.com" StackOverflow, Prosus, 
+    www.stackoverflow.com/questions/tagged/python.
+    - stackoverflow provides (mostly) user-generated solutions to problems or
+        questions that may arise when using features of Python. Small portions
+        of the code, like the concept of using the | operator in the match
+        statement of get_next_armor(), may be inspired by or come from 
+        stackoverflow.
+
+- “w3schools.com” w3schools Online Web Tutorials, Refsnes Data, 
     www.w3schools.com/python/default.asp.
     - w3schools has some very useful tutorials for Python as well as general 
         refreshers on syntax that were extremely useful.
@@ -196,5 +204,5 @@ For assignment due 2025-04-18:
 |`Enemy.enemy_logic()`  | Nathan Castelo   | comprehensions/generator expr.     |
 |`Initative.__init__()` | Phoenix Thompson | use of a key function              |
 |`Character.__lt__()`   | Phoenix Thompson | magic method other than `__init__ `|
-|`get_next_weapon()`    | Ricardo Hernandez| conditional expressions            |
+|`get_next_armor()`    | Ricardo Hernandez| conditional expressions             |
 |`assemble_team()`      | Ricardo Hernandez| optional parameters and/or keyword arguments |
