@@ -142,7 +142,7 @@ Programming with Python course.
     - Windows: 
         - Type ```python main.py```, then hit enter.
     - Unix-Based OS (Including Mac): 
-        - Type ```python3 experimental.py```, then hit enter.
+        - Type ```python3 main.py```, then hit enter.
 
 For assignment due 2025-04-18:
     - All algorithms implemented for this assignment can be found in gameplay.py
