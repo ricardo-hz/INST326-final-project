@@ -255,8 +255,6 @@ class AbilityList():
         Returns:
             bool: whether or not ability is available (cooldown is 0)
         """
-        print(self.cooldowns)
-        print(self.cooldowns[order_index])
         if self.cooldowns[order_index] <= 0:
             return True
         else:
