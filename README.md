@@ -7,14 +7,14 @@ Phoenix Thompson as part of University of Maryland's INST326 Object Oriented
 Programming with Python course. 
 
 ## Purpose of Each File:
-all_enemies.py
+- all_enemies.py
 
     - Creates all the needed enemies to battle in the game and organizes related 
         enemies into their own Enemy_Party.
     - Also creates all the abilities of the enemies in the game and organizes 
         each Enemy_Party into their separate round (this is what is being 
         imported into other files)
-enemies.py
+- enemies.py
 
     - Contains the Enemy class and Enemy_Party classes’ implementation. The file 
         imports from character_class, random, ability_test, and equipment as 
@@ -24,19 +24,19 @@ enemies.py
     - enemy_logic is also implemented in this file as it decides how an Enemy 
         will target a corresponding Character during combat based on a few 
         criteria like the defense, attack, and hp of a Character.
-all_characters.py
+- all_characters.py
 
     - Creates all the needed Characters for the user to play in the game. It 
         also creates all the abilities that they have at the start of the game 
         and the abilities they will gain as the game goes on.
     - Imports all_equipment, ability_test, and character_class as they are 
         needed to implement all of these things to create a character.
-character_class.py 
+- character_class.py 
 
     - Implementation for the Character class is in here as well as Player_Party 
         which contains the Characters that the user decides to choose to fight 
         in the game.
-all_equipment.py
+- all_equipment.py
 
     - Contains all the weapons and armor that each Character will obtain as the 
         game progresses. Imports from equipment.py to create Armor and Weapon 
@@ -44,12 +44,12 @@ all_equipment.py
     - Weapons are categorized by their corresponding Character.
     - Armor is categorized by the type of armor, Characters will share armor, 
         i.e., knights and paladins have “Metal” type armor.
-main.py
+- main.py
 
     - Where the program will essentially run via the console. 
     - Contains the gameloop function and title_screen function, they should run 
         endlessly
-gameloop.py
+- gameloop.py
 
     - The actual loop of the game. Will go through the rounds of each combat and 
         continuously check if the user’s party is still alive and will keep 
@@ -57,10 +57,10 @@ gameloop.py
     - Gameloop ends with the final combat or a message that says you have failed 
         if you previously lost or you lose the final combat.
     - It will also have a final message if you win the game
-equipment.py
+- equipment.py
 
     - Contains Weapon and Armor classes’ implementation.
-combat.py
+- combat.py
 
     - The main part of the game where enemies and characters will fight. The 
         user will be able to select an ability to use for each character to use 
@@ -69,49 +69,49 @@ combat.py
         the allies. It also contains some other methods that help with combat, 
         like a combat overview to see turn order and a party overview to see how 
         much HP the party has.
-damagecalc_abilbranch.py
+- damagecalc_abilbranch.py
 
     - Essentially handles damage calculations against targets and handles how 
         certain ability types work, i.e., buffs, debuffs, heals etc. 
-ability_test.py
+- ability_test.py
 
     - Implementation of Ability and AbilityList which are the abilities the 
         users and enemies will use to fight in combat. AbilityList also has some 
         other methods to handle things like cooldown and how a user can actually 
         select an ability from their given list.
-lore.txt & how_to_play.txt
+- lore.txt & how_to_play.txt
 
     - Information about the lore behind the game as well as the instructions on 
         how to play the game
-gameplay.py
+- gameplay.py
 
     - Contains various functions to be used in the game directly that really 
         don’t have a specific class attached to them, i.e., title_screen() which 
         shows the title screen of the game.
-shop.py
+- shop.py
 
     - Contains the shop function which allows users to upgrade the weapons/armor 
         of the characters in their party.
 
 
 ## How To Play:
-    - Step 1: Choose your character!
-        - You will be given a choice of 7 different characters with various 
-            abilities and stats (the Protagonist is the one you should select 
-            b/c it makes the game quicker)
-        - You choose the character based on their given number and put that into
-            the console, they will then be added to the party with a max of 
-            three characters in a party
-    - Step 2: Enter Combat!
-        - You will first be given a turn order on which characters or enemies 
-            will go first
-        - If it's your character's turn you will have the option to choose an 
-            ability to attack an enemy, the overall combat overview (status of 
-            all parties), or your party overview (can see abilities/stats of 
-            each Character in your party)
-        - Enemies will attack your Characters based on their given logic.
-        - Turn order should repeat until either side dies, meaning that their 
-            whole party is completely wiped out
+- Step 1: Choose your character!
+    - You will be given a choice of 7 different characters with various 
+        abilities and stats (the Protagonist is the one you should select 
+        b/c it makes the game quicker)
+    - You choose the character based on their given number and put that into
+        the console, they will then be added to the party with a max of 
+        three characters in a party
+- Step 2: Enter Combat!
+    - You will first be given a turn order on which characters or enemies 
+        will go first
+    - If it's your character's turn you will have the option to choose an 
+        ability to attack an enemy, the overall combat overview (status of 
+        all parties), or your party overview (can see abilities/stats of             
+        each Character in your party)
+    - Enemies will attack your Characters based on their given logic.
+    - Turn order should repeat until either side dies, meaning that their 
+        whole party is completely wiped out
 
 ## How To Start the Game:
 - Download latest version of Python 3 from [python.org](https://www.python.org/)
@@ -177,7 +177,7 @@ For assignment due 2025-04-18:
         refreshers on syntax that were extremely useful.
 
 
-## Attribution:
+## Attributions:
 | Method/Function       | Primary Author   | Techniques Demonstrated            |
 | ---------------       | ---------------  |  -------------------------         |
 |`character_equipment()`| Aviva Solovey    | f-strings containing expressions   |
