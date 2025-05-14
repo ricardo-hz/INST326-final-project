@@ -72,7 +72,7 @@ class Enemy(Character):
             # Should target a character if they are low hp
             if (char.current_hp <= char.max_hp * .10) and (char.current_hp > 0):
                 selected_target = char
-                for ability in range (1, self.character_abilities.amountOfAbilities + 1):
+                for ability in range(self.character_abilities.amountOfAbilities):
                     if self.character_abilities.ability_available(ability) == True:
                         chosen_ability = self.character_abilities.index_to_ability(ability)
                 return selected_target, chosen_ability
@@ -102,27 +102,33 @@ class Enemy(Character):
                     chance = randint(0, 100)
                     if chance >= 70:
                         selected_target = char
-                        for ability in range (1, self.character_abilities.amountOfAbilities + 1):
+                        for ability in range(self.character_abilities.amountOfAbilities):
                             if self.character_abilities.ability_available(ability) == True:
                                 chosen_ability = self.character_abilities.index_to_ability(ability)
+                        if chosen_ability == None:
+                            chosen_ability = self.character_abilities.index_to_ability(3)
                         return selected_target, chosen_ability
                 
                 if char.attack_base == strongest_attack:
                     chance = randint(0, 100)
                     if chance >= 60:
                         selected_target = char
-                        for ability in range (1, self.character_abilities.amountOfAbilities + 1):
+                        for ability in range(self.character_abilities.amountOfAbilities):
                             if self.character_abilities.ability_available(ability) == True:
                                 chosen_ability = self.character_abilities.index_to_ability(ability)
+                        if chosen_ability == None:
+                            chosen_ability = self.character_abilities.index_to_ability(3)
                         return selected_target, chosen_ability
             
             if selected_target == None:
                 selected_target = character_party[randint(0, 
                                                           len(character_party) 
                                                           - 1)]
-                for ability in range (1, self.character_abilities.amountOfAbilities + 1):
+                for ability in range(self.character_abilities.amountOfAbilities):
                     if self.character_abilities.ability_available(ability) == True:
                         chosen_ability = self.character_abilities.index_to_ability(ability)
+                if chosen_ability == None:
+                            chosen_ability = self.character_abilities.index_to_ability(3)
                 return selected_target, chosen_ability
         
         if self.e_type == "Boss":
@@ -132,7 +138,7 @@ class Enemy(Character):
                         chance = randint(0, 100)
                         if chance >= 70:
                             selected_target = char
-                            for ability in range (1, self.character_abilities.amountOfAbilities + 1):
+                            for ability in range(self.character_abilities.amountOfAbilities):
                                 if self.character_abilities.ability_available(ability) == True:
                                     chosen_ability = self.character_abilities.index_to_ability(ability)
                             return selected_target, chosen_ability
@@ -140,9 +146,11 @@ class Enemy(Character):
                         chance = randint(0, 100)
                         if chance >= 90:
                             selected_target = char
-                            for ability in range (1, self.character_abilities.amountOfAbilities + 1):
+                            for ability in range(self.character_abilities.amountOfAbilities):
                                 if self.character_abilities.ability_available(ability) == True:
                                     chosen_ability = self.character_abilities.index_to_ability(ability)
+                            if chosen_ability == None:
+                                chosen_ability = self.character_abilities.index_to_ability(4)
                             return selected_target, chosen_ability
                 
                 if selected_target == None:
@@ -150,9 +158,11 @@ class Enemy(Character):
                                                               len
                                                               (character_party) 
                                                               - 1)]
-                    for ability in range (1, self.character_abilities.amountOfAbilities + 1):
+                    for ability in range(self.character_abilities.amountOfAbilities):
                         if self.character_abilities.ability_available(ability) == True:
                             chosen_ability = self.character_abilities.index_to_ability(ability)
+                        if chosen_ability == None:
+                            chosen_ability = self.character_abilities.index_to_ability(4)
                     return selected_target, chosen_ability
             else:
                 for char in character_party:
@@ -160,26 +170,32 @@ class Enemy(Character):
                         chance = randint(0, 100)
                         if chance >= 80:
                             selected_target = char
-                            for ability in range (1, self.character_abilities.amountOfAbilities + 1):
+                            for ability in range(self.character_abilities.amountOfAbilities):
                                 if self.character_abilities.ability_available(ability) == True:
                                     chosen_ability = self.character_abilities.index_to_ability(ability)
+                            if chosen_ability == None:
+                                chosen_ability = self.character_abilities.index_to_ability(4)
                             return selected_target, chosen_ability
                     if char.attack_base == strongest_attack:
                         chance = randint(0, 100)
                         if chance >= 90:
                             selected_target = char
-                            for ability in range (1, self.character_abilities.amountOfAbilities + 1):
+                            for ability in range(self.character_abilities.amountOfAbilities):
                                 if self.character_abilities.ability_available(ability) == True:
                                     chosen_ability = self.character_abilities.index_to_ability(ability)
+                            if chosen_ability == None:
+                                chosen_ability = self.character_abilities.index_to_ability(4)
                             return selected_target, chosen_ability
                 if selected_target == None:
                     selected_target = character_party[randint(0, 
                                                               len
                                                               (character_party) 
                                                               - 1)]
-                    for ability in range (1, self.character_abilities.amountOfAbilities + 1):
+                    for ability in range(self.character_abilities.amountOfAbilities):
                         if self.character_abilities.ability_available(ability) == True:
                             chosen_ability = self.character_abilities.index_to_ability(ability)
+                    if chosen_ability == None:
+                        chosen_ability = self.character_abilities.index_to_ability(4)
                     return selected_target, chosen_ability
                             
 
