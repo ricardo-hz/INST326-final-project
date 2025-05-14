@@ -1,5 +1,6 @@
 import random
 from character_class import *
+import all_characters as ac
 from combat import party_info
 
 MAX_TEAM_SIZE = 3
@@ -109,7 +110,7 @@ def title_screen():
             
 
 # Ricardo's function
-def assemble_team(characters):
+def assemble_team(characters = ac.ALL_CHARACTERS):
     """Assembles a team using user prompts at a menu.
     
     Args:

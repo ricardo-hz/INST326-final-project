@@ -186,3 +186,5 @@ For assignment due 2025-04-18:
 |`Enemy.enemy_logic()`  | Nathan Castelo   | comprehensions/generator expr.     |
 |`Character.__init__()` | Phoenix Thompson | use of a key function              |
 |`Character.__lt__()`   | Phoenix Thompson | magic method other than `__init__ `|
+|`get_next_weapon()`    | Ricardo Hernandez| conditional expressions            |
+|`assemble_team()`      | Ricardo Hernandez| optional parameters and/or keyword arguments |

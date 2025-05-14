@@ -1,5 +1,6 @@
 from equipment import *
 import all_equipment as ae
+import all_characters as ac
 
 
 def get_next_weapon(character):
@@ -11,7 +12,11 @@ def get_next_weapon(character):
     index = 0
     for v in ae.WEAPONS[character.name]:
         if character.weapon.name == v.name:
-            return(ae.WEAPONS[character.name][index + 1])
+            # Checks that a user doesn't already have max weapon to avoid
+                # index out of bounds
+            return ae.WEAPONS[character.name][index + 1] if \
+                index + 1 < len(ae.WEAPONS[character.name]) else \
+                    ae.WEAPONS[character.name][index]
         index += 1
 # Source: https://stackoverflow.com/questions/69642889/how-to-use-multiple-cases-in-match-switch-in-other-languages-cases-in-python-3
 def get_next_armor(character):
@@ -21,6 +26,7 @@ def get_next_armor(character):
         character (Character) : The character object to check the armor of.
     """
     index = 0
+        
     match(character.name):
         case("Pisces The Mage"):
             armor_designation = "Cloth"
@@ -34,7 +40,11 @@ def get_next_armor(character):
         
     for v in ae.ARMOR[armor_designation]:
         if character.armor.name == v.name:
-            return(ae.ARMOR[armor_designation][index + 1])
+            # Checks that a user doesn't already have max armor to avoid
+                # index out of bounds
+            return ae.ARMOR[armor_designation][index + 1] if \
+                index + 1 < len(ae.ARMOR[armor_designation]) else \
+                    ae.WEAPONS[character.name][index]
         index += 1
 
 def shop(character):
@@ -73,3 +83,8 @@ def shop(character):
             character.swap_armor(get_next_armor(character))
         case("NONE"):
             pass
+        
+p = ac.knight
+print(f"BEFORE: {p.weapon.name} | {p.armor.name}")
+shop(p)
+print(f"AFTER: {p.weapon.name} | {p.armor.name}")
