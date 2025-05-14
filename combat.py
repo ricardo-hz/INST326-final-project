@@ -109,8 +109,8 @@ def combat(Player_Team, Enemy_Team) -> bool:
                 # end of turn checks for victory and such
             else:
                 print(f"Opponent's turn as {active_combatant.name}")
-                ability_handler(active_combatant, active_combatant.character_abilities.index_to_ability(1), \
-                    active_combatant.enemy_logic(Player_Team))
+                ability_handler(active_combatant, active_combatant.enemy_logic(Player_Team)[-1], \
+                    active_combatant.enemy_logic(Player_Team)[0])
                  # there's nothing about the enemy logic that returns an ability
                  # so i have no option here lmao 
         else:
