@@ -115,7 +115,7 @@ def assemble_team(characters = ac.ALL_CHARACTERS):
     
     Args:
         characters (list of Characters) : The characters which a player can
-            choose from. ALL_CHARACTERS if ommitted.
+            choose from. ALL_CHARACTERS if omitted.
     
     Side effects:
         Prints to the screen.
