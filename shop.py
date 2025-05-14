@@ -18,7 +18,7 @@ def get_next_weapon(character):
                 index + 1 < len(ae.WEAPONS[character.name]) else \
                     ae.WEAPONS[character.name][index]
         index += 1
-# Source: https://stackoverflow.com/questions/69642889/how-to-use-multiple-cases-in-match-switch-in-other-languages-cases-in-python-3
+
 def get_next_armor(character):
     """Gets the next available armor for a character from the ARMOR dict.
     
