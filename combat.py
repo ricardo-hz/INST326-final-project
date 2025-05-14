@@ -4,6 +4,20 @@ from ability_test import *
 from damagecalc_abilbranch import *
 
 def combat(Player_Team, Enemy_Team) -> bool:
+    """Actual combat loop for game. Returns whether or not player team won or
+    lost.
+
+    Args:
+        Player_Team (PlayerTeam): player team
+        Enemy_Team (EnemyTeam): enemy team
+
+    Returns:
+        bool: whether or not player won or lost
+        
+    Side effects:
+        creates a hell of a lot of variables, initalizes some classes, and
+        prints a LOT to the console
+    """
     combat_result = True
     print(Enemy_Team.intro_message)
     # ultimately, we're going to return a boolean with like, did the player
@@ -164,9 +178,29 @@ def party_info(party, id = -1):
         
         
 class Initative(): 
-    #aisudgasoikldjawlKdjsakjfhasklfj,shisk
+    """Initative, handling order in which combatants in a party go.
+    
+    Attributes:
+        psuedo_order (list): unsorted list of all characters
+        combat_order (dict): order in combat -> character dict
+        self.fight_size (int): how many combatants there are
+        self.players_active (bool): whether or not at least one player
+        is conscious
+        self.enemies_active (bool): whether or not at least one enemy is 
+        conscious
+    
+    """
     def __init__(self, party_player: Player_Party, \
         party_enemy: Enemy_Party):
+        """Initalizes Initative class
+
+        Args:
+            party_player (Player_Party): player party
+            party_enemy (Enemy_Party): enemy party
+            
+        Side effects:
+            Initalizes Initative class 
+        """
         self.psuedo_order = list()
         for c in party_player:
             c.adjust_cooldowns(adjustment_amount= 99 )
@@ -187,6 +221,11 @@ class Initative():
         self.enemies_active = True
         
     def __str__(self) -> str:
+        """String representation of all combatants in a fight
+
+        Returns:
+            str: info on turn order of combatants as well as hp
+        """
         player_view = "YOUR SIDE:  // "
         enemy_view = "ENEMY SIDE: // "
         
@@ -204,10 +243,21 @@ class Initative():
         return f"{player_view}\n{enemy_view}"
     
     def heal_all(self) -> None:
+        """Heals all combatants in a fight. Executed after a fight is over.
+        
+        Side effects:
+            Heals all combatants to full health, makes them conscious
+        """
         for c in self.combat_order:
             self.combat_order[c].heal_full()
             
     def check_consciousness(self) -> None:
+        """Checks if at least one combatant on each side is conscious, if none
+        are then side is no longer active
+        
+        Side effects:
+            modifies players_active and enemies_active attributes
+        """
         p_act = False
         e_act = False
         for c in self.combat_order:
