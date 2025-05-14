@@ -112,6 +112,16 @@ Programming with Python course.
     - Enemies will attack your Characters based on their given logic.
     - Turn order should repeat until either side dies, meaning that their 
         whole party is completely wiped out
+- Step 3: Upgrade Equipment!
+    - After each combat phase (assuming the player lives), they will be given
+        the choice, for each character, to upgrade either their weapon or
+        their armor. This helps characters obtain more damage, or become more
+        tankier
+- Step 4: Repeat!
+    - Step 2 and 3 will repeat until the 6th round, AKA the Boss Round, where
+        it will proceed normally but if the player loses, their will be a
+        special sentence on what happens after they lose. If they win, the
+        heroes are praised for their deeds!
 
 ## How To Start the Game:
 - Download latest version of Python 3 from [python.org](https://www.python.org/)
