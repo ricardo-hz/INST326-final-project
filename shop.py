@@ -83,8 +83,3 @@ def shop(character):
             character.swap_armor(get_next_armor(character))
         case("NONE"):
             pass
-        
-p = ac.knight
-print(f"BEFORE: {p.weapon.name} | {p.armor.name}")
-shop(p)
-print(f"AFTER: {p.weapon.name} | {p.armor.name}")
